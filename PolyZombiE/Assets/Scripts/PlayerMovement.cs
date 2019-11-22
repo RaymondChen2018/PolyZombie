@@ -15,43 +15,48 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField] private float movementSpeed;
 
     [SerializeField] private Rigidbody2D RB;
+    [SerializeField] private PlayerDirectionFinder directionFinder;
+
 
     // Use this for initialization
     void Start () {
         Assert.AreNotEqual(RB, null);
-	}
+        Assert.AreNotEqual(directionFinder, null);
+    }
 
     // Update is called once per frame
     void Update () {
         // Compose move direction
-        Vector2 moveDir = Vector2.zero;
+        Vector2 localMoveDir = Vector2.zero;
         if (Input.GetKey(moveUp))
         {
-            moveDir += Vector2.up;
+            localMoveDir += Vector2.up;
         }
         if (Input.GetKey(moveDown))
         {
-            moveDir += Vector2.down;
+            localMoveDir += Vector2.down;
         }
         if (Input.GetKey(moveLeft))
         {
-            moveDir += Vector2.left;
+            localMoveDir += Vector2.left;
         }
         if (Input.GetKey(moveRight))
         {
-            moveDir += Vector2.right;
+            localMoveDir += Vector2.right;
         }
 
         // Normalize
-        if(moveDir != Vector2.zero)
+        if(localMoveDir != Vector2.zero)
         {
-            moveDir.Normalize();
+            localMoveDir.Normalize();
         }
 
         // Compose force
-        moveDir *= movementSpeed * Time.deltaTime;
+        
+        localMoveDir *= movementSpeed * Time.deltaTime;
 
         // Push rigidbody
-        RB.velocity = moveDir;
+        Vector2 worldMoveDir = directionFinder.AlignToGlobal(localMoveDir);
+        RB.velocity = worldMoveDir;
     }
 }
