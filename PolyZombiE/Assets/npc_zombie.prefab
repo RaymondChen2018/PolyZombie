@@ -38,6 +38,7 @@ GameObject:
   - component: {fileID: 58877536583860836}
   - component: {fileID: 50680137565465604}
   - component: {fileID: 114200180462222248}
+  - component: {fileID: 114445293999317086}
   m_Layer: 10
   m_Name: npc_zombie
   m_TagString: Untagged
@@ -178,6 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba95017799e5b644fa6728c609a9b147, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 5
 --- !u!114 &114200180462222248
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -203,6 +205,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 1000
   RB: {fileID: 50680137565465604}
+--- !u!114 &114445293999317086
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1423043396970880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3ac279d3809ed1469eef4a59a0c7606, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 20
+  maxHealth: 20
+  armor: 0
+  status: 0
+  infectiousness: 20
 --- !u!212 &212019663138225768
 SpriteRenderer:
   m_ObjectHideFlags: 1
