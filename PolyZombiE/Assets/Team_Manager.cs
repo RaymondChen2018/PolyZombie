@@ -20,7 +20,7 @@ public class Team_Manager : MonoBehaviour {
         Team_Attribute[] allTeamMembers = FindObjectsOfType<Team_Attribute>();
         for(int i = 0; i < allTeamMembers.Length; i++)
         {
-            if(allTeamMembers[i].gameObject.layer == CONSTANT.HUMAN_LAYER_INDEX)
+            if(allTeamMembers[i].gameObject.layer == CONSTANT.LAYER_INDEX_HUMAN)
             {
                 Team_Attribute human = allTeamMembers[i];
                 humanLeft.Add(human);

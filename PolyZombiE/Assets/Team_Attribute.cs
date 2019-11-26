@@ -32,10 +32,10 @@ public class Team_Attribute : MonoBehaviour {
         switch (newTeam)
         {
             case Team.Human:
-                mainBody.layer = LayerMask.NameToLayer(CONSTANT.HUMAN_LAYER_NAME);
+                mainBody.layer = LayerMask.NameToLayer(CONSTANT.LAYER_NAME_HUMAN);
                 break;
             case Team.Zombie:
-                mainBody.layer = LayerMask.NameToLayer(CONSTANT.ZOMBIE_LAYER_NAME);
+                mainBody.layer = LayerMask.NameToLayer(CONSTANT.LAYER_NAME_ZOMBIE);
                 break;
         }
         privAnalyzeTeam();
@@ -46,10 +46,10 @@ public class Team_Attribute : MonoBehaviour {
         string tmpLayerName = LayerMask.LayerToName(mainBody.layer);
         switch (tmpLayerName)
         {
-            case CONSTANT.ZOMBIE_LAYER_NAME:
+            case CONSTANT.LAYER_NAME_ZOMBIE:
                 team = Team.Zombie;
                 break;
-            case CONSTANT.HUMAN_LAYER_NAME:
+            case CONSTANT.LAYER_NAME_HUMAN:
                 team = Team.Human;
                 break;
             default:
