@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Zombie_Condition : Physical_Condition {
-    /// Zombie with higher infected(ious)ness can infect human faster
+    /// <summary>
+    /// Zombie with higher infected(ious)ness can infect human faster.
+    /// </summary>
     [SerializeField] private float infectiousness = CONSTANT.MINIMUM_INFECTIOUSNESS;
 
     // Use this for initialization

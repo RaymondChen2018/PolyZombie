@@ -5,9 +5,10 @@ using UnityEngine.Assertions;
 
 public class Wall_Generator : MonoBehaviour {
     [SerializeField] private string WallTag;
+    [SerializeField] private string LowWallTag;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         Assert.IsNotNull(WallTag);
         GameObject[] allWalls = GameObject.FindGameObjectsWithTag(WallTag);
         for(int i = 0; i < allWalls.Length; i++)

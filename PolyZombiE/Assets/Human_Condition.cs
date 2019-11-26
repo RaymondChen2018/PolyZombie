@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Human_Condition : Physical_Condition {
-    /// Human with 100.0f infectedness will turn zombie (cap at 100.0f); Once >0.0f, infectedness auto-increase over time
+    /// <summary>
+    ///  Human with 100.0f infectedness will turn zombie (cap at 100.0f); Once >0.0f, infectedness auto-increase over time
+    /// </summary>
     [SerializeField] private float infectedness = 0.0f;
 
     // Use this for initialization

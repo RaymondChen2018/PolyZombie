@@ -14,10 +14,18 @@ public class PCondition_Manager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        // Check each subject's condition
+        // Check humans condition
         for (int i = 0; i < allHumanCondition.Length; i++)
         {
             Human_Condition subject = allHumanCondition[i];
+
+            // Check on subject
+
+        }
+        // Check zombies condition
+        for (int i = 0; i < allZombieCondition.Length; i++)
+        {
+            Zombie_Condition subject = allZombieCondition[i];
 
             // Check on subject
 

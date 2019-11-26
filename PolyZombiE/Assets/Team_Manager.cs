@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-
+/// <summary>
+/// Responsible for managing team count;
+/// </summary>
 public class Team_Manager : MonoBehaviour {
 
     [SerializeField] private List<Team_Attribute> humanLeft;
