@@ -12,7 +12,9 @@ public enum Team
 public class Team_Attribute : MonoBehaviour {
     [SerializeField] GameObject mainBody = null;
 
+    [SerializeField] private LayerMask opponentLayerMask;
     private Team team;
+    
     
 	// Use this for initialization
 	void Start () {
@@ -56,5 +58,10 @@ public class Team_Attribute : MonoBehaviour {
                 Assert.IsTrue(false);
                 break;
         }
+    }
+
+    public LayerMask GetOpponentLayerMask()
+    {
+        return opponentLayerMask;
     }
 }

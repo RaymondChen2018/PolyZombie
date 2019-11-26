@@ -9,9 +9,6 @@ public class Human_Movement : Movement_Abstract
 	void Start () {
 		
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+    // Do not hide parent Update()
 }

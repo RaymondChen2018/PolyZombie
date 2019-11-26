@@ -8,6 +8,7 @@ public class Player_Orient : MonoBehaviour {
     private Vector2 prevMousePos;
 
     [SerializeField] private float spriteAngleOffset;
+    private Vector2 dof;
 	// Use this for initialization
 	void Start () {
         prevMousePos = Input.mousePosition;
@@ -15,7 +16,12 @@ public class Player_Orient : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Vector2 currDOF = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition) - RB.position;
-        RB.rotation = Vector2.SignedAngle(Vector2.right, currDOF) - spriteAngleOffset;
+        dof = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition) - RB.position;
+        RB.rotation = Vector2.SignedAngle(Vector2.right, dof) - spriteAngleOffset;
+    }
+
+    public Vector2 GetDOF()
+    {
+        return dof.normalized;
     }
 }
