@@ -4,6 +4,9 @@ using UnityEngine;
 
 public abstract class Physical_Condition : MonoBehaviour {
     public enum STATUS{
+        /// <summary>
+        /// Default status.
+        /// </summary>
         Not_Initialized,
         /// <summary>
         /// Human healthy status; zombie with this status turns human.
@@ -14,24 +17,15 @@ public abstract class Physical_Condition : MonoBehaviour {
         /// </summary>
         Infected,
         /// <summary>
-        /// Deceased
+        /// Deceased.
         /// </summary>
         Dead
     }
 
-    [SerializeField] private float health = 20.0f;
+    [SerializeField] protected float health = 20.0f;
     [SerializeField] private float maxHealth = 20.0f;
     [SerializeField] protected float armor = 0.0f;
     [SerializeField] protected STATUS status;
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
     virtual protected void ResetCondition() {
         health = maxHealth;
@@ -40,9 +34,14 @@ public abstract class Physical_Condition : MonoBehaviour {
     /// <summary>
     /// Deals only damage, does not spread infection
     /// </summary>
-    /// <param name="damage"></param>
-    public void Attack(float damage)
+    /// <param name="damage"> Amount to decrease health</param>
+    public void Attacked(float damage)
     {
         health -= damage;
+    }
+
+    public STATUS GetConditionStatus()
+    {
+        return status;
     }
 }

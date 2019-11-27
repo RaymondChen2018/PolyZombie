@@ -10,18 +10,26 @@ public class Zombie_Condition : Physical_Condition {
 
     // Use this for initialization
     void Start () {
-        status = STATUS.Infected;
+        ResetCondition();
     }
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
-
+        // If cured
+        if (health < 0.0f)
+        {
+            status = STATUS.Dead;
+        }
+        else if (infectiousness < CONSTANT.MINIMUM_INFECTIOUSNESS)
+        {
+            status = STATUS.Healthy;
+        }
+    }
 
     override protected void ResetCondition() 
     {
         base.ResetCondition();
+        status = STATUS.Infected;
         infectiousness = CONSTANT.MINIMUM_INFECTIOUSNESS;
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
+
 public enum Team
 {
     Zombie,
@@ -14,10 +15,12 @@ public class Team_Attribute : MonoBehaviour {
 
     [SerializeField] private LayerMask opponentLayerMask;
     private Team team;
+
+
     
-    
-	// Use this for initialization
-	void Start () {
+
+    // Use this for initialization
+    void Start () {
         Assert.IsNotNull(mainBody);
 
         // Layer name invalid

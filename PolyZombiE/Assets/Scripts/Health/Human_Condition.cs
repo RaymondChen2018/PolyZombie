@@ -10,20 +10,32 @@ public class Human_Condition : Physical_Condition {
 
     // Use this for initialization
     void Start () {
-        status = STATUS.Healthy;
+        ResetCondition();
     }
 	
 	// Update is called once per frame
 	void Update () {
+        // Infection spread
 		if(infectedness > 0.0f)
         {
             infectedness *= (1 + CONSTANT.INFECTION_SPREAD_RATIO);
+        }
+
+        // If infected
+        if (health <= 0.0f)
+        {
+            status = STATUS.Dead;
+        }
+        else if (infectedness >= 100.0f)
+        {
+            status = STATUS.Infected;
         }
 	}
 
     override protected void ResetCondition()
     {
         base.ResetCondition();
+        status = STATUS.Healthy;
         infectedness = 0.0f;
     }
 
@@ -31,15 +43,14 @@ public class Human_Condition : Physical_Condition {
     /// Spread infectedness on human. Deals a portion of the specified damage.
     /// Deals no damage nor infection to armored unit.
     /// </summary>
-    /// <param name="damage"> Damage of bite (preferrably much less than attack damage) </param>
-    public void Bite(float biteDamage, float infectiousness)
+    /// <param name="biteDamage"> Damage of bite (Decrease health) </param>
+    /// <param name="infectiousness"> Poison of bite (Increase tendancy to turn) </param>
+    public void Bit(float biteDamage, float infectiousness)
     {
         if(armor > 0.0f)
         {
-            base.Attack(biteDamage);
+            base.Attacked(biteDamage);
             infectedness += infectiousness;
         }
     }
-
-
 }

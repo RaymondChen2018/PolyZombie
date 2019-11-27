@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class Melee_Component : MonoBehaviour {
     [SerializeField] float damage = 5.0f;
@@ -23,14 +24,10 @@ public class Melee_Component : MonoBehaviour {
         if (hit)
         {
             endPoint = hit.point;
+            Physical_Condition cCondition = hit.collider.GetComponent<Physical_Condition>();
+            cCondition.Attacked(damage);
         }
         Debug.DrawLine(from, endPoint, Color.red, 5.0f);
-    }
 
-    //public void AttackBox(Vector2 from, Vector2 to, float size, LayerMask targetFilter)
-    //{
-    //    Vector2 dir = to - from;
-    //    float dist = dir.magnitude;
-    //    //RaycastHit2D hit = Physics2D.BoxCast(from, dir, dist, targetFilter);
-    //}
+    }
 }
