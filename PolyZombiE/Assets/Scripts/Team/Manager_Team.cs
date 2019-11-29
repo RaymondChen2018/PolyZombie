@@ -7,19 +7,15 @@ using UnityEngine.Events;
 /// <summary>
 /// Responsible for managing team count;
 /// </summary>
-public class Team_Manager : MonoBehaviour {
+public class Manager_Team : MonoBehaviour {
 
     //[SerializeField] private List<Team_Attribute> humanLeft;
     [SerializeField] private int humanCount = 0;
     [SerializeField] private int zombieCount = 0;
     [SerializeField] private UnityEvent OnHumanExtinctOnce;
 
-    private static Team_Manager _singleton;
     // Use this for initialization
     void Awake () {
-
-
-        _singleton = this;
 
         // Get all humans
         Team_Attribute[] allTeamMembers = FindObjectsOfType<Team_Attribute>();

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Human_Movement : Movement_Abstract
+public class Human_Movement : Abstract_Movement
 {
 
 	// Use this for initialization

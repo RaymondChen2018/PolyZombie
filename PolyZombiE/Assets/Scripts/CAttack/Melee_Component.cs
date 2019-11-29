@@ -24,7 +24,7 @@ public class Melee_Component : MonoBehaviour {
         if (hit)
         {
             endPoint = hit.point;
-            Physical_Condition cCondition = hit.collider.GetComponent<Physical_Condition>();
+            Abstract_Condition cCondition = hit.collider.GetComponent<Abstract_Condition>();
             cCondition.Attacked(damage);
         }
         Debug.DrawLine(from, endPoint, Color.red, 5.0f);

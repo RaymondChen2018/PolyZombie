@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
-public class Zombie_Condition : Physical_Condition {
+public class Zombie_Condition : Abstract_Condition {
     /// <summary>
     /// Zombie with higher infected(ious)ness can infect human faster.
     /// </summary>
@@ -10,6 +11,7 @@ public class Zombie_Condition : Physical_Condition {
 
     // Use this for initialization
     void Start () {
+        Assert.IsNotNull(identity);
         ResetCondition();
     }
 	
@@ -18,18 +20,33 @@ public class Zombie_Condition : Physical_Condition {
         // If cured
         if (health < 0.0f)
         {
-            status = STATUS.Dead;
+            status = HEALTH_STATUS.Dead;
         }
         else if (infectiousness < CONSTANT.MINIMUM_INFECTIOUSNESS)
         {
-            status = STATUS.Healthy;
+            status = HEALTH_STATUS.Healthy;
         }
     }
 
     override protected void ResetCondition() 
     {
         base.ResetCondition();
-        status = STATUS.Infected;
+        status = HEALTH_STATUS.Infected;
         infectiousness = CONSTANT.MINIMUM_INFECTIOUSNESS;
+    }
+
+    public override void OnChangeFaction(Identity newFaction)
+    {
+        Assert.IsTrue(newFaction == Identity.Human);
+        status = HEALTH_STATUS.Healthy;
+    }
+
+    public override void OnDeath()
+    {
+        status = HEALTH_STATUS.Dead;
+
+        // Custom call back
+        OnDeathOnce.Invoke();
+        OnDeathOnce.RemoveAllListeners();
     }
 }

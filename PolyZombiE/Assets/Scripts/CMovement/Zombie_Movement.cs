@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Zombie_Movement : Movement_Abstract
+public class Zombie_Movement : Abstract_Movement
 {
 
 	// Use this for initialization

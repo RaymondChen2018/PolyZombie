@@ -14,7 +14,7 @@ public class PlayerControl : MonoBehaviour {
     //[SerializeField] private Rigidbody2D RB;
     [SerializeField] private PlayerDirectionFinder directionFinder;
     [SerializeField] private Player_Orient orientComponent;
-    [SerializeField] private Movement_Abstract movementComponent;
+    [SerializeField] private Abstract_Movement movementComponent;
     [SerializeField] private Melee_Component meleeComponent;
     [SerializeField] private Team_Attribute teamComponent;
 

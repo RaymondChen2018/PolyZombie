@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-public abstract class Movement_Abstract : MonoBehaviour {
+public abstract class Abstract_Movement : MonoBehaviour {
 
     [SerializeField] private float movementSpeed;
     [SerializeField] private Rigidbody2D RB;

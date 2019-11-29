@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
-public class Human_Condition : Physical_Condition {
+public class Human_Condition : Abstract_Condition {
     /// <summary>
     ///  Human with 100.0f infectedness will turn zombie (cap at 100.0f); Once >0.0f, infectedness auto-increase over time
     /// </summary>
@@ -10,6 +11,7 @@ public class Human_Condition : Physical_Condition {
 
     // Use this for initialization
     void Start () {
+        Assert.IsNotNull(identity);
         ResetCondition();
     }
 	
@@ -21,21 +23,26 @@ public class Human_Condition : Physical_Condition {
             infectedness *= (1 + CONSTANT.INFECTION_SPREAD_RATIO);
         }
 
-        // If infected
-        if (health <= 0.0f)
+        if(infectedness >= 100.0f && status != HEALTH_STATUS.Infected)
         {
-            status = STATUS.Dead;
+            identity.ChangeFaction(Identity.Zombie);
         }
-        else if (infectedness >= 100.0f)
-        {
-            status = STATUS.Infected;
-        }
+
+        //// If infected
+        //if (health <= 0.0f)
+        //{
+        //    status = HEALTH_STATUS.Dead;
+        //}
+        //else if (infectedness >= 100.0f)
+        //{
+        //    status = HEALTH_STATUS.Infected;
+        //}
 	}
 
     override protected void ResetCondition()
     {
         base.ResetCondition();
-        status = STATUS.Healthy;
+        status = HEALTH_STATUS.Healthy;
         infectedness = 0.0f;
     }
 
@@ -47,10 +54,34 @@ public class Human_Condition : Physical_Condition {
     /// <param name="infectiousness"> Poison of bite (Increase tendancy to turn) </param>
     public void Bit(float biteDamage, float infectiousness)
     {
+        // Infect
         if(armor > 0.0f)
         {
-            base.Attacked(biteDamage);
             infectedness += infectiousness;
         }
+
+        // Check infection
+        if (infectedness >= 100.0f && status != HEALTH_STATUS.Infected)
+        {
+            identity.ChangeFaction(Identity.Zombie);
+        }
+
+        // Inflict damage
+        base.Attacked(biteDamage);
+    }
+
+    public override void OnChangeFaction(Identity newFaction)
+    {
+        Assert.IsTrue(newFaction == Identity.Zombie);
+        status = HEALTH_STATUS.Infected;
+    }
+
+    public override void OnDeath()
+    {
+        status = HEALTH_STATUS.Dead;
+
+        // Custom call back
+        OnDeathOnce.Invoke();
+        OnDeathOnce.RemoveAllListeners();
     }
 }
