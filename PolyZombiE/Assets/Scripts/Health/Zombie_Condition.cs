@@ -49,4 +49,9 @@ public class Zombie_Condition : Abstract_Condition {
         OnDeathOnce.Invoke();
         OnDeathOnce.RemoveAllListeners();
     }
+
+    public float GetInfectiousness()
+    {
+        return infectiousness;
+    }
 }

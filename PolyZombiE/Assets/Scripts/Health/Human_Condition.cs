@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.Events;
 
 public class Human_Condition : Abstract_Condition {
     /// <summary>
     ///  Human with 100.0f infectedness will turn zombie (cap at 100.0f); Once >0.0f, infectedness auto-increase over time
     /// </summary>
     [SerializeField] private float infectedness = 0.0f;
+
+    [SerializeField] protected UnityEvent OnInfectOnce = new UnityEvent();
 
     // Use this for initialization
     void Start () {
@@ -25,18 +28,8 @@ public class Human_Condition : Abstract_Condition {
 
         if(infectedness >= 100.0f && status != HEALTH_STATUS.Infected)
         {
-            identity.ChangeFaction(Identity.Zombie);
+            OnInfect();
         }
-
-        //// If infected
-        //if (health <= 0.0f)
-        //{
-        //    status = HEALTH_STATUS.Dead;
-        //}
-        //else if (infectedness >= 100.0f)
-        //{
-        //    status = HEALTH_STATUS.Infected;
-        //}
 	}
 
     override protected void ResetCondition()
@@ -50,24 +43,14 @@ public class Human_Condition : Abstract_Condition {
     /// Spread infectedness on human. Deals a portion of the specified damage.
     /// Deals no damage nor infection to armored unit.
     /// </summary>
-    /// <param name="biteDamage"> Damage of bite (Decrease health) </param>
     /// <param name="infectiousness"> Poison of bite (Increase tendancy to turn) </param>
-    public void Bit(float biteDamage, float infectiousness)
+    public void addInfection(float infectiousness)
     {
         // Infect
-        if(armor > 0.0f)
+        if(armor == 0.0f)
         {
             infectedness += infectiousness;
         }
-
-        // Check infection
-        if (infectedness >= 100.0f && status != HEALTH_STATUS.Infected)
-        {
-            identity.ChangeFaction(Identity.Zombie);
-        }
-
-        // Inflict damage
-        base.Attacked(biteDamage);
     }
 
     public override void OnChangeFaction(Identity newFaction)
@@ -83,5 +66,13 @@ public class Human_Condition : Abstract_Condition {
         // Custom call back
         OnDeathOnce.Invoke();
         OnDeathOnce.RemoveAllListeners();
+    }
+
+    public void OnInfect()
+    {
+        OnInfectOnce.Invoke();
+        OnInfectOnce.RemoveAllListeners();
+
+        ((Human_Identity)identity).TurnZombie();
     }
 }

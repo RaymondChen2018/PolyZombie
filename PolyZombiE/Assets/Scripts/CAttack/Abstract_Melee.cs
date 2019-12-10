@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-public class Melee_Component : MonoBehaviour {
+public class Abstract_Melee : MonoBehaviour {
     [SerializeField] float damage = 5.0f;
-    [SerializeField] float reach = 5.0f;
+    [SerializeField] protected float reach = 5.0f;
 
     // Use this for initialization
     void Start () {
@@ -25,9 +25,8 @@ public class Melee_Component : MonoBehaviour {
         {
             endPoint = hit.point;
             Abstract_Condition cCondition = hit.collider.GetComponent<Abstract_Condition>();
-            cCondition.Attacked(damage);
+            cCondition.subtractHealth(damage);
         }
         Debug.DrawLine(from, endPoint, Color.red, 5.0f);
-
     }
 }

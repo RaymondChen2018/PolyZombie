@@ -18,7 +18,7 @@ public abstract class Abstract_Identity : MonoBehaviour {
     [SerializeField] protected Team_Attribute teamAttribute;
     [SerializeField] protected Abstract_Condition healthAttribute;
     [SerializeField] protected Abstract_Movement movementAttribute;
-    [SerializeField] protected Melee_Component meleeAttribute;
+    [SerializeField] protected Abstract_Melee meleeAttribute;
 
     [SerializeField] protected GameObject mainBody = null;
 
@@ -59,6 +59,5 @@ public abstract class Abstract_Identity : MonoBehaviour {
         }
     }
 
-    abstract public void ChangeFaction(Identity newIdentity);
     abstract public void Die();
 }

@@ -40,10 +40,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4201601408664830}
-  - component: {fileID: 114296940147048944}
   - component: {fileID: 114138265352264504}
   - component: {fileID: 114528160126027936}
-  - component: {fileID: 114832047259807010}
+  - component: {fileID: 114327534915959148}
+  - component: {fileID: 114104291085400764}
   m_Layer: 0
   m_Name: Controllers
   m_TagString: Untagged
@@ -143,6 +143,21 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.28
+--- !u!114 &114104291085400764
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1139472451912846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd490ec0c5ef27443a5901e156e17212, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 5
+  reach: 5
+  biteDamage: 2
+  infectiousRef: {fileID: 114532738043211490}
 --- !u!114 &114129138329961828
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -157,7 +172,7 @@ MonoBehaviour:
   teamAttribute: {fileID: 114768023732577014}
   healthAttribute: {fileID: 114532738043211490}
   movementAttribute: {fileID: 114528160126027936}
-  meleeAttribute: {fileID: 114832047259807010}
+  meleeAttribute: {fileID: 114104291085400764}
   mainBody: {fileID: 1111946246283856}
 --- !u!114 &114138265352264504
 MonoBehaviour:
@@ -185,7 +200,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RB: {fileID: 50906402695697364}
   alignType: 0
---- !u!114 &114296940147048944
+--- !u!114 &114327534915959148
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -193,7 +208,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1139472451912846}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a73e09d0a0dc73a438c538dc03d75585, type: 3}
+  m_Script: {fileID: 11500000, guid: 93ecb47ac1fa6e342bc01c0e0c5f52c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   keyUp: 119
@@ -204,8 +219,10 @@ MonoBehaviour:
   directionFinder: {fileID: 114189348725871154}
   orientComponent: {fileID: 114138265352264504}
   movementComponent: {fileID: 114528160126027936}
-  meleeComponent: {fileID: 114832047259807010}
+  meleeComponent: {fileID: 114104291085400764}
   teamComponent: {fileID: 114768023732577014}
+  keyBite: 324
+  meleeComponentZombie: {fileID: 114104291085400764}
 --- !u!114 &114528160126027936
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -257,19 +274,6 @@ MonoBehaviour:
   opponentLayerMask:
     serializedVersion: 2
     m_Bits: 512
---- !u!114 &114832047259807010
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1139472451912846}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba95017799e5b644fa6728c609a9b147, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 5
-  reach: 10
 --- !u!212 &212404068881332958
 SpriteRenderer:
   m_ObjectHideFlags: 1

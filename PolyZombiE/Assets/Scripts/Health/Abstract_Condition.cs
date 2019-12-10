@@ -40,7 +40,7 @@ public abstract class Abstract_Condition : MonoBehaviour, ICharacter
     /// Deals only damage, does not spread infection
     /// </summary>
     /// <param name="damage"> Amount to decrease health</param>
-    public void Attacked(float damage)
+    public void subtractHealth(float damage)
     {
         health -= damage;
         if (health <= 0.0f && status != HEALTH_STATUS.Dead)

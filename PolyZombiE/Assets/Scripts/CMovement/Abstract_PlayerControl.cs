@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-public class PlayerControl : MonoBehaviour {
+public abstract class Abstract_PlayerControl : MonoBehaviour {
     [SerializeField] private KeyCode keyUp;
     [SerializeField] private KeyCode keyDown;
     [SerializeField] private KeyCode keyLeft;
@@ -12,11 +12,11 @@ public class PlayerControl : MonoBehaviour {
     [SerializeField] private KeyCode keyMelee;
 
     //[SerializeField] private Rigidbody2D RB;
-    [SerializeField] private PlayerDirectionFinder directionFinder;
-    [SerializeField] private Player_Orient orientComponent;
-    [SerializeField] private Abstract_Movement movementComponent;
-    [SerializeField] private Melee_Component meleeComponent;
-    [SerializeField] private Team_Attribute teamComponent;
+    [SerializeField] protected PlayerDirectionFinder directionFinder;
+    [SerializeField] protected Player_Orient orientComponent;
+    [SerializeField] protected Abstract_Movement movementComponent;
+    [SerializeField] protected Abstract_Melee meleeComponent;
+    [SerializeField] protected Team_Attribute teamComponent;
 
     // Use this for initialization
     void Start () {
@@ -28,7 +28,7 @@ public class PlayerControl : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update () {
+    protected virtual void Update () {
         // Movement
         Vector2 localMoveDir = Vector2.zero;
         if (Input.GetKey(keyUp))
