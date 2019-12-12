@@ -21,6 +21,8 @@ GameObject:
   - component: {fileID: 4027929655664438}
   - component: {fileID: 58758794588509218}
   - component: {fileID: 50980638249956270}
+  - component: {fileID: 114566300440169012}
+  - component: {fileID: 114080512136014582}
   - component: {fileID: 114637558891358410}
   - component: {fileID: 114398554437251216}
   - component: {fileID: 114580658279102618}
@@ -55,7 +57,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4453764491371408}
-  - component: {fileID: 114571028165565466}
+  - component: {fileID: 95978398277975734}
+  - component: {fileID: 114380594950317320}
+  - component: {fileID: 114332406119229866}
   m_Layer: 0
   m_Name: Controllers
   m_TagString: Untagged
@@ -70,7 +74,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1282938024591416}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.19, y: 1.45, z: 0}
+  m_LocalPosition: {x: -3.83, y: -1.14, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4088775479119712}
@@ -139,6 +143,67 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.28
+--- !u!95 &95978398277975734
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1957875804402164}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e7c4c4e7ef3e09840a09fd1925560581, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114080512136014582
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1282938024591416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07207e1a2a3628747b2d27556e6878fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lookAtPos: {x: 0, y: 0}
+  RB: {fileID: 50980638249956270}
+--- !u!114 &114332406119229866
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1957875804402164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d546cda47bd1c3e4198cd91d078eb9ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orient: {fileID: 114080512136014582}
+  movement: {fileID: 114566300440169012}
+  aiEnemyFinder: {fileID: 114380594950317320}
+--- !u!114 &114380594950317320
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1957875804402164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 141b37fa5e03be044bd76f13184956b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  viewDist: 10
+  viewConeAngle: 60
+  movement: {fileID: 114566300440169012}
+  orient: {fileID: 114080512136014582}
+  teamAttribute: {fileID: 114398554437251216}
+  AI_StateMachine: {fileID: 95978398277975734}
 --- !u!114 &114398554437251216
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -155,18 +220,18 @@ MonoBehaviour:
   opponentLayerMask:
     serializedVersion: 2
     m_Bits: 1024
---- !u!114 &114571028165565466
+--- !u!114 &114566300440169012
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1957875804402164}
+  m_GameObject: {fileID: 1282938024591416}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10faa09853945d1448acbae1cae1e1d1, type: 3}
+  m_Script: {fileID: 11500000, guid: aed56f5679eb77944b756848578145e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 1500
+  movementSpeed: 800
   RB: {fileID: 50980638249956270}
 --- !u!114 &114580658279102618
 MonoBehaviour:
@@ -185,11 +250,38 @@ MonoBehaviour:
   status: 0
   OnDeathOnce:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: Subtract
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   identity: {fileID: 114637558891358410}
   infectedness: 0
+  OnInfectOnce:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: Subtract
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114637558891358410
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -203,9 +295,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   teamAttribute: {fileID: 114398554437251216}
   healthAttribute: {fileID: 114580658279102618}
-  movementAttribute: {fileID: 114571028165565466}
+  movementAttribute: {fileID: 114566300440169012}
   meleeAttribute: {fileID: 0}
   mainBody: {fileID: 1282938024591416}
+  zombieVersion: {fileID: 1423043396970880, guid: 6a3bbf221acc94844abca8b41ccb4229,
+    type: 2}
 --- !u!212 &212774897296638366
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-public abstract class Abstract_Movement : MonoBehaviour {
+public class Movement : MonoBehaviour {
 
     [SerializeField] private float movementSpeed;
     [SerializeField] private Rigidbody2D RB;
@@ -20,12 +20,14 @@ public abstract class Abstract_Movement : MonoBehaviour {
 	void Update () {
         if(moveDirVector.sqrMagnitude != 0.0f)
         {
-            RB.velocity = moveDirVector.normalized * movementSpeed * Time.deltaTime;
+            RB.AddForce(moveDirVector.normalized * movementSpeed * Time.deltaTime);
+            //RB.velocity = moveDirVector.normalized * movementSpeed * 0.01f;//Time.deltaTime;
         }
         else
         {
-            RB.velocity = Vector2.zero;
+            //RB.velocity = Vector2.zero;
         }
+        moveDirVector = Vector2.zero;
     }
 
     /// <summary>
@@ -35,5 +37,10 @@ public abstract class Abstract_Movement : MonoBehaviour {
     public void SetDirectionVector(Vector2 dir)
     {
         moveDirVector = dir;
+    }
+
+    public Vector2 getPosition()
+    {
+        return RB.position;
     }
 }

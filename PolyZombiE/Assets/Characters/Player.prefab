@@ -20,8 +20,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4546739415002820}
   - component: {fileID: 50906402695697364}
-  - component: {fileID: 114189348725871154}
   - component: {fileID: 58935109488880166}
+  - component: {fileID: 114189348725871154}
+  - component: {fileID: 114587517334900734}
+  - component: {fileID: 114165341403275418}
   - component: {fileID: 114129138329961828}
   - component: {fileID: 114768023732577014}
   - component: {fileID: 114532738043211490}
@@ -40,8 +42,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4201601408664830}
-  - component: {fileID: 114138265352264504}
-  - component: {fileID: 114528160126027936}
   - component: {fileID: 114327534915959148}
   - component: {fileID: 114104291085400764}
   m_Layer: 0
@@ -171,22 +171,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   teamAttribute: {fileID: 114768023732577014}
   healthAttribute: {fileID: 114532738043211490}
-  movementAttribute: {fileID: 114528160126027936}
+  movementAttribute: {fileID: 0}
   meleeAttribute: {fileID: 114104291085400764}
   mainBody: {fileID: 1111946246283856}
---- !u!114 &114138265352264504
+--- !u!114 &114165341403275418
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1139472451912846}
+  m_GameObject: {fileID: 1111946246283856}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0df28c42c03d0d24896dfe6a9b09efe5, type: 3}
+  m_Script: {fileID: 11500000, guid: aed56f5679eb77944b756848578145e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementSpeed: 1000
   RB: {fileID: 50906402695697364}
-  spriteAngleOffset: 90
 --- !u!114 &114189348725871154
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -217,25 +217,12 @@ MonoBehaviour:
   keyRight: 100
   keyMelee: 323
   directionFinder: {fileID: 114189348725871154}
-  orientComponent: {fileID: 114138265352264504}
-  movementComponent: {fileID: 114528160126027936}
+  orientComponent: {fileID: 0}
+  movementComponent: {fileID: 0}
   meleeComponent: {fileID: 114104291085400764}
   teamComponent: {fileID: 114768023732577014}
   keyBite: 324
   meleeComponentZombie: {fileID: 114104291085400764}
---- !u!114 &114528160126027936
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1139472451912846}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29fb97a484c635746a571e13598e862b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementSpeed: 1000
-  RB: {fileID: 50906402695697364}
 --- !u!114 &114532738043211490
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -258,6 +245,19 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   identity: {fileID: 114129138329961828}
   infectiousness: 20
+--- !u!114 &114587517334900734
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1111946246283856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07207e1a2a3628747b2d27556e6878fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lookAtPos: {x: 0, y: 0}
+  RB: {fileID: 50906402695697364}
 --- !u!114 &114768023732577014
 MonoBehaviour:
   m_ObjectHideFlags: 1

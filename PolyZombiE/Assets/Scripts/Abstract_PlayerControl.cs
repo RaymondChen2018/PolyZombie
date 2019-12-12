@@ -13,8 +13,8 @@ public abstract class Abstract_PlayerControl : MonoBehaviour {
 
     //[SerializeField] private Rigidbody2D RB;
     [SerializeField] protected PlayerDirectionFinder directionFinder;
-    [SerializeField] protected Player_Orient orientComponent;
-    [SerializeField] protected Abstract_Movement movementComponent;
+    [SerializeField] protected Orient orientComponent;
+    [SerializeField] protected Movement movementComponent;
     [SerializeField] protected Abstract_Melee meleeComponent;
     [SerializeField] protected Team_Attribute teamComponent;
 
@@ -29,6 +29,9 @@ public abstract class Abstract_PlayerControl : MonoBehaviour {
 
     // Update is called once per frame
     protected virtual void Update () {
+        // Orient
+        orientComponent.lookAt((Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition));
+
         // Movement
         Vector2 localMoveDir = Vector2.zero;
         if (Input.GetKey(keyUp))
