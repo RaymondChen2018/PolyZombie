@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 50980638249956270}
   - component: {fileID: 114566300440169012}
   - component: {fileID: 114080512136014582}
+  - component: {fileID: 114889468079318562}
   - component: {fileID: 114637558891358410}
   - component: {fileID: 114398554437251216}
   - component: {fileID: 114580658279102618}
@@ -60,6 +61,7 @@ GameObject:
   - component: {fileID: 95978398277975734}
   - component: {fileID: 114380594950317320}
   - component: {fileID: 114332406119229866}
+  - component: {fileID: 114214575356445908}
   m_Layer: 0
   m_Name: Controllers
   m_TagString: Untagged
@@ -119,8 +121,8 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 1
+  m_Mass: 0.5
+  m_LinearDrag: 5
   m_AngularDrag: 5
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -171,8 +173,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07207e1a2a3628747b2d27556e6878fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lookAtPos: {x: 0, y: 0}
   RB: {fileID: 50980638249956270}
+--- !u!114 &114214575356445908
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1957875804402164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b2532b629aef8648b41ff40cc6c87e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  equipment: {fileID: 114889468079318562}
+  AIStateMachine: {fileID: 95978398277975734}
 --- !u!114 &114332406119229866
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -186,6 +200,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orient: {fileID: 114080512136014582}
   movement: {fileID: 114566300440169012}
+  equipment: {fileID: 114889468079318562}
+  teamAttribute: {fileID: 114398554437251216}
   aiEnemyFinder: {fileID: 114380594950317320}
 --- !u!114 &114380594950317320
 MonoBehaviour:
@@ -296,10 +312,22 @@ MonoBehaviour:
   teamAttribute: {fileID: 114398554437251216}
   healthAttribute: {fileID: 114580658279102618}
   movementAttribute: {fileID: 114566300440169012}
-  meleeAttribute: {fileID: 0}
+  equipment: {fileID: 114889468079318562}
   mainBody: {fileID: 1282938024591416}
   zombieVersion: {fileID: 1423043396970880, guid: 6a3bbf221acc94844abca8b41ccb4229,
     type: 2}
+--- !u!114 &114889468079318562
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1282938024591416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 177775efe9273f14cadafd24a54c050e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapon: {fileID: 0}
 --- !u!212 &212774897296638366
 SpriteRenderer:
   m_ObjectHideFlags: 1

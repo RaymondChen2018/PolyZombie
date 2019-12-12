@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AI_Event_Flee : StateMachineBehaviour {
+public class AI_State_Flee : StateMachineBehaviour {
 
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
@@ -26,7 +26,9 @@ public class AI_Event_Flee : StateMachineBehaviour {
         {
             Vector2 enemyPos = enemyTransform.position;
             Vector2 thisPos = movement.getPosition();
-            movement.SetDirectionVector(thisPos - enemyPos);
+            Vector2 moveDir = thisPos - enemyPos;
+            orient.lookAtAI(thisPos + moveDir);
+            movement.Move(moveDir);
         }
         else
         {

@@ -15,7 +15,7 @@ public abstract class Abstract_PlayerControl : MonoBehaviour {
     [SerializeField] protected PlayerDirectionFinder directionFinder;
     [SerializeField] protected Orient orientComponent;
     [SerializeField] protected Movement movementComponent;
-    [SerializeField] protected Abstract_Melee meleeComponent;
+    [SerializeField] protected Equipment equipment;
     [SerializeField] protected Team_Attribute teamComponent;
 
     // Use this for initialization
@@ -23,7 +23,7 @@ public abstract class Abstract_PlayerControl : MonoBehaviour {
         Assert.IsNotNull(directionFinder);
         Assert.IsNotNull(orientComponent);
         Assert.IsNotNull(movementComponent);
-        Assert.IsNotNull(meleeComponent);
+        Assert.IsNotNull(equipment);
         Assert.IsNotNull(teamComponent);
     }
 
@@ -55,13 +55,14 @@ public abstract class Abstract_PlayerControl : MonoBehaviour {
             localMoveDir.Normalize();
         }
         Vector2 worldMoveDir = directionFinder.AlignToGlobal(localMoveDir);
-        movementComponent.SetDirectionVector(worldMoveDir);// Send movement to movement abstract
+        movementComponent.Move(worldMoveDir);// Send movement to movement abstract
 
         // Melee
         if (Input.GetKeyDown(keyMelee))
         {
             Vector2 dof = orientComponent.GetDOF();
-            meleeComponent.AttackRay(transform.position, dof, teamComponent.GetOpponentLayerMask());
+            //meleeComponent.PrimaryAttack(transform.position, dof, teamComponent.GetOpponentLayerMask());
+            equipment.PrimaryAttack(teamComponent.GetOpponentLayerMask());
         }
     }
 }

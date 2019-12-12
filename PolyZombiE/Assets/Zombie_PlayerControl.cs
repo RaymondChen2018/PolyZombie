@@ -16,7 +16,8 @@ public class Zombie_PlayerControl : Abstract_PlayerControl
         {
             Vector2 dof = orientComponent.GetDOF();
             Assert.IsNotNull(meleeComponentZombie);
-            meleeComponentZombie.BiteRay(transform.position, dof, teamComponent.GetOpponentLayerMask());
+            equipment.SecondaryAttack(teamComponent.GetOpponentLayerMask());
+            //meleeComponentZombie.BiteRay(transform.position, dof, teamComponent.GetOpponentLayerMask());
         }
     }
 }

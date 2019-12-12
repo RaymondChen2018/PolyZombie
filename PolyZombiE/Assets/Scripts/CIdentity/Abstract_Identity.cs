@@ -18,7 +18,7 @@ public abstract class Abstract_Identity : MonoBehaviour {
     [SerializeField] protected Team_Attribute teamAttribute;
     [SerializeField] protected Abstract_Condition healthAttribute;
     [SerializeField] protected Movement movementAttribute;
-    [SerializeField] protected Abstract_Melee meleeAttribute;
+    [SerializeField] protected Equipment equipment;
 
     [SerializeField] protected GameObject mainBody = null;
 

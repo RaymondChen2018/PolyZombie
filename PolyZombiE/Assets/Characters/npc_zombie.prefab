@@ -27,6 +27,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1237712223417586
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4117610395513356}
+  - component: {fileID: 114574463847398492}
+  m_Layer: 10
+  m_Name: z_claw
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1423043396970880
 GameObject:
   m_ObjectHideFlags: 0
@@ -39,6 +55,7 @@ GameObject:
   - component: {fileID: 50680137565465604}
   - component: {fileID: 114005825973281656}
   - component: {fileID: 114820406271398686}
+  - component: {fileID: 114749900416243670}
   - component: {fileID: 114998019885025714}
   - component: {fileID: 114200180462222248}
   - component: {fileID: 114445293999317086}
@@ -57,10 +74,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4390575137884236}
-  - component: {fileID: 114416367268518904}
   - component: {fileID: 95467465800243452}
   - component: {fileID: 114267898281084942}
   - component: {fileID: 114726662595240880}
+  - component: {fileID: 114260019570788096}
   m_Layer: 0
   m_Name: Controllers
   m_TagString: Untagged
@@ -79,6 +96,19 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4437294127350196}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4117610395513356
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1237712223417586}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4437294127350196}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4390575137884236
@@ -92,7 +122,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4437294127350196}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4437294127350196
 Transform:
@@ -104,6 +134,7 @@ Transform:
   m_LocalPosition: {x: -4.4, y: -8.02, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 4117610395513356}
   - {fileID: 4076889785368586}
   - {fileID: 4390575137884236}
   m_Father: {fileID: 0}
@@ -120,8 +151,8 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 1
+  m_Mass: 0.5
+  m_LinearDrag: 5
   m_AngularDrag: 5
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -172,7 +203,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07207e1a2a3628747b2d27556e6878fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lookAtPos: {x: 0, y: 0}
   RB: {fileID: 50680137565465604}
 --- !u!114 &114200180462222248
 MonoBehaviour:
@@ -190,6 +220,19 @@ MonoBehaviour:
   opponentLayerMask:
     serializedVersion: 2
     m_Bits: 512
+--- !u!114 &114260019570788096
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1529999528050642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b2532b629aef8648b41ff40cc6c87e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  equipment: {fileID: 114749900416243670}
+  AIStateMachine: {fileID: 95467465800243452}
 --- !u!114 &114267898281084942
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -207,21 +250,6 @@ MonoBehaviour:
   orient: {fileID: 114005825973281656}
   teamAttribute: {fileID: 114200180462222248}
   AI_StateMachine: {fileID: 95467465800243452}
---- !u!114 &114416367268518904
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1529999528050642}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd490ec0c5ef27443a5901e156e17212, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 5
-  reach: 5
-  biteDamage: 2
-  infectiousRef: {fileID: 114445293999317086}
 --- !u!114 &114445293999317086
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -244,6 +272,22 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   identity: {fileID: 114998019885025714}
   infectiousness: 20
+--- !u!114 &114574463847398492
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1237712223417586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd490ec0c5ef27443a5901e156e17212, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 5
+  primaryRange: 5
+  biteDamage: 2
+  infectiousRef: {fileID: 114445293999317086}
+  biteRange: 5
 --- !u!114 &114726662595240880
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -257,7 +301,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orient: {fileID: 114005825973281656}
   movement: {fileID: 114820406271398686}
+  equipment: {fileID: 114749900416243670}
+  teamAttribute: {fileID: 114200180462222248}
   aiEnemyFinder: {fileID: 114267898281084942}
+--- !u!114 &114749900416243670
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1423043396970880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 177775efe9273f14cadafd24a54c050e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapon: {fileID: 114574463847398492}
 --- !u!114 &114820406271398686
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -269,7 +327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aed56f5679eb77944b756848578145e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 1000
+  movementSpeed: 300
   RB: {fileID: 50680137565465604}
 --- !u!114 &114998019885025714
 MonoBehaviour:
@@ -285,7 +343,7 @@ MonoBehaviour:
   teamAttribute: {fileID: 114200180462222248}
   healthAttribute: {fileID: 114445293999317086}
   movementAttribute: {fileID: 114820406271398686}
-  meleeAttribute: {fileID: 114416367268518904}
+  equipment: {fileID: 0}
   mainBody: {fileID: 1423043396970880}
 --- !u!212 &212019663138225768
 SpriteRenderer:
