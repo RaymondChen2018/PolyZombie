@@ -22,6 +22,7 @@ public abstract class Abstract_Identity : MonoBehaviour {
 
     [SerializeField] protected GameObject mainBody = null;
 
+    public static Abstract_Identity playerIdentity;
     
 	// Use this for initialization
     void Start () {
@@ -30,6 +31,10 @@ public abstract class Abstract_Identity : MonoBehaviour {
         Assert.IsNotNull(healthAttribute);
         Assert.IsNotNull(movementAttribute);
         privCheckLayer();
+        if (tag == "Player")
+        {
+            playerIdentity = this;
+        }
     }
 	
 	// Update is called once per frame

@@ -69,7 +69,27 @@ TextureImporter:
   spriteSheet:
     serializedVersion: 2
     sprites: []
-    outline: []
+    outline:
+    - - {x: 128, y: 37.202194}
+      - {x: 121, y: 59}
+      - {x: 103, y: 83}
+      - {x: 83, y: 103}
+      - {x: 57, y: 123}
+      - {x: 41, y: 128}
+      - {x: -43, y: 128}
+      - {x: -58, y: 124}
+      - {x: -105, y: 85}
+      - {x: -120.20219, y: 56.067398}
+      - {x: -128, y: 32.606552}
+      - {x: -128, y: -42}
+      - {x: -124, y: -57}
+      - {x: -92, y: -95}
+      - {x: -58, y: -124}
+      - {x: -47, y: -128}
+      - {x: 50, y: -128}
+      - {x: 94, y: -97}
+      - {x: 123, y: -57}
+      - {x: 128, y: -43}
     physicsShape: []
   spritePackingTag: 
   userData: 

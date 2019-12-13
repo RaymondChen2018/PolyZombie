@@ -11,6 +11,8 @@ public class Human_Condition : Abstract_Condition {
     [SerializeField] private float infectedness = 0.0f;
 
     [SerializeField] protected UnityEvent OnInfectOnce = new UnityEvent();
+    [SerializeField] protected UnityEvent OnInfectByPlayerOnce = new UnityEvent();
+    private bool infectByPlayer = false;
 
     // Use this for initialization
     void Start () {
@@ -44,12 +46,17 @@ public class Human_Condition : Abstract_Condition {
     /// Deals no damage nor infection to armored unit.
     /// </summary>
     /// <param name="infectiousness"> Poison of bite (Increase tendancy to turn) </param>
-    public void addInfection(float infectiousness)
+    public void addInfection(float infectiousness, Abstract_Identity activator)
     {
         // Infect
         if(armor == 0.0f)
         {
             infectedness += infectiousness;
+        }
+
+        if(activator == Abstract_Identity.playerIdentity)
+        {
+            infectByPlayer = true;
         }
     }
 
@@ -72,6 +79,11 @@ public class Human_Condition : Abstract_Condition {
     {
         OnInfectOnce.Invoke();
         OnInfectOnce.RemoveAllListeners();
+        if (infectByPlayer)
+        {
+            OnInfectByPlayerOnce.Invoke();
+            OnInfectByPlayerOnce.RemoveAllListeners();
+        }
 
         ((Human_Identity)identity).TurnZombie();
     }

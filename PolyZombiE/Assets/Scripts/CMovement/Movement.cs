@@ -7,16 +7,18 @@ public class Movement : MonoBehaviour
 {
     [SerializeField] private float movementSpeed;
     [SerializeField] private Rigidbody2D RB;
+    [SerializeField] private Animator animator;
 
     // Use this for initialization
     void Start () {
         Assert.IsNotNull(RB);
+        Assert.IsNotNull(animator);
         Assert.IsTrue(movementSpeed > 0.0f);
     }
 	
 	// Update is called once per frame
 	void Update () {
-
+        animator.SetFloat("speed", RB.velocity.magnitude);
     }
 
     /// <summary>

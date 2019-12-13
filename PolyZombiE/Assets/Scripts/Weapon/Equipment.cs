@@ -5,11 +5,14 @@ using UnityEngine.Assertions;
 
 public class Equipment : MonoBehaviour {
     [SerializeField] private Abstract_Weapon weapon;
+    [SerializeField] private Abstract_Identity identity;
+    [SerializeField] Animator animator;
 
     // Use this for initialization
     void Start () {
-
-	}
+        Assert.IsNotNull(animator);
+        Assert.IsNotNull(identity);
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -18,9 +21,14 @@ public class Equipment : MonoBehaviour {
 
     public void PrimaryAttack(LayerMask targetFilter)
     {
-        if(weapon != null)
+        if(weapon != null && weapon.primaryReady())
         {
-            weapon.PrimaryAttack(targetFilter);
+            weapon.PrimaryAttack(targetFilter, identity);
+
+            // Animation
+            string attackAnimation = weapon.getPrimaryAttackAnimation();
+            Assert.IsTrue(attackAnimation != "");
+            animator.SetTrigger(attackAnimation);
         }
         else
         {
@@ -30,9 +38,14 @@ public class Equipment : MonoBehaviour {
 
     public void SecondaryAttack(LayerMask targetFilter)
     {
-        if (weapon != null)
+        if (weapon != null && weapon.secondaryReady())
         {
-            weapon.SecondaryAttack(targetFilter);
+            weapon.SecondaryAttack(targetFilter, identity);
+
+            // Animation
+            string attackAnimation = weapon.getSecondaryAttackAnimation();
+            Assert.IsTrue(attackAnimation != "");
+            animator.SetTrigger(attackAnimation);
         }
         else
         {
