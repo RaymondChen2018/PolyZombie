@@ -57,23 +57,10 @@ public class Human_Condition : Abstract_Condition {
         OnInfectOnce.AddListener(infectedRelayCall);
     }
 
-    public override void OnChangeFaction(Identity newFaction)
-    {
-        Assert.IsTrue(newFaction == Identity.Zombie);
-        status = HEALTH_STATUS.Infected;
-    }
-
-    public override void Func_OnDeath()
-    {
-        status = HEALTH_STATUS.Dead;
-
-        // Custom call back
-        OnDeathOnce.Invoke();
-        OnDeathOnce.RemoveAllListeners();
-    }
-
     public void Func_OnInfect()
     {
+        status = HEALTH_STATUS.Infected;
+
         OnInfectOnce.Invoke();
         OnInfectOnce.RemoveAllListeners();
 

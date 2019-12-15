@@ -18,17 +18,6 @@ public class Zombie_Identity : Abstract_Identity
         return Identity.Zombie;
     }
 
-    public override void Die()
-    {
-        // Call back
-        teamAttribute.Func_OnDeath();
-        healthAttribute.Func_OnDeath();
-
-        // Destroy this object
-        Destroy(gameObject);
-    }
-
-
     public void Func_OnInfectedSomeOne()
     {
         OnInfectedSomeOne.Invoke();

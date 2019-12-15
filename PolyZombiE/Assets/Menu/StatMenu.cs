@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class StatMenu : MonoBehaviour {
     // Points =======================================================
@@ -10,12 +11,18 @@ public class StatMenu : MonoBehaviour {
     /// </summary>
     [SerializeField] private int killPoints = 0;
     [SerializeField] private Text killPointsText;
+    [SerializeField] private UnityEvent OnRemainKillPoints = new UnityEvent();
+    [SerializeField] private UnityEvent OnDepletedKillPoints = new UnityEvent();
+    [SerializeField] private UnityEvent OnMenuFullKillPoints = new UnityEvent();
+    private int fullMenuKillPoints = 0;
 
     /// <summary>
     /// For new strains of upgrades, and gaining teammates
     /// </summary>
     [SerializeField] private int infectPoints = 0;
     [SerializeField] private Text infectPointsText;
+    [SerializeField] private UnityEvent OnRemainInfectPoints = new UnityEvent();
+    [SerializeField] private UnityEvent OnDepletedInfectPoints = new UnityEvent();
 
     // Stat =======================================================
     [SerializeField] private float maxHealth = 100.0f;
@@ -32,7 +39,7 @@ public class StatMenu : MonoBehaviour {
 
     void Awake()
     {
-        SaveBaseStat();
+
     }
 
     void OnEnable()
@@ -49,14 +56,48 @@ public class StatMenu : MonoBehaviour {
     // Incrementor
     public void addKill(int value)
     {
-        killPoints += value;
+        setKills(killPoints + value);
+    }
+    private void setKills(int value)
+    {
+        killPoints = value;
         killPointsText.text = killPoints.ToString();
+
+        if (killPoints <= 0)
+        {
+            OnDepletedKillPoints.Invoke();
+            if (killPoints >= fullMenuKillPoints)
+            {
+                OnMenuFullKillPoints.Invoke();
+            }
+        }
+        else
+        {
+            OnRemainKillPoints.Invoke();
+            if (killPoints >= fullMenuKillPoints)
+            {
+                OnMenuFullKillPoints.Invoke();
+            }
+        }
     }
 
     public void addInfect(int value)
     {
-        infectPoints += value;
+        setInfect(infectPoints + value);
+    }
+    private void setInfect(int value)
+    {
+        infectPoints = value;
         infectPointsText.text = infectPoints.ToString();
+
+        if (infectPoints <= 0)
+        {
+            OnDepletedInfectPoints.Invoke();
+        }
+        else
+        {
+            OnRemainInfectPoints.Invoke();
+        }
     }
 
     public void addMaxHealth(float value)
@@ -106,11 +147,18 @@ public class StatMenu : MonoBehaviour {
     public void LoadBaseStat()
     {
         // Load from to level transition entity
-        killPoints = LevelTransitionStatistics.getKillPoints();
-        infectPoints = LevelTransitionStatistics.getInfectPoints();
+        fullMenuKillPoints = LevelTransitionStatistics.getKillPoints();
+        setKills(LevelTransitionStatistics.getKillPoints());
+
+        setInfect(LevelTransitionStatistics.getInfectPoints());
+
         maxHealth = LevelTransitionStatistics.getMaxHealth();
+        maxHealthText.text = maxHealth.ToString();
         mobileSpeed = LevelTransitionStatistics.getMobileSpeed();
+        mobileSpeedText.text = mobileSpeed.ToString();
         infectiousness = LevelTransitionStatistics.getInfectiousness();
+        infectiousnessText.text = infectiousness.ToString();
         damageMultiplier = LevelTransitionStatistics.getDamageMultiplier();
+        damageMultiplierText.text = damageMultiplier.ToString();
     }
 }

@@ -23,7 +23,7 @@ public enum HEALTH_STATUS
     Dead
 }
 
-public abstract class Abstract_Condition : MonoBehaviour, ICharacter
+public abstract class Abstract_Condition : MonoBehaviour
 {
     [SerializeField] protected float health = 20.0f;
     [SerializeField] private float maxHealth = 20.0f;
@@ -46,7 +46,7 @@ public abstract class Abstract_Condition : MonoBehaviour, ICharacter
         if (health <= 0.0f && status != HEALTH_STATUS.Dead)
         {
             activator.Func_OnKilledSomeOne();
-
+            Func_OnDeath();
             // identity
             identity.Die();
         }
@@ -57,8 +57,14 @@ public abstract class Abstract_Condition : MonoBehaviour, ICharacter
         return status;
     }
 
-    public abstract void OnChangeFaction(Identity newFaction);
-    public abstract void Func_OnDeath();
+    public void Func_OnDeath()
+    {
+        status = HEALTH_STATUS.Dead;
+
+        // Custom call back
+        OnDeathOnce.Invoke();
+        OnDeathOnce.RemoveAllListeners();
+    }
     public void setMaxHealth(float value)
     {
         maxHealth = value;

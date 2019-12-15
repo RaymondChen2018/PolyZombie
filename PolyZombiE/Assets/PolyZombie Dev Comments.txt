@@ -1,0 +1,18 @@
+1st 11/14============================================================
+- grid is a mesh with material on
+- material options off, eg. blend probe, dynamic oclude, shadow
+- 256 256
+
+2st 11/14===============================
+- Player move by changing velocity
+- Originally thought using addforce, but inertia makes it clumsy to move
+
+
+
+
+
+leftoff: Was implementing upgrades button & downgrade buttons
+next to-do: make damage multiplier effective to dealt damage
+
+
+

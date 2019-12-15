@@ -22,7 +22,13 @@ public class Equipment : MonoBehaviour {
 
     public void PrimaryAttack(LayerMask targetFilter)
     {
-        if(weapon != null && weapon.primaryReady())
+        if(weapon == null)
+        {
+            Debug.LogWarning("Weapon null!");
+            return;
+        }
+
+        if(weapon.primaryReady())
         {
             weapon.PrimaryAttack(targetFilter, identity);
 
@@ -31,15 +37,17 @@ public class Equipment : MonoBehaviour {
             Assert.IsTrue(attackAnimation != "");
             animator.SetTrigger(attackAnimation);
         }
-        else
-        {
-            Debug.LogWarning("Weapon null!");
-        }
     }
 
     public void SecondaryAttack(LayerMask targetFilter)
     {
-        if (weapon != null && weapon.secondaryReady())
+        if (weapon == null)
+        {
+            Debug.LogWarning("Weapon null!");
+            return;
+        }
+
+        if (weapon.secondaryReady())
         {
             weapon.SecondaryAttack(targetFilter, identity);
 
@@ -47,10 +55,6 @@ public class Equipment : MonoBehaviour {
             string attackAnimation = weapon.getSecondaryAttackAnimation();
             Assert.IsTrue(attackAnimation != "");
             animator.SetTrigger(attackAnimation);
-        }
-        else
-        {
-            Debug.LogWarning("Weapon null!");
         }
     }
 

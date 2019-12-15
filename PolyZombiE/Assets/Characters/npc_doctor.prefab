@@ -232,7 +232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 141b37fa5e03be044bd76f13184956b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewDist: 10
+  viewDist: 40
   viewConeAngle: 60
   movement: {fileID: 114566300440169012}
   orient: {fileID: 114080512136014582}
@@ -333,6 +333,11 @@ MonoBehaviour:
   movementAttribute: {fileID: 114566300440169012}
   equipment: {fileID: 114889468079318562}
   mainBody: {fileID: 1282938024591416}
+  OnKilledSomeOne:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   zombieVersion: {fileID: 1423043396970880, guid: 6a3bbf221acc94844abca8b41ccb4229,
     type: 2}
 --- !u!114 &114889468079318562
@@ -348,6 +353,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon: {fileID: 0}
   identity: {fileID: 114637558891358410}
+  damageMultiplier: 1
   animator: {fileID: 95270458786582812}
 --- !u!212 &212774897296638366
 SpriteRenderer:

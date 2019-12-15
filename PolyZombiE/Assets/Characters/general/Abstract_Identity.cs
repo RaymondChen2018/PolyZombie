@@ -72,7 +72,10 @@ public abstract class Abstract_Identity : MonoBehaviour {
         }
     }
 
-    abstract public void Die();
+    public void Die()
+    {
+        Destroy(gameObject);
+    }
     
     // Upgrades
     public Movement getMovementComponent() { return movementAttribute; }

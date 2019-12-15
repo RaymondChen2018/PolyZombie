@@ -442,7 +442,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 141b37fa5e03be044bd76f13184956b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewDist: 10
+  viewDist: 30
   viewConeAngle: 60
   movement: {fileID: 114820406271398686}
   orient: {fileID: 114005825973281656}
@@ -469,7 +469,6 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   identity: {fileID: 114998019885025714}
-  infectiousness: 20
 --- !u!114 &114574463847398492
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -488,7 +487,6 @@ MonoBehaviour:
   damage: 5
   primaryRange: 3
   biteDamage: 2
-  infectiousRef: {fileID: 114445293999317086}
   biteRange: 2
 --- !u!114 &114726662595240880
 MonoBehaviour:
@@ -519,6 +517,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon: {fileID: 114574463847398492}
   identity: {fileID: 114998019885025714}
+  damageMultiplier: 1
   animator: {fileID: 95905009864086908}
 --- !u!114 &114820406271398686
 MonoBehaviour:
@@ -550,6 +549,17 @@ MonoBehaviour:
   movementAttribute: {fileID: 114820406271398686}
   equipment: {fileID: 0}
   mainBody: {fileID: 1423043396970880}
+  OnKilledSomeOne:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  infectiousness: 20
+  OnInfectedSomeOne:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!212 &212019663138225768
 SpriteRenderer:
   m_ObjectHideFlags: 1
