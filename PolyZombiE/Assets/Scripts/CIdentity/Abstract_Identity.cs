@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.Events;
 
 public enum Identity
 {
@@ -21,6 +22,8 @@ public abstract class Abstract_Identity : MonoBehaviour {
     [SerializeField] protected Equipment equipment;
 
     [SerializeField] protected GameObject mainBody = null;
+
+    [SerializeField] private UnityEvent OnKilledSomeOne = new UnityEvent();
 
     public static Abstract_Identity playerIdentity;
     
@@ -45,6 +48,11 @@ public abstract class Abstract_Identity : MonoBehaviour {
     virtual public Identity GetIdentity()
     {
         return Identity.Not_Initialized;
+    }
+
+    public void Func_OnKilledSomeOne()
+    {
+        OnKilledSomeOne.Invoke();
     }
 
     void privCheckLayer()

@@ -10,9 +10,7 @@ public class Human_Condition : Abstract_Condition {
     /// </summary>
     [SerializeField] private float infectedness = 0.0f;
 
-    [SerializeField] protected UnityEvent OnInfectOnce = new UnityEvent();
-    [SerializeField] protected UnityEvent OnInfectByPlayerOnce = new UnityEvent();
-    private bool infectByPlayer = false;
+    [SerializeField] private UnityEvent OnInfectOnce = new UnityEvent();
 
     // Use this for initialization
     void Start () {
@@ -30,7 +28,7 @@ public class Human_Condition : Abstract_Condition {
 
         if(infectedness >= 100.0f && status != HEALTH_STATUS.Infected)
         {
-            OnInfect();
+            Func_OnInfect();
         }
 	}
 
@@ -46,7 +44,7 @@ public class Human_Condition : Abstract_Condition {
     /// Deals no damage nor infection to armored unit.
     /// </summary>
     /// <param name="infectiousness"> Poison of bite (Increase tendancy to turn) </param>
-    public void addInfection(float infectiousness, Abstract_Identity activator)
+    public void addInfection(float infectiousness, Zombie_Identity activator)
     {
         // Infect
         if(armor == 0.0f)
@@ -54,10 +52,9 @@ public class Human_Condition : Abstract_Condition {
             infectedness += infectiousness;
         }
 
-        if(activator == Abstract_Identity.playerIdentity)
-        {
-            infectByPlayer = true;
-        }
+        UnityAction infectedRelayCall = new UnityAction(activator.Func_OnInfectedSomeOne);
+        OnInfectOnce.RemoveListener(infectedRelayCall);
+        OnInfectOnce.AddListener(infectedRelayCall);
     }
 
     public override void OnChangeFaction(Identity newFaction)
@@ -66,7 +63,7 @@ public class Human_Condition : Abstract_Condition {
         status = HEALTH_STATUS.Infected;
     }
 
-    public override void OnDeath()
+    public override void Func_OnDeath()
     {
         status = HEALTH_STATUS.Dead;
 
@@ -75,15 +72,10 @@ public class Human_Condition : Abstract_Condition {
         OnDeathOnce.RemoveAllListeners();
     }
 
-    public void OnInfect()
+    public void Func_OnInfect()
     {
         OnInfectOnce.Invoke();
         OnInfectOnce.RemoveAllListeners();
-        if (infectByPlayer)
-        {
-            OnInfectByPlayerOnce.Invoke();
-            OnInfectByPlayerOnce.RemoveAllListeners();
-        }
 
         ((Human_Identity)identity).TurnZombie();
     }

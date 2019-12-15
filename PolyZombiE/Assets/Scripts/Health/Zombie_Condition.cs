@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEngine.Assertions;
 
 public class Zombie_Condition : Abstract_Condition {
-    /// <summary>
-    /// Zombie with higher infected(ious)ness can infect human faster.
-    /// </summary>
-    [SerializeField] private float infectiousness = CONSTANT.MINIMUM_INFECTIOUSNESS;
+    ///// <summary>
+    ///// Zombie with higher infected(ious)ness can infect human faster.
+    ///// </summary>
+    //[SerializeField] private float infectiousness = CONSTANT.MINIMUM_INFECTIOUSNESS;
 
     // Use this for initialization
     void Start () {
@@ -22,17 +22,16 @@ public class Zombie_Condition : Abstract_Condition {
         {
             status = HEALTH_STATUS.Dead;
         }
-        else if (infectiousness < CONSTANT.MINIMUM_INFECTIOUSNESS)
-        {
-            status = HEALTH_STATUS.Healthy;
-        }
+        //else if (infectiousness < CONSTANT.MINIMUM_INFECTIOUSNESS)
+        //{
+        //    status = HEALTH_STATUS.Healthy;
+        //}
     }
 
     override protected void ResetCondition() 
     {
         base.ResetCondition();
         status = HEALTH_STATUS.Infected;
-        infectiousness = CONSTANT.MINIMUM_INFECTIOUSNESS;
     }
 
     public override void OnChangeFaction(Identity newFaction)
@@ -41,7 +40,7 @@ public class Zombie_Condition : Abstract_Condition {
         status = HEALTH_STATUS.Healthy;
     }
 
-    public override void OnDeath()
+    public override void Func_OnDeath()
     {
         status = HEALTH_STATUS.Dead;
 
@@ -50,8 +49,8 @@ public class Zombie_Condition : Abstract_Condition {
         OnDeathOnce.RemoveAllListeners();
     }
 
-    public float GetInfectiousness()
-    {
-        return infectiousness;
-    }
+    //public float GetInfectiousness()
+    //{
+    //    return infectiousness;
+    //}
 }

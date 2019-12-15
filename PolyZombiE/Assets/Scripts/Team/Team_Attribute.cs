@@ -86,7 +86,7 @@ public class Team_Attribute : MonoBehaviour, ICharacter
         }
     }
 
-    public void OnDeath()
+    public void Func_OnDeath()
     {
         //throw new System.NotImplementedException();
     }

@@ -44,8 +44,8 @@ public class Human_Identity : Abstract_Identity
     public override void Die()
     {
         // Call back
-        teamAttribute.OnDeath();
-        healthAttribute.OnDeath();
+        teamAttribute.Func_OnDeath();
+        healthAttribute.Func_OnDeath();
 
         // Destroy this object
         Destroy(gameObject);

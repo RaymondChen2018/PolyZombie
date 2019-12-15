@@ -40,11 +40,13 @@ public abstract class Abstract_Condition : MonoBehaviour, ICharacter
     /// Deals only damage, does not spread infection
     /// </summary>
     /// <param name="damage"> Amount to decrease health</param>
-    public void subtractHealth(float damage)
+    public void subtractHealth(float damage, Abstract_Identity activator)
     {
         health -= damage;
         if (health <= 0.0f && status != HEALTH_STATUS.Dead)
         {
+            activator.Func_OnKilledSomeOne();
+
             // identity
             identity.Die();
         }
@@ -56,5 +58,5 @@ public abstract class Abstract_Condition : MonoBehaviour, ICharacter
     }
 
     public abstract void OnChangeFaction(Identity newFaction);
-    public abstract void OnDeath();
+    public abstract void Func_OnDeath();
 }

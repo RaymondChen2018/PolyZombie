@@ -4,5 +4,5 @@ using UnityEditor;
 public interface ICharacter
 {
     void OnChangeFaction(Identity newFaction);
-    void OnDeath();
+    void Func_OnDeath();
 }

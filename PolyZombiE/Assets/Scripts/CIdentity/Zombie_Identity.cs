@@ -2,34 +2,40 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.Events;
 
 public class Zombie_Identity : Abstract_Identity
 {
+    /// <summary>
+    /// Zombie with higher infected(ious)ness can infect human faster.
+    /// </summary>
+    [SerializeField] private float infectiousness = CONSTANT.MINIMUM_INFECTIOUSNESS;
+
+    [SerializeField] private UnityEvent OnInfectedSomeOne = new UnityEvent();
+
     public override Identity GetIdentity()
     {
         return Identity.Zombie;
     }
 
-    //public override void ChangeFaction(Identity newIdentity)
-    //{
-    //    // Check
-    //    Assert.IsTrue(newIdentity == Identity.Human);
-
-    //    // Change Layer
-    //    mainBody.layer = LayerMask.NameToLayer(CONSTANT.LAYER_NAME_HUMAN);
-
-    //    // Call back
-    //    healthAttribute.OnChangeFaction(Identity.Human);
-    //    teamAttribute.OnChangeFaction(Identity.Human);
-    //}
-
     public override void Die()
     {
         // Call back
-        teamAttribute.OnDeath();
-        healthAttribute.OnDeath();
+        teamAttribute.Func_OnDeath();
+        healthAttribute.Func_OnDeath();
 
         // Destroy this object
         Destroy(gameObject);
+    }
+
+
+    public void Func_OnInfectedSomeOne()
+    {
+        OnInfectedSomeOne.Invoke();
+    }
+
+    public float GetInfectiousness()
+    {
+        return infectiousness;
     }
 }
