@@ -73,4 +73,9 @@ public abstract class Abstract_Identity : MonoBehaviour {
     }
 
     abstract public void Die();
+    
+    // Upgrades
+    public Movement getMovementComponent() { return movementAttribute; }
+    public Abstract_Condition getConditionComponent() { return healthAttribute; }
+    public Equipment getEquipmentComponent() { return equipment; }
 }

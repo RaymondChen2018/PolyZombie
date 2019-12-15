@@ -6,6 +6,7 @@ using UnityEngine.Assertions;
 public class Equipment : MonoBehaviour {
     [SerializeField] private Abstract_Weapon weapon;
     [SerializeField] private Abstract_Identity identity;
+    [SerializeField] private float damageMultiplier = 1.0f;
     [SerializeField] Animator animator;
 
     // Use this for initialization
@@ -59,4 +60,5 @@ public class Equipment : MonoBehaviour {
     }
 
     public float getPrimaryRange() { return weapon.getPrimaryRange(); }
+    public void setDamageMultiplier(float value) { damageMultiplier = value; }
 }

@@ -59,4 +59,8 @@ public abstract class Abstract_Condition : MonoBehaviour, ICharacter
 
     public abstract void OnChangeFaction(Identity newFaction);
     public abstract void Func_OnDeath();
+    public void setMaxHealth(float value)
+    {
+        maxHealth = value;
+    }
 }

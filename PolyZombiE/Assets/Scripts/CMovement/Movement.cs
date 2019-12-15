@@ -34,4 +34,9 @@ public class Movement : MonoBehaviour
     {
         return RB.position;
     }
+
+    public void setMovementSpeed(float value)
+    {
+        movementSpeed = value;
+    }
 }

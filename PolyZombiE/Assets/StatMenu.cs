@@ -10,23 +10,25 @@ public class StatMenu : MonoBehaviour {
     /// </summary>
     [SerializeField] private int killPoints = 0;
     [SerializeField] private Text killPointsText;
-    private int prevKillPoints;
 
     /// <summary>
     /// For new strains of upgrades, and gaining teammates
     /// </summary>
     [SerializeField] private int infectPoints = 0;
     [SerializeField] private Text infectPointsText;
-    private int prevInfectPoints;
 
     // Stat =======================================================
     [SerializeField] private float maxHealth = 100.0f;
     [SerializeField] private Text maxHealthText;
-    private float prevMaxHealth;
 
     [SerializeField] private float mobileSpeed = 900.0f;
     [SerializeField] private Text mobileSpeedText;
-    private float prevMobileSpeed;
+
+    [SerializeField] private float infectiousness = CONSTANT.MINIMUM_INFECTIOUSNESS;
+    [SerializeField] private Text infectiousnessText;
+
+    [SerializeField] private float damageMultiplier = 1.0f;
+    [SerializeField] private Text damageMultiplierText;
 
     void Awake()
     {
@@ -40,35 +42,20 @@ public class StatMenu : MonoBehaviour {
 
         maxHealthText.text = maxHealth.ToString();
         mobileSpeedText.text = mobileSpeed.ToString();
+        infectiousnessText.text = infectiousness.ToString();
+        damageMultiplierText.text = damageMultiplier.ToString();
     }
-
-    public void SaveBaseStat()
-    {
-        prevKillPoints = killPoints;
-        prevInfectPoints = infectPoints;
-        prevMaxHealth = maxHealth;
-        prevMobileSpeed = mobileSpeed;
-    }
-
-    public void LoadBaseStat()
-    {
-        killPoints = prevKillPoints;
-        infectPoints = prevInfectPoints;
-        maxHealth = prevMaxHealth;
-        mobileSpeed = prevMobileSpeed;
-    }
-
 
     // Incrementor
-    public void addKill()
+    public void addKill(int value)
     {
-        killPoints++;
+        killPoints += value;
         killPointsText.text = killPoints.ToString();
     }
 
-    public void addInfect()
+    public void addInfect(int value)
     {
-        infectPoints++;
+        infectPoints += value;
         infectPointsText.text = infectPoints.ToString();
     }
 
@@ -84,14 +71,46 @@ public class StatMenu : MonoBehaviour {
         mobileSpeedText.text = mobileSpeed.ToString();
     }
 
-    // Updater
-    public void GetZombieStat(Zombie_Identity zIdentity)
+    public void addInfectiousness(float value)
     {
-        
+        infectiousness += value;
+        infectiousnessText.text = infectiousness.ToString();
     }
 
+    public void addDamageMultiplier(float value)
+    {
+        damageMultiplier += value;
+        damageMultiplierText.text = damageMultiplier.ToString();
+    }
+
+    // Updater
     public void SetZombieStat(Zombie_Identity zIdentity)
     {
+        zIdentity.getConditionComponent().setMaxHealth(maxHealth);
+        zIdentity.getMovementComponent().setMovementSpeed(mobileSpeed);
+        zIdentity.setInfectiousness(infectiousness);
+        zIdentity.getEquipmentComponent().setDamageMultiplier(damageMultiplier);
+    }
 
+    public void SaveBaseStat()
+    {
+        // Pass to level transition entity
+        LevelTransitionStatistics.setKillPoints(killPoints);
+        LevelTransitionStatistics.setInfectPoints(infectPoints);
+        LevelTransitionStatistics.setMaxHealth(maxHealth);
+        LevelTransitionStatistics.setMobileSpeed(mobileSpeed);
+        LevelTransitionStatistics.setInfectiousness(infectiousness);
+        LevelTransitionStatistics.setDamageMultiplier(damageMultiplier);
+    }
+
+    public void LoadBaseStat()
+    {
+        // Load from to level transition entity
+        killPoints = LevelTransitionStatistics.getKillPoints();
+        infectPoints = LevelTransitionStatistics.getInfectPoints();
+        maxHealth = LevelTransitionStatistics.getMaxHealth();
+        mobileSpeed = LevelTransitionStatistics.getMobileSpeed();
+        infectiousness = LevelTransitionStatistics.getInfectiousness();
+        damageMultiplier = LevelTransitionStatistics.getDamageMultiplier();
     }
 }

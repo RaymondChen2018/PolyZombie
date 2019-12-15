@@ -38,4 +38,9 @@ public class Zombie_Identity : Abstract_Identity
     {
         return infectiousness;
     }
+
+    public void setInfectiousness(float value)
+    {
+        infectiousness = value;
+    }
 }
