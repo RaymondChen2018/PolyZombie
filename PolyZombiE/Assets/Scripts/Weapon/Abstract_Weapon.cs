@@ -5,7 +5,6 @@ using UnityEngine;
 public abstract class Abstract_Weapon: MonoBehaviour{
     [SerializeField] private string primaryAttackAnimation = "";
     abstract public void PrimaryAttack(LayerMask targetFilter, Abstract_Identity activator);
-    public string getPrimaryAttackAnimation() { return primaryAttackAnimation; }
     virtual public float getPrimaryRange() { return -1.0f; }
     public bool primaryReady() { return Time.time > prevPrimaryTime + primaryCoolDown; }
     [SerializeField] protected float primaryCoolDown = 0.0f;
@@ -13,7 +12,6 @@ public abstract class Abstract_Weapon: MonoBehaviour{
 
     [SerializeField] private string secondaryAttackAnimation = "";
     abstract public void SecondaryAttack(LayerMask targetFilter, Abstract_Identity activator);
-    public string getSecondaryAttackAnimation() { return secondaryAttackAnimation; }
     virtual public float getSecondaryRange() { return -1.0f; }
     public bool secondaryReady() { return Time.time > prevSecondaryTime + secondaryCoolDown; }
     [SerializeField] protected float secondaryCoolDown = 0.0f;

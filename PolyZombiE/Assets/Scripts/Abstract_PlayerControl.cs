@@ -62,7 +62,7 @@ public abstract class Abstract_PlayerControl : MonoBehaviour {
         {
             Vector2 dof = orientComponent.GetDOF();
             //meleeComponent.PrimaryAttack(transform.position, dof, teamComponent.GetOpponentLayerMask());
-            equipment.PrimaryAttack(teamComponent.GetOpponentLayerMask());
+            equipment.initPrimaryAttack();
         }
     }
 }

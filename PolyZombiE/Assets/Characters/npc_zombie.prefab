@@ -35,8 +35,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4076889785368586}
-  - component: {fileID: 212019663138225768}
   - component: {fileID: 95905009864086908}
+  - component: {fileID: 114179149991462240}
   m_Layer: 0
   m_Name: Render
   m_TagString: Untagged
@@ -194,7 +194,7 @@ Transform:
   m_Children:
   - {fileID: 4584631154452136}
   m_Father: {fileID: 4437294127350196}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4117610395513356
 Transform:
@@ -207,7 +207,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4437294127350196}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4215373968455558
 Transform:
@@ -246,8 +246,8 @@ Transform:
   m_LocalPosition: {x: -4.4, y: -8.02, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4117610395513356}
   - {fileID: 4076889785368586}
+  - {fileID: 4117610395513356}
   - {fileID: 4390575137884236}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -402,6 +402,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RB: {fileID: 50680137565465604}
+--- !u!114 &114179149991462240
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1120884450384740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 728d1e8c8039e6644ad9c2d8087db4b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  equipment: {fileID: 114749900416243670}
 --- !u!114 &114200180462222248
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -517,7 +529,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon: {fileID: 114574463847398492}
   identity: {fileID: 114998019885025714}
-  damageMultiplier: 1
+  damageMultiplierPercent: 100
   animator: {fileID: 95905009864086908}
 --- !u!114 &114820406271398686
 MonoBehaviour:
@@ -547,7 +559,7 @@ MonoBehaviour:
   teamAttribute: {fileID: 114200180462222248}
   healthAttribute: {fileID: 114445293999317086}
   movementAttribute: {fileID: 114820406271398686}
-  equipment: {fileID: 0}
+  equipment: {fileID: 114749900416243670}
   mainBody: {fileID: 1423043396970880}
   OnKilledSomeOne:
     m_PersistentCalls:
@@ -560,50 +572,6 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!212 &212019663138225768
-SpriteRenderer:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1120884450384740}
-  m_Enabled: 0
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 6f9cd622a658ded43ae1838f3d63f09e, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 2.56, y: 2.56}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
 --- !u!212 &212063683297039314
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -20,26 +20,29 @@ public class Equipment : MonoBehaviour {
 		
 	}
 
-    public void PrimaryAttack(LayerMask targetFilter)
+    public void initPrimaryAttack()
     {
         if(weapon == null)
         {
             Debug.LogWarning("Weapon null!");
             return;
         }
-
-        if(weapon.primaryReady())
+        // Weapon is loaded && player previous attack animation is over
+        if (weapon.primaryReady())
         {
-            weapon.PrimaryAttack(targetFilter, identity);
-
             // Animation
-            string attackAnimation = weapon.getPrimaryAttackAnimation();
-            Assert.IsTrue(attackAnimation != "");
-            animator.SetTrigger(attackAnimation);
+            animator.SetInteger("AttackAnim", 0);
+            //animator.SetTrigger("Attack");
+            animator.SetBool("Attack", true);
         }
     }
+    public void AE_primaryAttack()
+    {
+        LayerMask targetFilter = identity.getTeamComponent().GetOpponentLayerMask();
+        weapon.PrimaryAttack(targetFilter, identity);
+    }
 
-    public void SecondaryAttack(LayerMask targetFilter)
+    public void initSecondaryAttack()
     {
         if (weapon == null)
         {
@@ -49,13 +52,15 @@ public class Equipment : MonoBehaviour {
 
         if (weapon.secondaryReady())
         {
-            weapon.SecondaryAttack(targetFilter, identity);
-
             // Animation
-            string attackAnimation = weapon.getSecondaryAttackAnimation();
-            Assert.IsTrue(attackAnimation != "");
-            animator.SetTrigger(attackAnimation);
+            animator.SetInteger("AttackAnim", 1);
+            animator.SetBool("Attack", true);
         }
+    }
+    public void AE_secondaryAttack()
+    {
+        LayerMask targetFilter = identity.getTeamComponent().GetOpponentLayerMask();
+        weapon.SecondaryAttack(targetFilter, identity);
     }
 
     public bool hasWeapon()

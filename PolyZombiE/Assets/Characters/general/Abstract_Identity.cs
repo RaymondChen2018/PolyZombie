@@ -81,4 +81,5 @@ public abstract class Abstract_Identity : MonoBehaviour {
     public Movement getMovementComponent() { return movementAttribute; }
     public Abstract_Condition getConditionComponent() { return healthAttribute; }
     public Equipment getEquipmentComponent() { return equipment; }
+    public Team_Attribute getTeamComponent() { return teamAttribute; }
 }

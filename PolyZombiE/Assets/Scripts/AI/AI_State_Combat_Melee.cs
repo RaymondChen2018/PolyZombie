@@ -33,7 +33,7 @@ public class AI_State_Combat_Melee : StateMachineBehaviour {
             float enemyDistSqr = (enemyPos - thisPos).sqrMagnitude;
             if(enemyDistSqr < meleeRange * meleeRange)
             {
-                equipment.PrimaryAttack(teamAttribute.GetOpponentLayerMask());
+                equipment.initPrimaryAttack();
             }
         }
         else
