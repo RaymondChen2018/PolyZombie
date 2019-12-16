@@ -30,7 +30,8 @@ public class Abstract_Melee : Abstract_Weapon {
         {
             endPoint = hit.point;
             Abstract_Condition cCondition = hit.collider.GetComponent<Abstract_Condition>();
-            cCondition.subtractHealth(damage, activator);
+            float damageScaled = damage * activator.getEquipmentComponent().getDamageMultiplierPercent() / 100.0f;
+            cCondition.subtractHealth(damageScaled, activator);
         }
         Debug.DrawLine(from, endPoint, Color.red, 5.0f);
     }

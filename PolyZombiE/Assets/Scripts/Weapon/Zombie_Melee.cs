@@ -29,8 +29,10 @@ public class Zombie_Melee : Abstract_Melee {
             // infect & damage
             Human_Condition cCondition = hit.collider.GetComponent<Human_Condition>();
             Assert.IsNotNull(cCondition);
-            cCondition.addInfection(activatorZomb.GetInfectiousness(), activatorZomb);
-            cCondition.subtractHealth(biteDamage, activator);
+            float infectiousness = activatorZomb.GetInfectiousness();
+            cCondition.addInfection(infectiousness, activatorZomb);
+            float biteDamageScaled = biteDamage * activator.getEquipmentComponent().getDamageMultiplierPercent() / 100.0f;
+            cCondition.subtractHealth(biteDamageScaled, activator);
         }
         Debug.DrawLine(from, endPoint, Color.yellow, 5.0f);
     }

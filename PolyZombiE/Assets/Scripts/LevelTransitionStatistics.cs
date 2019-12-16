@@ -72,7 +72,7 @@ public class LevelTransitionStatistics : MonoBehaviour {
         return singleton.infectiousness;
     }
 
-    public static void setDamageMultiplier(int value)
+    public static void setDamageMultiplierPercent(int value)
     {
         singleton.damageMultiplierPercent = value;
     }

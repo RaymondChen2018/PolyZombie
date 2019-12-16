@@ -673,9 +673,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '000
-
-'
+  m_Text: 0
 --- !u!114 &114040577924089374
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1040,7 +1038,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '000
+  m_Text: '0
 
 '
 --- !u!114 &114149106860989770
@@ -1088,7 +1086,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 5
           m_FloatArgument: 0.05
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1382,7 +1380,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '000
+  m_Text: '0
 
 '
 --- !u!114 &114263875411764852
@@ -1429,7 +1427,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '000
+  m_Text: '0
 
 '
 --- !u!114 &114275498062311394
@@ -1564,7 +1562,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 5
           m_FloatArgument: -0.05
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1786,7 +1784,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '000
+  m_Text: '0
 
 '
 --- !u!114 &114486252996885112
@@ -2114,7 +2112,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '000
+  m_Text: '0
 
 '
 --- !u!114 &114630409550526610
@@ -2372,7 +2370,7 @@ MonoBehaviour:
   maxHealth: {fileID: 114663174016332752}
   mobileSpeed: {fileID: 114089035314840494}
   infectiousness: {fileID: 114589406261296980}
-  damageMultiplier: {fileID: 114486252996885112}
+  damageMultiplierPercent: {fileID: 114486252996885112}
 --- !u!114 &114807381526649130
 MonoBehaviour:
   m_ObjectHideFlags: 1
