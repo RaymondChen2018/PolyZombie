@@ -72,4 +72,12 @@ public class Math_Counter : MonoBehaviour {
             prevValue = value;
         }
     }
+    public void setMaxValue(int newMax)
+    {
+        maxValue = newMax;
+    }
+    public void setMinValue(int newMin)
+    {
+        minValue = newMin;
+    }
 }

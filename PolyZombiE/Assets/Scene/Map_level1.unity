@@ -533,6 +533,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_MethodName: setValue
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 25
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!4 &90182620
@@ -1115,11 +1126,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114234953715928724, guid: 29435618d56fd02438bba4df3c655949,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 224871517394627044, guid: 29435618d56fd02438bba4df3c655949,
         type: 2}
       propertyPath: m_LocalPosition.x
@@ -1222,37 +1228,24 @@ Prefab:
       objectReference: {fileID: 1904013088}
     - target: {fileID: 114234953715928724, guid: 29435618d56fd02438bba4df3c655949,
         type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 114234953715928724, guid: 29435618d56fd02438bba4df3c655949,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114234953715928724, guid: 29435618d56fd02438bba4df3c655949,
-        type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 849406790}
-    - target: {fileID: 114234953715928724, guid: 29435618d56fd02438bba4df3c655949,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: SetActive
-      objectReference: {fileID: 0}
-    - target: {fileID: 114234953715928724, guid: 29435618d56fd02438bba4df3c655949,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 114234953715928724, guid: 29435618d56fd02438bba4df3c655949,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 29435618d56fd02438bba4df3c655949, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &597467870 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114859987709416108, guid: 29435618d56fd02438bba4df3c655949,
+    type: 2}
+  m_PrefabInternal: {fileID: 597467869}
+  m_Script: {fileID: 11500000, guid: 3561e6ec8476bc74382a2adc0c1ebff6, type: 3}
+--- !u!114 &597467871 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114417419878639332, guid: 29435618d56fd02438bba4df3c655949,
+    type: 2}
+  m_PrefabInternal: {fileID: 597467869}
+  m_Script: {fileID: 11500000, guid: 3561e6ec8476bc74382a2adc0c1ebff6, type: 3}
 --- !u!1001 &605876274
 Prefab:
   m_ObjectHideFlags: 0
@@ -2245,11 +2238,11 @@ Prefab:
         type: 2}
       propertyPath: OnInfectedSomeOne.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1215358624}
+      objectReference: {fileID: 597467870}
     - target: {fileID: 114129138329961828, guid: cb31d16ac6de9d445a3ad37d40869a16,
         type: 2}
       propertyPath: OnInfectedSomeOne.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: addInfect
+      value: Add
       objectReference: {fileID: 0}
     - target: {fileID: 114129138329961828, guid: cb31d16ac6de9d445a3ad37d40869a16,
         type: 2}
@@ -2270,11 +2263,11 @@ Prefab:
         type: 2}
       propertyPath: OnKilledSomeOne.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1215358624}
+      objectReference: {fileID: 597467871}
     - target: {fileID: 114129138329961828, guid: cb31d16ac6de9d445a3ad37d40869a16,
         type: 2}
       propertyPath: OnKilledSomeOne.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: addKill
+      value: Add
       objectReference: {fileID: 0}
     - target: {fileID: 114129138329961828, guid: cb31d16ac6de9d445a3ad37d40869a16,
         type: 2}
@@ -2325,11 +2318,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53597ba35571acf49baaab8f54e25527, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 200
+  maxHealth: 50
   mobileSpeed: 900
   infectiousness: 20
-  damageMultiplier: 1
-  killPoints: 0
+  damageMultiplierPercent: 100
+  killPoints: 4
   infectPoints: 0
 --- !u!4 &1175747409
 Transform:

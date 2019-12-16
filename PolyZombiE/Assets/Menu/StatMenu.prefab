@@ -28,7 +28,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1073458287382962
 GameObject:
   m_ObjectHideFlags: 1
@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 224344631229595674}
   - component: {fileID: 222465034032186986}
   - component: {fileID: 114275299902160056}
+  - component: {fileID: 114326154445085504}
   m_Layer: 5
   m_Name: value
   m_TagString: Untagged
@@ -56,6 +57,7 @@ GameObject:
   - component: {fileID: 224825968841568052}
   - component: {fileID: 222511072116501388}
   - component: {fileID: 114688351755883670}
+  - component: {fileID: 114417419878639332}
   m_Layer: 5
   m_Name: Text_killPoints
   m_TagString: Untagged
@@ -132,7 +134,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1183769765214054
 GameObject:
   m_ObjectHideFlags: 1
@@ -143,6 +145,7 @@ GameObject:
   - component: {fileID: 224263263668957762}
   - component: {fileID: 222754973877965518}
   - component: {fileID: 114624275675311386}
+  - component: {fileID: 114263875411764852}
   m_Layer: 5
   m_Name: value
   m_TagString: Untagged
@@ -308,7 +311,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1444627291608640
 GameObject:
   m_ObjectHideFlags: 1
@@ -354,6 +357,7 @@ GameObject:
   - component: {fileID: 224093867878432118}
   - component: {fileID: 222905841870735982}
   - component: {fileID: 114229085531473266}
+  - component: {fileID: 114859987709416108}
   m_Layer: 5
   m_Name: Text_infectPoints
   m_TagString: Untagged
@@ -422,6 +426,7 @@ GameObject:
   - component: {fileID: 224214254663712660}
   - component: {fileID: 222314857371619826}
   - component: {fileID: 114452582534206452}
+  - component: {fileID: 114580847950599330}
   m_Layer: 5
   m_Name: value
   m_TagString: Untagged
@@ -446,7 +451,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1668414191240686
 GameObject:
   m_ObjectHideFlags: 1
@@ -457,6 +462,7 @@ GameObject:
   - component: {fileID: 224162737828634834}
   - component: {fileID: 222073006894757746}
   - component: {fileID: 114254903016398484}
+  - component: {fileID: 114621427713785142}
   m_Layer: 5
   m_Name: value
   m_TagString: Untagged
@@ -474,6 +480,7 @@ GameObject:
   - component: {fileID: 224883809932647870}
   - component: {fileID: 222124535568977380}
   - component: {fileID: 114030774041681540}
+  - component: {fileID: 114168458690185886}
   m_Layer: 5
   m_Name: value
   m_TagString: Untagged
@@ -593,6 +600,7 @@ GameObject:
   - component: {fileID: 224493743614565846}
   - component: {fileID: 222406664127151362}
   - component: {fileID: 114141363128966184}
+  - component: {fileID: 114333950544200288}
   m_Layer: 5
   m_Name: value
   m_TagString: Untagged
@@ -707,30 +715,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114764500612694564}
-        m_MethodName: addMobileSpeed
-        m_Mode: 4
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: -30
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 114764500612694564}
-        m_MethodName: addKill
+      - m_Target: {fileID: 114089035314840494}
+        m_MethodName: Subtract
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
-          m_FloatArgument: 0
+          m_IntArgument: 30
+          m_FloatArgument: -30
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 114089035314840494}
-        m_MethodName: Subtract
+      - m_Target: {fileID: 114417419878639332}
+        m_MethodName: Add
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -808,30 +805,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114764500612694564}
-        m_MethodName: addMaxHealth
-        m_Mode: 4
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: -10
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 114764500612694564}
-        m_MethodName: addKill
+      - m_Target: {fileID: 114663174016332752}
+        m_MethodName: Subtract
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
-          m_FloatArgument: 0
+          m_IntArgument: 10
+          m_FloatArgument: -10
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 114663174016332752}
-        m_MethodName: Subtract
+      - m_Target: {fileID: 114417419878639332}
+        m_MethodName: Add
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -933,7 +919,18 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114621427713785142}
+        m_MethodName: setString
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEventInt, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
 --- !u!114 &114089701342002222
@@ -1085,30 +1082,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114764500612694564}
-        m_MethodName: addDamageMultiplier
-        m_Mode: 4
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0.05
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 114764500612694564}
-        m_MethodName: addKill
+      - m_Target: {fileID: 114486252996885112}
+        m_MethodName: Add
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: -1
-          m_FloatArgument: 0
+          m_IntArgument: 1
+          m_FloatArgument: 0.05
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 114486252996885112}
-        m_MethodName: Add
+      - m_Target: {fileID: 114417419878639332}
+        m_MethodName: Subtract
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1155,6 +1141,18 @@ MonoBehaviour:
   m_Text: '-
 
 '
+--- !u!114 &114168458690185886
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1722979211672274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcd3457d038ad114fa0cfe03b99c0ab5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textSegment: {fileID: 114030774041681540}
 --- !u!114 &114170074743723706
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1194,30 +1192,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114764500612694564}
-        m_MethodName: addInfectiousness
-        m_Mode: 4
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: -3
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 114764500612694564}
-        m_MethodName: addKill
+      - m_Target: {fileID: 114589406261296980}
+        m_MethodName: Subtract
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
-          m_FloatArgument: 0
+          m_IntArgument: 3
+          m_FloatArgument: -0.05
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 114589406261296980}
-        m_MethodName: Subtract
+      - m_Target: {fileID: 114417419878639332}
+        m_MethodName: Add
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1350,6 +1337,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114254903016398484
@@ -1387,6 +1385,18 @@ MonoBehaviour:
   m_Text: '000
 
 '
+--- !u!114 &114263875411764852
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1183769765214054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcd3457d038ad114fa0cfe03b99c0ab5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textSegment: {fileID: 114624275675311386}
 --- !u!114 &114275299902160056
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1461,30 +1471,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114764500612694564}
-        m_MethodName: addMaxHealth
-        m_Mode: 4
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 10
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 114764500612694564}
-        m_MethodName: addKill
+      - m_Target: {fileID: 114663174016332752}
+        m_MethodName: Add
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: -1
-          m_FloatArgument: 0
+          m_IntArgument: 10
+          m_FloatArgument: 10
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 114663174016332752}
-        m_MethodName: Add
+      - m_Target: {fileID: 114417419878639332}
+        m_MethodName: Subtract
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1496,6 +1495,30 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114326154445085504
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1073458287382962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcd3457d038ad114fa0cfe03b99c0ab5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textSegment: {fileID: 114275299902160056}
+--- !u!114 &114333950544200288
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1968363504701596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcd3457d038ad114fa0cfe03b99c0ab5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textSegment: {fileID: 114141363128966184}
 --- !u!114 &114350798389468284
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1535,30 +1558,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114764500612694564}
-        m_MethodName: addDamageMultiplier
-        m_Mode: 4
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: -0.05
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 114764500612694564}
-        m_MethodName: addKill
+      - m_Target: {fileID: 114486252996885112}
+        m_MethodName: Subtract
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 1
-          m_FloatArgument: 0
+          m_FloatArgument: -0.05
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 114486252996885112}
-        m_MethodName: Subtract
+      - m_Target: {fileID: 114417419878639332}
+        m_MethodName: Add
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1630,6 +1642,83 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114417419878639332
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1098040437932394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3561e6ec8476bc74382a2adc0c1ebff6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxValue: 9999
+  minValue: 0
+  value: 0
+  OnHitMin:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1643137420002694}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnHitMax:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OutValue:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnAddValue:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1643137420002694}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnSubtractValue:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnValueChanged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114333950544200288}
+        m_MethodName: setString
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEventInt, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!114 &114444471848362962
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1763,7 +1852,18 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114326154445085504}
+        m_MethodName: setString
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEventInt, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
 --- !u!114 &114487035917655832
@@ -1848,6 +1948,18 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Mobile Speed
+--- !u!114 &114580847950599330
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1653395467822986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcd3457d038ad114fa0cfe03b99c0ab5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textSegment: {fileID: 114452582534206452}
 --- !u!114 &114589406261296980
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1911,9 +2023,32 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114580847950599330}
+        m_MethodName: setString
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEventInt, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+--- !u!114 &114621427713785142
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1668414191240686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcd3457d038ad114fa0cfe03b99c0ab5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textSegment: {fileID: 114254903016398484}
 --- !u!114 &114622322443632164
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2078,7 +2213,18 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114168458690185886}
+        m_MethodName: setString
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEventInt, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
 --- !u!114 &114674621074478860
@@ -2186,30 +2332,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114764500612694564}
-        m_MethodName: addInfectiousness
-        m_Mode: 4
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 3
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 114764500612694564}
-        m_MethodName: addKill
+      - m_Target: {fileID: 114589406261296980}
+        m_MethodName: Add
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: -1
-          m_FloatArgument: 0
+          m_IntArgument: 3
+          m_FloatArgument: 3
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 114589406261296980}
-        m_MethodName: Add
+      - m_Target: {fileID: 114417419878639332}
+        m_MethodName: Subtract
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2232,98 +2367,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 044f14b51fb94af42876919766ec3529, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  killPoints: 0
-  killPointsText: {fileID: 114141363128966184}
-  OnRemainKillPoints:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1643137420002694}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 1908016739683978}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  OnDepletedKillPoints:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1643137420002694}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1908016739683978}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  OnMenuFullKillPoints:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1908016739683978}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  infectPoints: 0
-  infectPointsText: {fileID: 114624275675311386}
-  OnRemainInfectPoints:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  OnDepletedInfectPoints:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  maxHealth: 0
-  maxHealthText: {fileID: 114030774041681540}
-  mobileSpeed: 0
-  mobileSpeedText: {fileID: 114254903016398484}
-  infectiousness: 20
-  infectiousnessText: {fileID: 114452582534206452}
-  damageMultiplier: 1
-  damageMultiplierText: {fileID: 114275299902160056}
+  killPoints: {fileID: 114417419878639332}
+  infectPoints: {fileID: 114859987709416108}
+  maxHealth: {fileID: 114663174016332752}
+  mobileSpeed: {fileID: 114089035314840494}
+  infectiousness: {fileID: 114589406261296980}
+  damageMultiplier: {fileID: 114486252996885112}
 --- !u!114 &114807381526649130
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2446,6 +2495,61 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114859987709416108
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1618438607070184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3561e6ec8476bc74382a2adc0c1ebff6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxValue: 9999
+  minValue: 0
+  value: 0
+  OnHitMin:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnHitMax:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OutValue:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnAddValue:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnSubtractValue:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnValueChanged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114263875411764852}
+        m_MethodName: setString
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEventInt, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!114 &114895759220496426
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2485,30 +2589,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114764500612694564}
-        m_MethodName: addMobileSpeed
-        m_Mode: 4
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 30
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 114764500612694564}
-        m_MethodName: addKill
+      - m_Target: {fileID: 114089035314840494}
+        m_MethodName: Add
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: -1
-          m_FloatArgument: 0
+          m_IntArgument: 30
+          m_FloatArgument: 30
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 114089035314840494}
-        m_MethodName: Add
+      - m_Target: {fileID: 114417419878639332}
+        m_MethodName: Subtract
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -5,10 +5,10 @@ using UnityEngine;
 public class LevelTransitionStatistics : MonoBehaviour {
     private static LevelTransitionStatistics singleton;
 
-    [SerializeField] private float maxHealth = 100.0f;
-    [SerializeField] private float mobileSpeed = 900.0f;
-    [SerializeField] private float infectiousness = CONSTANT.MINIMUM_INFECTIOUSNESS;
-    [SerializeField] private float damageMultiplier = 1.0f;
+    [SerializeField] private int maxHealth = 100;
+    [SerializeField] private int mobileSpeed = 900;
+    [SerializeField] private int infectiousness = (int)CONSTANT.MINIMUM_INFECTIOUSNESS;
+    [SerializeField] private int damageMultiplierPercent = 100;
     [SerializeField] private int killPoints = 0;
     [SerializeField] private int infectPoints = 0;
 
@@ -27,20 +27,20 @@ public class LevelTransitionStatistics : MonoBehaviour {
         }
 	}
 	
-	public static void setMaxHealth(float value)
+	public static void setMaxHealth(int value)
     {
         singleton.maxHealth = value;
     }
-    public static float getMaxHealth()
+    public static int getMaxHealth()
     {
         return singleton.maxHealth;
     }
 
-    public static void setMobileSpeed(float value)
+    public static void setMobileSpeed(int value)
     {
         singleton.mobileSpeed = value;
     }
-    public static float getMobileSpeed()
+    public static int getMobileSpeed()
     {
         return singleton.mobileSpeed;
     }
@@ -63,21 +63,21 @@ public class LevelTransitionStatistics : MonoBehaviour {
         return singleton.infectPoints;
     }
 
-    public static void setInfectiousness(float value)
+    public static void setInfectiousness(int value)
     {
         singleton.infectiousness = value;
     }
-    public static float getInfectiousness()
+    public static int getInfectiousness()
     {
         return singleton.infectiousness;
     }
 
-    public static void setDamageMultiplier(float value)
+    public static void setDamageMultiplier(int value)
     {
-        singleton.damageMultiplier = value;
+        singleton.damageMultiplierPercent = value;
     }
-    public static float getDamageMultiplier()
+    public static int getDamageMultiplier()
     {
-        return singleton.damageMultiplier;
+        return singleton.damageMultiplierPercent;
     }
 }

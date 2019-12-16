@@ -389,7 +389,6 @@ MonoBehaviour:
   damage: 5
   primaryRange: 5
   biteDamage: 2
-  infectiousRef: {fileID: 114532738043211490}
   biteRange: 5
 --- !u!114 &114129138329961828
 MonoBehaviour:
@@ -407,6 +406,17 @@ MonoBehaviour:
   movementAttribute: {fileID: 114165341403275418}
   equipment: {fileID: 114670508969627556}
   mainBody: {fileID: 1111946246283856}
+  OnKilledSomeOne:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  infectiousness: 20
+  OnInfectedSomeOne:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114165341403275418
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -462,7 +472,6 @@ MonoBehaviour:
   damage: 5
   primaryRange: 3
   biteDamage: 2
-  infectiousRef: {fileID: 114532738043211490}
   biteRange: 2
 --- !u!114 &114532738043211490
 MonoBehaviour:
@@ -475,7 +484,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3ac279d3809ed1469eef4a59a0c7606, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 20
+  health: 50
   maxHealth: 20
   armor: 0
   status: 0
@@ -485,7 +494,6 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   identity: {fileID: 114129138329961828}
-  infectiousness: 20
 --- !u!114 &114587517334900734
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -524,6 +532,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon: {fileID: 114337458961615118}
   identity: {fileID: 114129138329961828}
+  damageMultiplier: 1
   animator: {fileID: 95331821534354994}
 --- !u!114 &114768023732577014
 MonoBehaviour:

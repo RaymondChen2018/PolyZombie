@@ -542,10 +542,10 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 24}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 862679972}
   - {fileID: 6557620}
   - {fileID: 1139384453}
   - {fileID: 310809630}
-  - {fileID: 862679972}
   - {fileID: 1021530761}
   - {fileID: 1079457838}
   - {fileID: 50132194}
@@ -743,6 +743,12 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &542607495 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114859987709416108, guid: 29435618d56fd02438bba4df3c655949,
+    type: 2}
+  m_PrefabInternal: {fileID: 1332074442}
+  m_Script: {fileID: 11500000, guid: 3561e6ec8476bc74382a2adc0c1ebff6, type: 3}
 --- !u!1 &543103169
 GameObject:
   m_ObjectHideFlags: 0
@@ -1027,7 +1033,7 @@ Transform:
   m_LocalScale: {x: 6.9455514, y: 6.3919187, z: 1}
   m_Children: []
   m_Father: {fileID: 223345068}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &862679973
 SpriteRenderer:
@@ -1712,11 +1718,11 @@ Prefab:
         type: 2}
       propertyPath: OnInfectedSomeOne.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1215358624}
+      objectReference: {fileID: 542607495}
     - target: {fileID: 114129138329961828, guid: cb31d16ac6de9d445a3ad37d40869a16,
         type: 2}
       propertyPath: OnInfectedSomeOne.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: addInfect
+      value: Add
       objectReference: {fileID: 0}
     - target: {fileID: 114129138329961828, guid: cb31d16ac6de9d445a3ad37d40869a16,
         type: 2}
@@ -1737,11 +1743,11 @@ Prefab:
         type: 2}
       propertyPath: OnKilledSomeOne.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1215358624}
+      objectReference: {fileID: 1612599844}
     - target: {fileID: 114129138329961828, guid: cb31d16ac6de9d445a3ad37d40869a16,
         type: 2}
       propertyPath: OnKilledSomeOne.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: addKill
+      value: Add
       objectReference: {fileID: 0}
     - target: {fileID: 114129138329961828, guid: cb31d16ac6de9d445a3ad37d40869a16,
         type: 2}
@@ -1757,6 +1763,11 @@ Prefab:
         type: 2}
       propertyPath: OnInfectedSomeOne.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114532738043211490, guid: cb31d16ac6de9d445a3ad37d40869a16,
+        type: 2}
+      propertyPath: health
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cb31d16ac6de9d445a3ad37d40869a16, type: 2}
@@ -1788,10 +1799,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53597ba35571acf49baaab8f54e25527, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 200
+  maxHealth: 50
   mobileSpeed: 900
   infectiousness: 20
-  damageMultiplier: 1
+  damageMultiplierPercent: 100
   killPoints: 0
   infectPoints: 0
 --- !u!4 &1175747409
@@ -1871,11 +1882,26 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  OnValueChanged:
+  OutValue:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  OnAddValue:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnSubtractValue:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnValueChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEventInt, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1 &1199557996
 GameObject:
   m_ObjectHideFlags: 0
@@ -2125,16 +2151,16 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114234953715928724, guid: 29435618d56fd02438bba4df3c655949,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
-      value: 
-      objectReference: {fileID: 1904013088}
     - target: {fileID: 223179903147757690, guid: 29435618d56fd02438bba4df3c655949,
         type: 2}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 159383662}
+    - target: {fileID: 114234953715928724, guid: 29435618d56fd02438bba4df3c655949,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 1904013088}
     - target: {fileID: 1233586994453610, guid: 29435618d56fd02438bba4df3c655949, type: 2}
       propertyPath: m_IsActive
       value: 0
@@ -2215,6 +2241,12 @@ Transform:
   m_Father: {fileID: 223345068}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1612599844 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114417419878639332, guid: 29435618d56fd02438bba4df3c655949,
+    type: 2}
+  m_PrefabInternal: {fileID: 1332074442}
+  m_Script: {fileID: 11500000, guid: 3561e6ec8476bc74382a2adc0c1ebff6, type: 3}
 --- !u!1 &1626728310
 GameObject:
   m_ObjectHideFlags: 0
