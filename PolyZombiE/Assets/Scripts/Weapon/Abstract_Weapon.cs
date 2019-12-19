@@ -3,19 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Abstract_Weapon: MonoBehaviour{
-    [SerializeField] private string primaryAttackAnimation = "";
-    abstract public void PrimaryAttack(LayerMask targetFilter, Abstract_Identity activator);
-    virtual public float getPrimaryRange() { return -1.0f; }
-    public bool primaryReady() { return Time.time > prevPrimaryTime + primaryCoolDown; }
+    public void PrimaryAttack(LayerMask targetFilter, Abstract_Identity activator)
+    {
+        prevUseTime = Time.time;
+        PrimaryAttackDerived(targetFilter, activator);
+    }
+    abstract public void PrimaryAttackDerived(LayerMask targetFilter, Abstract_Identity activator);
+    public bool primaryReady() { return Time.time > prevUseTime + primaryCoolDown; }
     [SerializeField] protected float primaryCoolDown = 0.0f;
-    protected float prevPrimaryTime = 0.0f;
 
-    [SerializeField] private string secondaryAttackAnimation = "";
-    abstract public void SecondaryAttack(LayerMask targetFilter, Abstract_Identity activator);
-    virtual public float getSecondaryRange() { return -1.0f; }
-    public bool secondaryReady() { return Time.time > prevSecondaryTime + secondaryCoolDown; }
+    public void SecondaryAttack(LayerMask targetFilter, Abstract_Identity activator)
+    {
+        prevUseTime = Time.time;
+        SecondaryAttackDerived(targetFilter, activator);
+    }
+    abstract public void SecondaryAttackDerived(LayerMask targetFilter, Abstract_Identity activator);
+    public bool secondaryReady() { return Time.time > prevUseTime + secondaryCoolDown; }
     [SerializeField] protected float secondaryCoolDown = 0.0f;
-    protected float prevSecondaryTime = 0.0f;
+
+    private float prevUseTime = 0.0f;
 
     protected Vector2 getDirectionVec()
     {

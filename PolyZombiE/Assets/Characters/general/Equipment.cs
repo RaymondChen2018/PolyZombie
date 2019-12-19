@@ -27,12 +27,11 @@ public class Equipment : MonoBehaviour {
             Debug.LogWarning("Weapon null!");
             return;
         }
-        // Weapon is loaded && player previous attack animation is over
+        // Player ready for attac && weapon ready
         if (weapon.primaryReady())
         {
             // Animation
             animator.SetInteger("AttackAnim", 0);
-            //animator.SetTrigger("Attack");
             animator.SetBool("Attack", true);
         }
     }
@@ -49,7 +48,7 @@ public class Equipment : MonoBehaviour {
             Debug.LogWarning("Weapon null!");
             return;
         }
-
+        // Player ready for attac && weapon ready
         if (weapon.secondaryReady())
         {
             // Animation
@@ -68,7 +67,7 @@ public class Equipment : MonoBehaviour {
         return weapon != null;
     }
 
-    public float getPrimaryRange() { return weapon.getPrimaryRange(); }
+    public Abstract_Weapon getWeapon() { return weapon; }
     public void setDamageMultiplierPercent(int value) { damageMultiplierPercent = value; }
     public int getDamageMultiplierPercent() { return damageMultiplierPercent; }
 }

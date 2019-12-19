@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class AI_State_Combat_Melee : StateMachineBehaviour {
 
@@ -29,7 +30,9 @@ public class AI_State_Combat_Melee : StateMachineBehaviour {
             movement.Move(enemyPos - thisPos);
 
             // Attack when close
-            float meleeRange = equipment.getPrimaryRange();
+            Abstract_Melee meleeWeapon = (Abstract_Melee)equipment.getWeapon();
+            Assert.IsNotNull(meleeWeapon);
+            float meleeRange = meleeWeapon.getPrimaryRange();
             float enemyDistSqr = (enemyPos - thisPos).sqrMagnitude;
             if(enemyDistSqr < meleeRange * meleeRange)
             {

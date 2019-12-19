@@ -18,9 +18,8 @@ public class Abstract_Melee : Abstract_Weapon {
 		
 	}
 
-    override public void PrimaryAttack(LayerMask targetFilter, Abstract_Identity activator)
+    override public void PrimaryAttackDerived(LayerMask targetFilter, Abstract_Identity activator)
     {
-        prevPrimaryTime = Time.time;
         Vector2 from = transform.position;
         Vector2 direction = getDirectionVec();
         RaycastHit2D hit = Physics2D.Raycast(from, direction, primaryRange, targetFilter);
@@ -36,12 +35,12 @@ public class Abstract_Melee : Abstract_Weapon {
         Debug.DrawLine(from, endPoint, Color.red, 5.0f);
     }
 
-    override public void SecondaryAttack(LayerMask targetFilter, Abstract_Identity activator) { }
+    override public void SecondaryAttackDerived(LayerMask targetFilter, Abstract_Identity activator) { }
 
-    public override float getPrimaryRange()
+    public float getPrimaryRange()
     {
         return primaryRange;
     }
-    public override float getSecondaryRange() { return -1; }
+    virtual public float getSecondaryRange() { return -1; }
 
 }

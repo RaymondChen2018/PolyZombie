@@ -12,12 +12,11 @@ public class Zombie_Melee : Abstract_Melee {
 
 	}
 
-    override public void SecondaryAttack(LayerMask targetFilter, Abstract_Identity activator)
+    override public void SecondaryAttackDerived(LayerMask targetFilter, Abstract_Identity activator)
     {
         Zombie_Identity activatorZomb = activator.GetComponent<Zombie_Identity>();
         Assert.IsNotNull(activatorZomb);
 
-        prevSecondaryTime = Time.time;
         Vector2 from = transform.position;
         Vector2 direction = getDirectionVec();
         RaycastHit2D hit = Physics2D.Raycast(from, direction, biteRange, targetFilter);
