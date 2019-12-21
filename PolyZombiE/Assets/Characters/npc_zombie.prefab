@@ -60,22 +60,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1237712223417586
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4117610395513356}
-  - component: {fileID: 114574463847398492}
-  m_Layer: 10
-  m_Name: z_claw
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1423043396970880
 GameObject:
   m_ObjectHideFlags: 0
@@ -196,19 +180,6 @@ Transform:
   m_Father: {fileID: 4437294127350196}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4117610395513356
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1237712223417586}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4437294127350196}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4215373968455558
 Transform:
   m_ObjectHideFlags: 1
@@ -234,7 +205,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4437294127350196}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4437294127350196
 Transform:
@@ -247,7 +218,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4076889785368586}
-  - {fileID: 4117610395513356}
   - {fileID: 4390575137884236}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -481,25 +451,6 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   identity: {fileID: 114998019885025714}
---- !u!114 &114574463847398492
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1237712223417586}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd490ec0c5ef27443a5901e156e17212, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primaryAttackAnimation: Attack
-  primaryCoolDown: 1
-  secondaryAttackAnimation: Bite
-  secondaryCoolDown: 1
-  damage: 5
-  primaryRange: 3
-  biteDamage: 2
-  biteRange: 2
 --- !u!114 &114726662595240880
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -527,7 +478,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 177775efe9273f14cadafd24a54c050e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 114574463847398492}
+  weapon: {fileID: 0}
   identity: {fileID: 114998019885025714}
   damageMultiplierPercent: 100
   animator: {fileID: 95905009864086908}
@@ -564,6 +515,23 @@ MonoBehaviour:
   OnKilledSomeOne:
     m_PersistentCalls:
       m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnSpawn:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114749900416243670}
+        m_MethodName: Equip
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1400648977992856, guid: 85ea31ecfda239945a79279073f890b0,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   infectiousness: 20

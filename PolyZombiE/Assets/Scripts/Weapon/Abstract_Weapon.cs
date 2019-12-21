@@ -3,25 +3,35 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Abstract_Weapon: MonoBehaviour{
+    [SerializeField] protected float primaryCycleTime = 0.0f;
+    [SerializeField] protected string primaryAnimation = "";
+    [SerializeField] protected float secondaryCycleTime = 0.0f;
+    [SerializeField] protected string secondaryAnimation = "";
+    private float prevUseTime = 0.0f;
+
     public void PrimaryAttack(LayerMask targetFilter, Abstract_Identity activator)
     {
         prevUseTime = Time.time;
         PrimaryAttackDerived(targetFilter, activator);
     }
-    abstract public void PrimaryAttackDerived(LayerMask targetFilter, Abstract_Identity activator);
-    public bool primaryReady() { return Time.time > prevUseTime + primaryCoolDown; }
-    [SerializeField] protected float primaryCoolDown = 0.0f;
-
     public void SecondaryAttack(LayerMask targetFilter, Abstract_Identity activator)
     {
         prevUseTime = Time.time;
         SecondaryAttackDerived(targetFilter, activator);
     }
-    abstract public void SecondaryAttackDerived(LayerMask targetFilter, Abstract_Identity activator);
-    public bool secondaryReady() { return Time.time > prevUseTime + secondaryCoolDown; }
-    [SerializeField] protected float secondaryCoolDown = 0.0f;
+    public bool primaryReady() { return Time.time > prevUseTime + primaryCycleTime; }
+    public bool secondaryReady() { return Time.time > prevUseTime + secondaryCycleTime; }
+    public string getPrimaryAnimation()
+    {
+        return primaryAnimation;
+    }
+    public string getSecondaryAnimation()
+    {
+        return secondaryAnimation;
+    }
 
-    private float prevUseTime = 0.0f;
+    abstract public void PrimaryAttackDerived(LayerMask targetFilter, Abstract_Identity activator);
+    abstract public void SecondaryAttackDerived(LayerMask targetFilter, Abstract_Identity activator);
 
     protected Vector2 getDirectionVec()
     {

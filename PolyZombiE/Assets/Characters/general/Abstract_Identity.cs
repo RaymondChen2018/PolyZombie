@@ -24,10 +24,16 @@ public abstract class Abstract_Identity : MonoBehaviour {
     [SerializeField] protected GameObject mainBody = null;
 
     [SerializeField] private UnityEvent OnKilledSomeOne = new UnityEvent();
+    [SerializeField] private UnityEvent OnSpawn = new UnityEvent();
 
     public static Abstract_Identity playerIdentity;
-    
-	// Use this for initialization
+
+    void Awake()
+    {
+        OnSpawn.Invoke();
+    }
+
+    // Use this for initialization
     void Start () {
         Assert.IsNotNull(mainBody);
         Assert.IsNotNull(teamAttribute);

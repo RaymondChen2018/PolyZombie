@@ -17,7 +17,6 @@ public class AI_State_Combat_Melee : StateMachineBehaviour {
         Movement movement = helper.getMovement();
         Orient orient = helper.getOrient();
         Equipment equipment = helper.getEquipment();
-        Team_Attribute teamAttribute = helper.getTeamAttribute();
         AI_EnemyFinder aiEnemyFinder = helper.getEnemyFinder();
 
         Transform enemyTransform = aiEnemyFinder.getClosestEnemy();

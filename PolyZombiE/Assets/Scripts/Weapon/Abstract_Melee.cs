@@ -42,5 +42,4 @@ public class Abstract_Melee : Abstract_Weapon {
         return primaryRange;
     }
     virtual public float getSecondaryRange() { return -1; }
-
 }

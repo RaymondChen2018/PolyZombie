@@ -27,20 +27,15 @@ public class Equipment : MonoBehaviour {
             Debug.LogWarning("Weapon null!");
             return;
         }
-        // Player ready for attac && weapon ready
-        if (weapon.primaryReady())
+        // Weapon cycle time over && no overlapping attack
+        bool weaponReady = weapon.primaryReady();
+        bool prevAttackDone = !animator.GetBool("isAttacking");
+        string animStateName = weapon.getPrimaryAnimation();
+        if (weaponReady && prevAttackDone)
         {
-            // Animation
-            animator.SetInteger("AttackAnim", 0);
-            animator.SetBool("Attack", true);
+            animator.Play(animStateName, 0);
         }
     }
-    public void AE_primaryAttack()
-    {
-        LayerMask targetFilter = identity.getTeamComponent().GetOpponentLayerMask();
-        weapon.PrimaryAttack(targetFilter, identity);
-    }
-
     public void initSecondaryAttack()
     {
         if (weapon == null)
@@ -48,13 +43,20 @@ public class Equipment : MonoBehaviour {
             Debug.LogWarning("Weapon null!");
             return;
         }
-        // Player ready for attac && weapon ready
-        if (weapon.secondaryReady())
+        // Weapon cycle time over && no overlapping attack
+        bool weaponReady = weapon.secondaryReady();
+        bool prevAttackDone = !animator.GetBool("isAttacking");
+        string animStateName = weapon.getSecondaryAnimation();
+        if (weaponReady && prevAttackDone)
         {
-            // Animation
-            animator.SetInteger("AttackAnim", 1);
-            animator.SetBool("Attack", true);
+            animator.Play(animStateName, 0);
         }
+    }
+
+    public void AE_primaryAttack()
+    {
+        LayerMask targetFilter = identity.getTeamComponent().GetOpponentLayerMask();
+        weapon.PrimaryAttack(targetFilter, identity);
     }
     public void AE_secondaryAttack()
     {
@@ -70,4 +72,12 @@ public class Equipment : MonoBehaviour {
     public Abstract_Weapon getWeapon() { return weapon; }
     public void setDamageMultiplierPercent(int value) { damageMultiplierPercent = value; }
     public int getDamageMultiplierPercent() { return damageMultiplierPercent; }
+
+    public void Equip(GameObject weaponPrefab)
+    {
+        GameObject newWeapon = Instantiate(weaponPrefab, transform);
+        newWeapon.transform.localPosition = new Vector3(0,0,0);
+        newWeapon.transform.localRotation = Quaternion.identity;
+        weapon = newWeapon.GetComponent<Abstract_Weapon>();
+    }
 }
