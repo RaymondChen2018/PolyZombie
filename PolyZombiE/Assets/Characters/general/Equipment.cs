@@ -6,6 +6,7 @@ using UnityEngine.Assertions;
 public class Equipment : MonoBehaviour {
     [SerializeField] private Abstract_Weapon weapon;
     [SerializeField] private Abstract_Identity identity;
+    [SerializeField] private Transform WeaponBoneR;
     [SerializeField] private int damageMultiplierPercent = 100;
     [SerializeField] Animator animator;
 
@@ -13,6 +14,7 @@ public class Equipment : MonoBehaviour {
     void Start () {
         Assert.IsNotNull(animator);
         Assert.IsNotNull(identity);
+        Assert.IsNotNull(WeaponBoneR);
     }
 	
 	// Update is called once per frame
@@ -75,7 +77,7 @@ public class Equipment : MonoBehaviour {
 
     public void Equip(GameObject weaponPrefab)
     {
-        GameObject newWeapon = Instantiate(weaponPrefab, transform);
+        GameObject newWeapon = Instantiate(weaponPrefab, WeaponBoneR);
         newWeapon.transform.localPosition = new Vector3(0,0,0);
         newWeapon.transform.localRotation = Quaternion.identity;
         weapon = newWeapon.GetComponent<Abstract_Weapon>();

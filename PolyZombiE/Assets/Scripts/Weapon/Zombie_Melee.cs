@@ -17,23 +17,27 @@ public class Zombie_Melee : Abstract_Melee {
         Zombie_Identity activatorZomb = activator.GetComponent<Zombie_Identity>();
         Assert.IsNotNull(activatorZomb);
 
-        Vector2 from = transform.position;
-        Vector2 direction = getDirectionVec();
-        RaycastHit2D hit = Physics2D.Raycast(from, direction, biteRange, targetFilter);
-        Vector2 endPoint = from + direction.normalized * biteRange;
-        if (hit)
-        {
-            endPoint = hit.point;
+        Collider2D[] colliders = new Collider2D[hitMultiple];
+        Collider2D meleeBox = POI.GetComponent<Collider2D>();
+        Assert.IsNotNull(meleeBox);
+        ContactFilter2D contactFilter = new ContactFilter2D();
+        contactFilter.SetLayerMask(targetFilter);
+        int hitCount = Physics2D.OverlapCollider(meleeBox, contactFilter, colliders);
 
-            // infect & damage
-            Human_Condition cCondition = hit.collider.GetComponent<Human_Condition>();
+        for (int i = 0; i < hitCount; i++)
+        {
+            // Victim must be human
+            Human_Condition cCondition = colliders[i].GetComponent<Human_Condition>();
             Assert.IsNotNull(cCondition);
+
+            // Infect
             float infectiousness = activatorZomb.GetInfectiousness();
             cCondition.addInfection(infectiousness, activatorZomb);
+
+            // Damage
             float biteDamageScaled = biteDamage * activator.getEquipmentComponent().getDamageMultiplierPercent() / 100.0f;
             cCondition.subtractHealth(biteDamageScaled, activator);
         }
-        Debug.DrawLine(from, endPoint, Color.yellow, 5.0f);
     }
 
     public override float getSecondaryRange()

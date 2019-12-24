@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Assertions;
 
 
-public enum Team
+public enum TEAM
 {
     Not_Initialized,
     Zombie,
@@ -15,7 +15,7 @@ public class Team_Attribute : MonoBehaviour
 {
     [SerializeField] GameObject mainBody = null;
 
-    [SerializeField] private Team team;
+    [SerializeField] private TEAM team;
     [SerializeField] private LayerMask opponentLayerMask;
     
 
@@ -31,7 +31,7 @@ public class Team_Attribute : MonoBehaviour
 		
 	}
 
-    public Team GetTeam()
+    public TEAM GetTeam()
     {
         return this.team;
     }

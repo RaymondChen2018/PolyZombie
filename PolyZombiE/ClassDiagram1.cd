@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Character">
+    <Position X="1.417" Y="3.78" Height="1.026" Width="1.755" />
+  </Comment>
+  <Class Name="Human_Identity" Collapsed="true">
+    <Position X="3.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAIAAAAGAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Characters\CIdentity\Human_Identity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Abstract_Identity" Collapsed="true">
+    <Position X="0.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAQiAAAACCEAAAAgABAAAQgAAABEBAAAAAAABAgAAEA=</HashCode>
+      <FileName>Assets\Characters\general\Abstract_Identity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zombie_Identity" Collapsed="true">
+    <Position X="3.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAQAAABAAAAABAAAAEAAAAACAAAAAAAAA=</HashCode>
+      <FileName>Assets\Characters\CIdentity\Zombie_Identity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Abstract_Weapon" Collapsed="true">
+    <Position X="8.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAEIAAAAACAAAAAAIQQAAEAgAASAgAgAAICAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Weapon\Abstract_Weapon.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Abstract_Melee" Collapsed="true">
+    <Position X="7.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAgAAAAAAACEAAAAAQAABAAAIAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Weapon\Abstract_Melee.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zombie_Melee" Collapsed="true">
+    <Position X="6.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAACAAAgAAAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Weapon\Zombie_Melee.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Abstract_Condition" Collapsed="true">
+    <Position X="0.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAwAAAAoAAAAAAAAAAAAACAAAAAAAAIQAAAAABBAAAg=</HashCode>
+      <FileName>Assets\Characters\general\Abstract_Condition.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zombie_Condition" Collapsed="true">
+    <Position X="3.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Characters\CCondition\Zombie_Condition.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Human_Condition" Collapsed="true">
+    <Position X="3.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQgAAAAATAAAAAAAAAAACAAAAAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>Assets\Characters\CCondition\Human_Condition.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Equipment" Collapsed="true">
+    <Position X="0.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BwQQAAYAACAAAAAAEAAAAgAACAAAAAAgAAABAABCAQA=</HashCode>
+      <FileName>Assets\Characters\general\Equipment.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Movement" Collapsed="true">
+    <Position X="0.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAQAIAAAAKAAAAAAAAAAAAAAAAAAAAAIAAAAAEAAAAA=</HashCode>
+      <FileName>Assets\Characters\general\Movement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Orient" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAgAAACAAAAgAAAAIAAAAAAAAAAAAAAACAEAAAAA=</HashCode>
+      <FileName>Assets\Characters\general\Orient.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Team_Attribute" Collapsed="true">
+    <Position X="0.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAwAAAAAACAAAAAgAAAQAAAAAAAQAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Characters\general\Team_Attribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zombie_PlayerControl" Collapsed="true">
+    <Position X="12.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Zombie_PlayerControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Abstract_PlayerControl" Collapsed="true">
+    <Position X="12.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAIAAACgACAAAAIAAAACAAAAEAAAAAhgAAEAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Abstract_PlayerControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="IDENTITY" Collapsed="true">
+    <Position X="0.5" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAAAA=</HashCode>
+      <FileName>Assets\Characters\general\Abstract_Identity.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="HEALTH_STATUS" Collapsed="true">
+    <Position X="0.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAABAAAAAAAQAAAAAACBAAAAA=</HashCode>
+      <FileName>Assets\Characters\general\Abstract_Condition.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="TEAM" Collapsed="true">
+    <Position X="2" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAAAA=</HashCode>
+      <FileName>Assets\Characters\general\Team_Attribute.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

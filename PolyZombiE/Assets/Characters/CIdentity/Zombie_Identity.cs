@@ -13,9 +13,9 @@ public class Zombie_Identity : Abstract_Identity
 
     [SerializeField] private UnityEvent OnInfectedSomeOne = new UnityEvent();
 
-    public override Identity GetIdentity()
+    public override IDENTITY GetIdentity()
     {
-        return Identity.Zombie;
+        return IDENTITY.Zombie;
     }
 
     public void Func_OnInfectedSomeOne()

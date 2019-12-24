@@ -7,9 +7,9 @@ public class Human_Identity : Abstract_Identity
 {
     [SerializeField] private GameObject zombieVersion;
 
-    public override Identity GetIdentity()
+    public override IDENTITY GetIdentity()
     {
-        return Identity.Human;
+        return IDENTITY.Human;
     }
 
     public void TurnZombie()

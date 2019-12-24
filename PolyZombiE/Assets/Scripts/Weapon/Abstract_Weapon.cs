@@ -21,6 +21,12 @@ public abstract class Abstract_Weapon: MonoBehaviour{
     }
     public bool primaryReady() { return Time.time > prevUseTime + primaryCycleTime; }
     public bool secondaryReady() { return Time.time > prevUseTime + secondaryCycleTime; }
+
+    /// <summary>
+    /// Point of interest; for melee, this is damage trace, for projectile weapon, this is muzzle
+    /// </summary>
+    [SerializeField] protected Transform POI;
+
     public string getPrimaryAnimation()
     {
         return primaryAnimation;

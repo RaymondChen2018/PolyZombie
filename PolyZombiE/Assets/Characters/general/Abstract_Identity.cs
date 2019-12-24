@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.Events;
 
-public enum Identity
+public enum IDENTITY
 {
     Not_Initialized,
     Human,
@@ -51,9 +51,9 @@ public abstract class Abstract_Identity : MonoBehaviour {
 		
 	}
 
-    virtual public Identity GetIdentity()
+    virtual public IDENTITY GetIdentity()
     {
-        return Identity.Not_Initialized;
+        return IDENTITY.Not_Initialized;
     }
 
     public void Func_OnKilledSomeOne()
@@ -67,10 +67,10 @@ public abstract class Abstract_Identity : MonoBehaviour {
         switch (tmpLayerName)
         {
             case CONSTANT.LAYER_NAME_ZOMBIE:
-                Assert.IsTrue(teamAttribute.GetTeam() == Team.Zombie);
+                Assert.IsTrue(teamAttribute.GetTeam() == TEAM.Zombie);
                 break;
             case CONSTANT.LAYER_NAME_HUMAN:
-                Assert.IsTrue(teamAttribute.GetTeam() == Team.Human);
+                Assert.IsTrue(teamAttribute.GetTeam() == TEAM.Human);
                 break;
             default:
                 Assert.IsTrue(false);

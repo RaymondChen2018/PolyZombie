@@ -6,7 +6,6 @@ using UnityEngine.Assertions;
 public class Zombie_PlayerControl : Abstract_PlayerControl
 {
     [SerializeField] private KeyCode keyBite;
-    [SerializeField] Zombie_Melee meleeComponentZombie;
 	
 	// Update is called once per frame
 	protected override void Update () {
@@ -15,9 +14,7 @@ public class Zombie_PlayerControl : Abstract_PlayerControl
         if (Input.GetKeyDown(keyBite))
         {
             Vector2 dof = orientComponent.GetDOF();
-            Assert.IsNotNull(meleeComponentZombie);
             equipment.initSecondaryAttack();
-            //meleeComponentZombie.BiteRay(transform.position, dof, teamComponent.GetOpponentLayerMask());
         }
     }
 }

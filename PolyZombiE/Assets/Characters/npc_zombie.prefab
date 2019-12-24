@@ -60,6 +60,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1328766026459936
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4275783402456642}
+  m_Layer: 10
+  m_Name: WeaponBoneR
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1423043396970880
 GameObject:
   m_ObjectHideFlags: 0
@@ -150,6 +165,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1822217784463396
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4119723826140982}
+  m_Layer: 10
+  m_Name: WeaponBoneL
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1911770537313198
 GameObject:
   m_ObjectHideFlags: 1
@@ -180,6 +210,19 @@ Transform:
   m_Father: {fileID: 4437294127350196}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4119723826140982
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1822217784463396}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4767870673603220}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4215373968455558
 Transform:
   m_ObjectHideFlags: 1
@@ -194,6 +237,19 @@ Transform:
   m_Father: {fileID: 4584631154452136}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 27.128}
+--- !u!4 &4275783402456642
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1328766026459936}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4930757861229952}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4390575137884236
 Transform:
   m_ObjectHideFlags: 1
@@ -260,7 +316,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: -0.3627751, w: 0.9318768}
   m_LocalPosition: {x: 0.478, y: 0.013, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 4119723826140982}
   m_Father: {fileID: 4215373968455558}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -42.541}
@@ -287,7 +344,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0.3963675, w: 0.918092}
   m_LocalPosition: {x: 0.417, y: 0.012, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 4275783402456642}
   m_Father: {fileID: 4780209504546000}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 46.703}
@@ -480,6 +538,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon: {fileID: 0}
   identity: {fileID: 114998019885025714}
+  WeaponBoneR: {fileID: 4275783402456642}
   damageMultiplierPercent: 100
   animator: {fileID: 95905009864086908}
 --- !u!114 &114820406271398686
