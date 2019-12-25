@@ -4,10 +4,6 @@ using UnityEngine;
 using UnityEngine.Assertions;
 
 public class Zombie_Condition : Abstract_Condition {
-    ///// <summary>
-    ///// Zombie with higher infected(ious)ness can infect human faster.
-    ///// </summary>
-    //[SerializeField] private float infectiousness = CONSTANT.MINIMUM_INFECTIOUSNESS;
 
     // Use this for initialization
     void Start () {
@@ -22,10 +18,6 @@ public class Zombie_Condition : Abstract_Condition {
         {
             status = HEALTH_STATUS.Dead;
         }
-        //else if (infectiousness < CONSTANT.MINIMUM_INFECTIOUSNESS)
-        //{
-        //    status = HEALTH_STATUS.Healthy;
-        //}
     }
 
     override protected void ResetCondition() 

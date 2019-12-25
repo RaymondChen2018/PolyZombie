@@ -5,6 +5,8 @@ using UnityEngine.Assertions;
 
 public class Human_Identity : Abstract_Identity
 {
+    [Header("Human")]
+    [Header("Infected Version")]
     [SerializeField] private GameObject zombieVersion;
 
     public override IDENTITY GetIdentity()

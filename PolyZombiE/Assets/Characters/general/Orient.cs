@@ -5,7 +5,7 @@ using UnityEngine.Assertions;
 
 public class Orient : MonoBehaviour {
     [SerializeField] private Rigidbody2D RB;
-    private Vector2 dof;
+    private Vector2 dof = Vector2.right;
 
     // Use this for initialization
     void Start () {
@@ -42,6 +42,6 @@ public class Orient : MonoBehaviour {
 
     public Vector2 GetDOF()
     {
-        return dof.normalized;
+        return transform.right;//dof.normalized;
     }
 }

@@ -16,10 +16,13 @@ public class UnityEventString : UnityEvent<string>
 /// Create callback of and when character dies or gets infected etc.
 /// </summary>
 public class Math_Counter : MonoBehaviour {
+    [Header("Stat")]
     [SerializeField] private int maxValue = 1;
     [SerializeField] private int minValue = 0;
     [SerializeField] private int value = 1;
     private int prevValue;
+
+    [Header("Output")]
     [SerializeField] private UnityEvent OnHitMin = new UnityEvent();
     [SerializeField] private UnityEvent OnHitMax = new UnityEvent();
     [SerializeField] private UnityEvent OutValue = new UnityEvent();

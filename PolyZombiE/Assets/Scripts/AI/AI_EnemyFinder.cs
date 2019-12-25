@@ -10,7 +10,8 @@ public class AI_EnemyFinder : MonoBehaviour {
     [SerializeField] private Orient orient;
     [SerializeField] private Team_Attribute teamAttribute;
     [SerializeField] private Animator AI_StateMachine;
-    private Collider2D[] enemyList;
+    private Collider2D[] enemyInRange;
+    private List<Collider2D> enemyInMemory;
     private Transform closestEnemy = null;
 
     // Use this for initialization
@@ -18,20 +19,54 @@ public class AI_EnemyFinder : MonoBehaviour {
         Assert.IsNotNull(movement);
         Assert.IsNotNull(orient);
         Assert.IsNotNull(teamAttribute);
+
+        enemyInMemory = new List<Collider2D>();
     }
 	
 	// Update is called once per frame
 	void Update () {
-        enemyList = Physics2D.OverlapCircleAll(movement.getPosition(), viewDist, teamAttribute.GetOpponentLayerMask());
-        if(enemyList.Length > 0)
+        // Range detection
+        enemyInRange = Physics2D.OverlapCircleAll(movement.getPosition(), viewDist, teamAttribute.GetOpponentLayerMask());
+
+        // View Cone detection
+        for(int i = 0; i < enemyInRange.Length; i++)
         {
-            Transform tmp = enemyList[0].transform;
+            Collider2D enemyCollider = enemyInRange[i];
+            Vector2 enemyPos = enemyCollider.transform.position;
+            Vector2 enemyDirection = (enemyPos - movement.getPosition()).normalized;
+            Vector2 thisDOF = orient.GetDOF();
+
+            float dot = thisDOF.x * enemyDirection.x + thisDOF.y * enemyDirection.y;
+            float dotViewCone = 1 - viewConeAngle / 180.0f;
+            if (dot > dotViewCone)
+            {
+                if (!enemyInMemory.Contains(enemyCollider))
+                {
+                    enemyInMemory.Add(enemyCollider);
+                }
+            }
+        }
+
+        // Clean memory
+        for (int i = 0; i < enemyInMemory.Count; i++)
+        {
+            if(enemyInMemory[i] == null)
+            {
+                enemyInMemory.RemoveAt(i);
+                i--;
+            }
+        }
+
+        // Actions
+        if (enemyInMemory.Count > 0)
+        {
+            Transform tmp = enemyInMemory[0].transform;
             Transform ret = tmp;
             float closestDistSqrTmp = ((Vector2)tmp.position - movement.getPosition()).sqrMagnitude;
             float closestDistSqr = closestDistSqrTmp;
-            for (int i = 1; i < enemyList.Length; i++)
+            for (int i = 1; i < enemyInMemory.Count; i++)
             {
-                tmp = enemyList[i].transform;
+                tmp = enemyInMemory[i].transform;
                 closestDistSqrTmp = ((Vector2)tmp.position - movement.getPosition()).sqrMagnitude;
                 if (closestDistSqr > closestDistSqrTmp)
                 {
@@ -45,7 +80,7 @@ public class AI_EnemyFinder : MonoBehaviour {
         {
             closestEnemy = null;
         }
-        AI_StateMachine.SetInteger("EnemyInSight", enemyList.Length);
+        AI_StateMachine.SetInteger("EnemyInSight", enemyInMemory.Count);
 
         DrawEllipse(transform.position, viewDist, Color.yellow);
     }

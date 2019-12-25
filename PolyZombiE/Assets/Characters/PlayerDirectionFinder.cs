@@ -10,11 +10,6 @@ public class PlayerDirectionFinder : MonoBehaviour {
         RBRotation
     }
 
-    private Vector2 forward = Vector2.up;
-    private Vector2 backward = Vector2.down;
-    private Vector2 leftward = Vector2.left;
-    private Vector2 rightward = Vector2.right;
-
     [SerializeField] private Rigidbody2D RB;
     [SerializeField] private AlignWith alignType = AlignWith.GlobalForward;
 

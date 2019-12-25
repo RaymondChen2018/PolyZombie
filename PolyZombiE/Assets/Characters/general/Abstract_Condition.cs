@@ -25,12 +25,17 @@ public enum HEALTH_STATUS
 
 public abstract class Abstract_Condition : MonoBehaviour
 {
+    [Header("Stat")]
     [SerializeField] protected float health = 20.0f;
     [SerializeField] private float maxHealth = 20.0f;
     [SerializeField] protected float armor = 0.0f;
     [SerializeField] protected HEALTH_STATUS status;
-    [SerializeField] protected UnityEvent OnDeathOnce = new UnityEvent();
+
+    [Header("Pointer")]
     [SerializeField] protected Abstract_Identity identity;
+
+    [Header("Output")]
+    [SerializeField] protected UnityEvent OnDeathOnce = new UnityEvent();
 
     virtual protected void ResetCondition() {
         health = maxHealth;

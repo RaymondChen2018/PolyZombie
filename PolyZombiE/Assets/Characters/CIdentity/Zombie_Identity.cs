@@ -6,11 +6,14 @@ using UnityEngine.Events;
 
 public class Zombie_Identity : Abstract_Identity
 {
+    [Header("Zombie")]
+    [Header("Stat")]
     /// <summary>
     /// Zombie with higher infected(ious)ness can infect human faster.
     /// </summary>
     [SerializeField] private float infectiousness = CONSTANT.MINIMUM_INFECTIOUSNESS;
 
+    [Header("Output")]
     [SerializeField] private UnityEvent OnInfectedSomeOne = new UnityEvent();
 
     public override IDENTITY GetIdentity()

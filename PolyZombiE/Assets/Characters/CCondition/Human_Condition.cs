@@ -5,11 +5,14 @@ using UnityEngine.Assertions;
 using UnityEngine.Events;
 
 public class Human_Condition : Abstract_Condition {
+    [Header("Human")]
+    [Header("Stat")]
     /// <summary>
     ///  Human with 100.0f infectedness will turn zombie (cap at 100.0f); Once >0.0f, infectedness auto-increase over time
     /// </summary>
     [SerializeField] private float infectedness = 0.0f;
 
+    [Header("Output")]
     [SerializeField] private UnityEvent OnInfectOnce = new UnityEvent();
 
     // Use this for initialization

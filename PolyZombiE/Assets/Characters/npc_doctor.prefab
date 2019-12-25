@@ -471,7 +471,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   viewDist: 40
-  viewConeAngle: 60
+  viewConeAngle: 90
   movement: {fileID: 114566300440169012}
   orient: {fileID: 114080512136014582}
   teamAttribute: {fileID: 114398554437251216}
@@ -521,6 +521,7 @@ MonoBehaviour:
   maxHealth: 20
   armor: 0
   status: 0
+  identity: {fileID: 114637558891358410}
   OnDeathOnce:
     m_PersistentCalls:
       m_Calls:
@@ -537,7 +538,6 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  identity: {fileID: 114637558891358410}
   infectedness: 0
   OnInfectOnce:
     m_PersistentCalls:

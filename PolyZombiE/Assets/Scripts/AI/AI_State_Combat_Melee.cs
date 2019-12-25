@@ -29,9 +29,9 @@ public class AI_State_Combat_Melee : StateMachineBehaviour {
             movement.Move(enemyPos - thisPos);
 
             // Attack when close
-            Abstract_Melee meleeWeapon = (Abstract_Melee)equipment.getWeapon();
-            Assert.IsNotNull(meleeWeapon);
-            float meleeRange = meleeWeapon.getPrimaryRange();
+            AI_Weapon_Helper weaponAIHelper = equipment.getWeapon().GetComponent<AI_Weapon_Helper>();
+            Assert.IsNotNull(weaponAIHelper);
+            float meleeRange = weaponAIHelper.getAttackRange();
             float enemyDistSqr = (enemyPos - thisPos).sqrMagnitude;
             if(enemyDistSqr < meleeRange * meleeRange)
             {

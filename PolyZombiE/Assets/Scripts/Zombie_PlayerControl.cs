@@ -13,7 +13,6 @@ public class Zombie_PlayerControl : Abstract_PlayerControl
         // Melee
         if (Input.GetKeyDown(keyBite))
         {
-            Vector2 dof = orientComponent.GetDOF();
             equipment.initSecondaryAttack();
         }
     }

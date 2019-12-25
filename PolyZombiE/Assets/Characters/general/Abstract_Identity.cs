@@ -14,15 +14,18 @@ public enum IDENTITY
 /// <summary>
 /// Manager class of other faction attributes
 /// </summary>
-public abstract class Abstract_Identity : MonoBehaviour {
-
+public abstract class Abstract_Identity : MonoBehaviour
+{
+    [Header("Pointers")]
     [SerializeField] protected Team_Attribute teamAttribute;
     [SerializeField] protected Abstract_Condition healthAttribute;
     [SerializeField] protected Movement movementAttribute;
     [SerializeField] protected Equipment equipment;
 
+    [Header("Misc")]
     [SerializeField] protected GameObject mainBody = null;
 
+    [Header("Output")]
     [SerializeField] private UnityEvent OnKilledSomeOne = new UnityEvent();
     [SerializeField] private UnityEvent OnSpawn = new UnityEvent();
 

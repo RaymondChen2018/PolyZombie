@@ -1,0 +1,312 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="AE_Helper" Collapsed="true">
+    <Position X="8" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgQAAAQAACAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\AE_Helper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AE_State_Attack" Collapsed="true">
+    <Position X="9.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>Assets\AE_State_Attack.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Human_Condition" Collapsed="true">
+    <Position X="0.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQgAAAAATAAAAAAAAAAACAAAAAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>Assets\Characters\CCondition\Human_Condition.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zombie_Condition" Collapsed="true">
+    <Position X="2.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Characters\CCondition\Zombie_Condition.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Human_Identity" Collapsed="true">
+    <Position X="0.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAIAAAAGAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Characters\CIdentity\Human_Identity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zombie_Identity" Collapsed="true">
+    <Position X="2.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAQAAABAAAAABAAAAEAAAAACAAAAAAAAA=</HashCode>
+      <FileName>Assets\Characters\CIdentity\Zombie_Identity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Abstract_Condition" Collapsed="true">
+    <Position X="1.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAwAAAAoAAAAAAAAAAAAACAAAAAAAAIQAAAAABBAAAg=</HashCode>
+      <FileName>Assets\Characters\general\Abstract_Condition.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Abstract_Identity" Collapsed="true">
+    <Position X="1.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAQiAAAACCEAAAAgABAAAQgAAABEBAAAAAAABAgAAEA=</HashCode>
+      <FileName>Assets\Characters\general\Abstract_Identity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Equipment" Collapsed="true">
+    <Position X="8" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BwQQAAYAACAAAAAAEAAAAgAACAAAAAAgAAABAABCAQA=</HashCode>
+      <FileName>Assets\Characters\general\Equipment.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Movement" Collapsed="true">
+    <Position X="8" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAQAIAAAAKAAAAAAAAAAAAAAAAAAAAAIAAAAAEAAAAA=</HashCode>
+      <FileName>Assets\Characters\general\Movement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Orient" Collapsed="true">
+    <Position X="9.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAgAAACAAAAgAAAAIAAAAAAAAAAAAAAACAEAAAAA=</HashCode>
+      <FileName>Assets\Characters\general\Orient.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Team_Attribute" Collapsed="true">
+    <Position X="8" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAwAAAAAACAAAAAgAAAQAAAAAAAQAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Characters\general\Team_Attribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerDirectionFinder" Collapsed="true">
+    <Position X="11.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACQAAgAAACAAgAAAAAAAAAAAAAAAAAAAgAAEAEAAAQA=</HashCode>
+      <FileName>Assets\Characters\PlayerDirectionFinder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StatMenu" Collapsed="true">
+    <Position X="16.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEwIAAAAhAAABAAAAAAAAAAAQAAAAAAAAAAAAUA=</HashCode>
+      <FileName>Assets\Menu\StatMenu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Abstract_PlayerControl" Collapsed="true">
+    <Position X="5.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAIAAACgACAAAAIAAAACAAAAEAAAAAhgAAEAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Abstract_PlayerControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AI_EnemyFinder" Collapsed="true">
+    <Position X="11.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABWAAAAACCAEAAAgAAAAgAAAAAAEAQAAAAAAACAAAAA=</HashCode>
+      <FileName>Assets\Scripts\AI\AI_EnemyFinder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AI_Inventory" Collapsed="true">
+    <Position X="13.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAAAAAAAAAAAAAEAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>Assets\Scripts\AI\AI_Inventory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AI_State_Combat_Melee" Collapsed="true">
+    <Position X="15" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\AI\AI_State_Combat_Melee.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AI_State_Combat_Range" Collapsed="true">
+    <Position X="16.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\AI\AI_State_Combat_Range.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AI_State_Flee" Collapsed="true">
+    <Position X="8" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\AI\AI_State_Flee.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AI_StateMachine_Helper" Collapsed="true">
+    <Position X="9.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAACCCAEAAAEAAAAAAAEAAAEAAAACAAEAAAQAAA=</HashCode>
+      <FileName>Assets\Scripts\AI\AI_StateMachine_Helper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Camera_Controller" Collapsed="true">
+    <Position X="13.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQABAAAACCAAAAgAAAAAAAAAAAAAAAQAAQAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Camera\Camera_Controller.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Wall_Generator" Collapsed="true">
+    <Position X="8" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Collider\Wall_Generator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CONSTANT" Collapsed="true">
+    <Position X="16.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAYACAAgAAAAAAABAAACBgCAAAAAAAEAAUA=</HashCode>
+      <FileName>Assets\Scripts\CONSTANTS.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Commemtary" Collapsed="true">
+    <Position X="15" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAEAAAA=</HashCode>
+      <FileName>Assets\Scripts\Dev\Commemtary.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Relay" Collapsed="true">
+    <Position X="13.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAABAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\EventRelay\Relay.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Level_Transitioner" Collapsed="true">
+    <Position X="9.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Level_Transitioner.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LevelTransitionStatistics" Collapsed="true">
+    <Position X="11.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>DAIUAAAIAAAghAAABAAEQABAAQAAQAKAAAAAAAAAAUA=</HashCode>
+      <FileName>Assets\Scripts\LevelTransitionStatistics.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Logic_auto" Collapsed="true">
+    <Position X="13.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Logic_auto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UnityEventInt" Collapsed="true">
+    <Position X="15" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Math_Counter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UnityEventString" Collapsed="true">
+    <Position X="16.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Math_Counter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Math_Counter" Collapsed="true">
+    <Position X="16.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAAAgACACACAAgAIKAAAgAACAACEAIIAAAAAAEAA=</HashCode>
+      <FileName>Assets\Scripts\Math_Counter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sprite_Outline" Collapsed="true">
+    <Position X="15" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAACAAAAAAAAAAAAAAAACIAAAAAAAACAE=</HashCode>
+      <FileName>Assets\Scripts\Sprite_Outline.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Manager_Team" Collapsed="true">
+    <Position X="15" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAQAAAAAAAAAAAAAggAEAAAAAAAAAAABAAAAAAAAAEA=</HashCode>
+      <FileName>Assets\Scripts\Team\Manager_Team.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TextureScale_generic" Collapsed="true">
+    <Position X="11.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAMAACAAAAAAAAEAAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Texture\TextureScale_generic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Trigger_Volume" Collapsed="true">
+    <Position X="13.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEAAAAAAAAAAEAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Trigger_Volume.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Abstract_Weapon" Collapsed="true">
+    <Position X="5.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAEIAAAAACCAAAAAIQQAAEAgAASAgAgAAICABAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Weapon\Abstract_Weapon.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AI_Weapon_Helper" Collapsed="true">
+    <Position X="11.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAABAAAAAAAQAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Weapon\AI_Weapon_Helper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Weapon_Claw" Collapsed="true">
+    <Position X="5.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAEAAAAAAgAAQAAAAAAIAQAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Weapon\Weapon_Claw.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zombie_PlayerControl" Collapsed="true">
+    <Position X="5.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Zombie_PlayerControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Text_Helper" Collapsed="true">
+    <Position X="9.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAARAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Assets\Text_Helper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="HEALTH_STATUS" Collapsed="true">
+    <Position X="8" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAABAAAAAAAQAAAAAACBAAAAA=</HashCode>
+      <FileName>Assets\Characters\general\Abstract_Condition.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="IDENTITY" Collapsed="true">
+    <Position X="9.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAAAA=</HashCode>
+      <FileName>Assets\Characters\general\Abstract_Identity.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="TEAM" Collapsed="true">
+    <Position X="11.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAAAA=</HashCode>
+      <FileName>Assets\Characters\general\Team_Attribute.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
