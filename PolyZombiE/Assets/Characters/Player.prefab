@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 114670508969627556}
   - component: {fileID: 114129138329961828}
   - component: {fileID: 114768023732577014}
-  - component: {fileID: 114532738043211490}
+  - component: {fileID: 114501684017189796}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -74,7 +74,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4201601408664830}
   - component: {fileID: 114654346231673062}
-  - component: {fileID: 114327534915959148}
+  - component: {fileID: 114080867519125382}
   m_Layer: 0
   m_Name: Controllers
   m_TagString: Untagged
@@ -298,7 +298,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1111946246283856}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.42, y: -8.55, z: -24}
+  m_LocalPosition: {x: -9.36, y: -7.88, z: -24}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4002187556811346}
@@ -399,6 +399,28 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114080867519125382
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1139472451912846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d79364df9273544fbbc24a083d6e342, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keyUp: 119
+  keyDown: 115
+  keyLeft: 97
+  keyRight: 100
+  keyMelee: 323
+  directionFinder: {fileID: 114654346231673062}
+  orientComponent: {fileID: 114587517334900734}
+  movementComponent: {fileID: 114165341403275418}
+  equipment: {fileID: 114670508969627556}
+  teamComponent: {fileID: 114768023732577014}
+  keyBite: 324
 --- !u!114 &114129138329961828
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -411,7 +433,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   teamAttribute: {fileID: 114768023732577014}
-  healthAttribute: {fileID: 114532738043211490}
+  healthAttribute: {fileID: 114501684017189796}
   movementAttribute: {fileID: 114165341403275418}
   equipment: {fileID: 114670508969627556}
   mainBody: {fileID: 1111946246283856}
@@ -479,29 +501,7 @@ MonoBehaviour:
   movementSpeed: 900
   RB: {fileID: 50906402695697364}
   animator: {fileID: 95331821534354994}
---- !u!114 &114327534915959148
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1139472451912846}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93ecb47ac1fa6e342bc01c0e0c5f52c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  keyUp: 119
-  keyDown: 115
-  keyLeft: 97
-  keyRight: 100
-  keyMelee: 323
-  directionFinder: {fileID: 114654346231673062}
-  orientComponent: {fileID: 114587517334900734}
-  movementComponent: {fileID: 114165341403275418}
-  equipment: {fileID: 114670508969627556}
-  teamComponent: {fileID: 114768023732577014}
-  keyBite: 324
---- !u!114 &114532738043211490
+--- !u!114 &114501684017189796
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -509,19 +509,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1111946246283856}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3ac279d3809ed1469eef4a59a0c7606, type: 3}
+  m_Script: {fileID: 11500000, guid: 1d1f4588a0f1d194c9fcefd9fc6939d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   health: 20
   maxHealth: 20
   armor: 0
-  status: 0
-  OnDeathOnce:
+  OnDeath:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  identity: {fileID: 114129138329961828}
 --- !u!114 &114587517334900734
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -587,7 +585,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1745509568795322}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 728d1e8c8039e6644ad9c2d8087db4b7, type: 3}
+  m_Script: {fileID: 11500000, guid: b1b3a90851cfb97428f32cbe4a0a56c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   equipment: {fileID: 114670508969627556}

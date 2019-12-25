@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 114749900416243670}
   - component: {fileID: 114998019885025714}
   - component: {fileID: 114200180462222248}
-  - component: {fileID: 114445293999317086}
+  - component: {fileID: 114678724097805132}
   m_Layer: 10
   m_Name: npc_zombie
   m_TagString: Untagged
@@ -438,7 +438,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1120884450384740}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 728d1e8c8039e6644ad9c2d8087db4b7, type: 3}
+  m_Script: {fileID: 11500000, guid: b1b3a90851cfb97428f32cbe4a0a56c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   equipment: {fileID: 114749900416243670}
@@ -488,7 +488,7 @@ MonoBehaviour:
   orient: {fileID: 114005825973281656}
   teamAttribute: {fileID: 114200180462222248}
   AI_StateMachine: {fileID: 95467465800243452}
---- !u!114 &114445293999317086
+--- !u!114 &114678724097805132
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -496,19 +496,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1423043396970880}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3ac279d3809ed1469eef4a59a0c7606, type: 3}
+  m_Script: {fileID: 11500000, guid: 1d1f4588a0f1d194c9fcefd9fc6939d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 50
+  health: 20
   maxHealth: 20
   armor: 0
-  status: 0
-  OnDeathOnce:
+  OnDeath:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  identity: {fileID: 114998019885025714}
 --- !u!114 &114726662595240880
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -567,7 +565,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   teamAttribute: {fileID: 114200180462222248}
-  healthAttribute: {fileID: 114445293999317086}
+  healthAttribute: {fileID: 114678724097805132}
   movementAttribute: {fileID: 114820406271398686}
   equipment: {fileID: 114749900416243670}
   mainBody: {fileID: 1423043396970880}

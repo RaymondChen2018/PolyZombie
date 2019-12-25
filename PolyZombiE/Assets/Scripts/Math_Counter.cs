@@ -29,6 +29,7 @@ public class Math_Counter : MonoBehaviour {
     [SerializeField] private UnityEvent OnAddValue = new UnityEvent();
     [SerializeField] private UnityEvent OnSubtractValue = new UnityEvent();
     [SerializeField] private UnityEventInt OnValueChanged = new UnityEventInt();
+    
 
     // Use this for initialization
     void Start () {

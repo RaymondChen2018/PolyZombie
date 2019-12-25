@@ -17,26 +17,28 @@ public class Weapon_Claw : Abstract_Weapon {
         AttackPrototype_Melee(targetFilter, activator, sideEffect_Secondary);
     }
 
-    protected void sideEffect_Primary(Abstract_Condition victim, Abstract_Identity activator)
+    protected void sideEffect_Primary(Abstract_Identity victim, Abstract_Identity activator)
     {
         float damageScaled = damage * activator.getEquipmentComponent().getDamageMultiplierPercent() / 100.0f;
-        victim.subtractHealth(damageScaled, activator);
+        victim.getHealthComponent().subtractHealth(damageScaled, activator);
     }
 
-    protected void sideEffect_Secondary(Abstract_Condition victim, Abstract_Identity activator)
+    protected void sideEffect_Secondary(Abstract_Identity victim, Abstract_Identity activator)
     {
         // Victim must be human
-        Human_Condition cCondition = (Human_Condition)victim;
-        Assert.IsNotNull(cCondition);
+        Human_Identity victimHuman = (Human_Identity)victim;
+        Health victimHealthComponent = victimHuman.getHealthComponent();
+        Infection victimInfectionComponent = victimHuman.getInfectionComponent();
+        Assert.IsNotNull(victimHealthComponent);
         Zombie_Identity activatorZomb = (Zombie_Identity)activator;
-        Assert.IsNotNull(cCondition);
+        Assert.IsNotNull(victimHealthComponent);
 
         // Infect
         float infectiousness = activatorZomb.GetInfectiousness();
-        cCondition.addInfection(infectiousness, activatorZomb);
+        victimInfectionComponent.addInfection(infectiousness, activatorZomb);
 
         // Damage
         float biteDamageScaled = biteDamage * activator.getEquipmentComponent().getDamageMultiplierPercent() / 100.0f;
-        cCondition.subtractHealth(biteDamageScaled, activator);
+        victimHealthComponent.subtractHealth(biteDamageScaled, activator);
     }
 }

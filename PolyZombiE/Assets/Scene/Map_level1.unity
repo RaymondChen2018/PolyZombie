@@ -459,6 +459,26 @@ Prefab:
       propertyPath: OnInfectOnce.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1183724438}
+    - target: {fileID: 114583506013549490, guid: f04a3f8c67dc5e24e9bac6900df6ea0b,
+        type: 2}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1183724438}
+    - target: {fileID: 114583506013549490, guid: f04a3f8c67dc5e24e9bac6900df6ea0b,
+        type: 2}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Subtract
+      objectReference: {fileID: 0}
+    - target: {fileID: 114338866852877246, guid: f04a3f8c67dc5e24e9bac6900df6ea0b,
+        type: 2}
+      propertyPath: OnInfectOnce.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1183724438}
+    - target: {fileID: 114338866852877246, guid: f04a3f8c67dc5e24e9bac6900df6ea0b,
+        type: 2}
+      propertyPath: OnInfectOnce.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Subtract
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f04a3f8c67dc5e24e9bac6900df6ea0b, type: 2}
   m_IsPrefabParent: 0
@@ -976,6 +996,26 @@ Prefab:
       propertyPath: m_Name
       value: npc_doctor (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 114583506013549490, guid: f04a3f8c67dc5e24e9bac6900df6ea0b,
+        type: 2}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1183724438}
+    - target: {fileID: 114583506013549490, guid: f04a3f8c67dc5e24e9bac6900df6ea0b,
+        type: 2}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Subtract
+      objectReference: {fileID: 0}
+    - target: {fileID: 114338866852877246, guid: f04a3f8c67dc5e24e9bac6900df6ea0b,
+        type: 2}
+      propertyPath: OnInfectOnce.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1183724438}
+    - target: {fileID: 114338866852877246, guid: f04a3f8c67dc5e24e9bac6900df6ea0b,
+        type: 2}
+      propertyPath: OnInfectOnce.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Subtract
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f04a3f8c67dc5e24e9bac6900df6ea0b, type: 2}
   m_IsPrefabParent: 0
@@ -1175,11 +1215,6 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 223179903147757690, guid: 29435618d56fd02438bba4df3c655949,
-        type: 2}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 159383662}
     - target: {fileID: 114234953715928724, guid: 29435618d56fd02438bba4df3c655949,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
@@ -1190,6 +1225,11 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 849406790}
+    - target: {fileID: 223179903147757690, guid: 29435618d56fd02438bba4df3c655949,
+        type: 2}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 159383662}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 29435618d56fd02438bba4df3c655949, type: 2}
   m_IsPrefabParent: 0
@@ -1287,6 +1327,26 @@ Prefab:
     - target: {fileID: 1282938024591416, guid: f04a3f8c67dc5e24e9bac6900df6ea0b, type: 2}
       propertyPath: m_Name
       value: npc_doctor (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114583506013549490, guid: f04a3f8c67dc5e24e9bac6900df6ea0b,
+        type: 2}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1183724438}
+    - target: {fileID: 114583506013549490, guid: f04a3f8c67dc5e24e9bac6900df6ea0b,
+        type: 2}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Subtract
+      objectReference: {fileID: 0}
+    - target: {fileID: 114338866852877246, guid: f04a3f8c67dc5e24e9bac6900df6ea0b,
+        type: 2}
+      propertyPath: OnInfectOnce.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1183724438}
+    - target: {fileID: 114338866852877246, guid: f04a3f8c67dc5e24e9bac6900df6ea0b,
+        type: 2}
+      propertyPath: OnInfectOnce.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Subtract
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f04a3f8c67dc5e24e9bac6900df6ea0b, type: 2}
@@ -2199,7 +2259,7 @@ MonoBehaviour:
   mobileSpeed: 900
   infectiousness: 20
   damageMultiplierPercent: 100
-  killPoints: 4
+  killPoints: 0
   infectPoints: 0
 --- !u!4 &1175747409
 Transform:
@@ -2825,6 +2885,26 @@ Prefab:
       propertyPath: m_Name
       value: npc_doctor (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 114583506013549490, guid: f04a3f8c67dc5e24e9bac6900df6ea0b,
+        type: 2}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1183724438}
+    - target: {fileID: 114583506013549490, guid: f04a3f8c67dc5e24e9bac6900df6ea0b,
+        type: 2}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Subtract
+      objectReference: {fileID: 0}
+    - target: {fileID: 114338866852877246, guid: f04a3f8c67dc5e24e9bac6900df6ea0b,
+        type: 2}
+      propertyPath: OnInfectOnce.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1183724438}
+    - target: {fileID: 114338866852877246, guid: f04a3f8c67dc5e24e9bac6900df6ea0b,
+        type: 2}
+      propertyPath: OnInfectOnce.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Subtract
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f04a3f8c67dc5e24e9bac6900df6ea0b, type: 2}
   m_IsPrefabParent: 0
@@ -3140,6 +3220,26 @@ Prefab:
     - target: {fileID: 1282938024591416, guid: f04a3f8c67dc5e24e9bac6900df6ea0b, type: 2}
       propertyPath: m_Name
       value: npc_doctor (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114583506013549490, guid: f04a3f8c67dc5e24e9bac6900df6ea0b,
+        type: 2}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1183724438}
+    - target: {fileID: 114583506013549490, guid: f04a3f8c67dc5e24e9bac6900df6ea0b,
+        type: 2}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Subtract
+      objectReference: {fileID: 0}
+    - target: {fileID: 114338866852877246, guid: f04a3f8c67dc5e24e9bac6900df6ea0b,
+        type: 2}
+      propertyPath: OnInfectOnce.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1183724438}
+    - target: {fileID: 114338866852877246, guid: f04a3f8c67dc5e24e9bac6900df6ea0b,
+        type: 2}
+      propertyPath: OnInfectOnce.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Subtract
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f04a3f8c67dc5e24e9bac6900df6ea0b, type: 2}

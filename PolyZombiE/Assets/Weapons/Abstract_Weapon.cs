@@ -52,7 +52,7 @@ public abstract class Abstract_Weapon: MonoBehaviour{
     abstract public void Func_OnSecondary(LayerMask targetFilter, Abstract_Identity activator);
 
     // Attack Detection prototypes
-    protected void AttackPrototype_Melee(LayerMask targetFilter, Abstract_Identity activator, Action<Abstract_Condition, Abstract_Identity> OnHit)
+    protected void AttackPrototype_Melee(LayerMask targetFilter, Abstract_Identity activator, Action<Abstract_Identity, Abstract_Identity> OnHit)
     {
         Collider2D[] colliders = new Collider2D[hitMultiple];
         Collider2D meleeBox = POI.GetComponent<Collider2D>();
@@ -63,9 +63,9 @@ public abstract class Abstract_Weapon: MonoBehaviour{
 
         for (int i = 0; i < hitCount; i++)
         {
-            Abstract_Condition cCondition = colliders[i].GetComponent<Abstract_Condition>();
+            Abstract_Identity victim = colliders[i].GetComponent<Abstract_Identity>();
             Assert.IsNotNull(OnHit);
-            OnHit(cCondition, activator);
+            OnHit(victim, activator);
         }
     }
     protected void AttackPrototype_Projectile(){}

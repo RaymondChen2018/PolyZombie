@@ -21,14 +21,14 @@ public class Weapon_Blunt : Abstract_Weapon
     }
 
     // Side Effects
-    protected void sideEffect_Primary(Abstract_Condition victim, Abstract_Identity activator)
+    protected void sideEffect_Primary(Abstract_Identity victim, Abstract_Identity activator)
     {
         float damageScaled = damage * activator.getEquipmentComponent().getDamageMultiplierPercent() / 100.0f;
-        victim.subtractHealth(damageScaled, activator);
+        victim.getHealthComponent().subtractHealth(damageScaled, activator);
     }
-    protected void sideEffect_Secondary(Abstract_Condition victim, Abstract_Identity activator)
+    protected void sideEffect_Secondary(Abstract_Identity victim, Abstract_Identity activator)
     {
         float damageScaled = damageBig * activator.getEquipmentComponent().getDamageMultiplierPercent() / 100.0f;
-        victim.subtractHealth(damageScaled, activator);
+        victim.getHealthComponent().subtractHealth(damageScaled, activator);
     }
 }

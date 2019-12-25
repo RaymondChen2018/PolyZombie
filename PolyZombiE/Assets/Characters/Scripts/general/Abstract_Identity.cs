@@ -18,7 +18,7 @@ public abstract class Abstract_Identity : MonoBehaviour
 {
     [Header("Pointers")]
     [SerializeField] protected Team_Attribute teamAttribute;
-    [SerializeField] protected Abstract_Condition healthAttribute;
+    [SerializeField] protected Health healthAttribute;
     [SerializeField] protected Movement movementAttribute;
     [SerializeField] protected Equipment equipment;
 
@@ -88,7 +88,7 @@ public abstract class Abstract_Identity : MonoBehaviour
     
     // Upgrades
     public Movement getMovementComponent() { return movementAttribute; }
-    public Abstract_Condition getConditionComponent() { return healthAttribute; }
+    public Health getHealthComponent() { return healthAttribute; }
     public Equipment getEquipmentComponent() { return equipment; }
     public Team_Attribute getTeamComponent() { return teamAttribute; }
 }

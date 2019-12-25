@@ -27,7 +27,7 @@ public class StatMenu : MonoBehaviour {
     // Updater
     public void SetZombieStat(Zombie_Identity zIdentity)
     {
-        zIdentity.getConditionComponent().setMaxHealth(maxHealth.getValue());
+        zIdentity.getHealthComponent().setMaxHealth(maxHealth.getValue());
         zIdentity.getMovementComponent().setMovementSpeed(mobileSpeed.getValue());
         zIdentity.setInfectiousness(infectiousness.getValue());
         zIdentity.getEquipmentComponent().setDamageMultiplierPercent(damageMultiplierPercent.getValue());
@@ -47,7 +47,9 @@ public class StatMenu : MonoBehaviour {
     public void LoadBaseStat()
     {
         // Load from to level transition entity
+        killPoints.setValue(1); // Trigger onhitmin
         killPoints.setValue(LevelTransitionStatistics.getKillPoints());
+        infectPoints.setValue(1); // Trigger onhitmin
         infectPoints.setValue(LevelTransitionStatistics.getInfectPoints());
 
         maxHealth.setMinValue(LevelTransitionStatistics.getMaxHealth());

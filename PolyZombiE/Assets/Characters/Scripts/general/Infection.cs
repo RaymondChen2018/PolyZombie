@@ -1,11 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Assertions;
 using UnityEngine.Events;
+using UnityEngine.Assertions;
 
-public class Human_Condition : Abstract_Condition {
-    [Header("Human")]
+public class Infection : MonoBehaviour {
     [Header("Stat")]
     /// <summary>
     ///  Human with 100.0f infectedness will turn zombie (cap at 100.0f); Once >0.0f, infectedness auto-increase over time
@@ -15,31 +14,37 @@ public class Human_Condition : Abstract_Condition {
     [Header("Output")]
     [SerializeField] private UnityEvent OnInfectOnce = new UnityEvent();
 
+    [SerializeField] private Health health;
+
+    [Header("Infected Version")]
+    [SerializeField] private GameObject zombieVersion;
+
+    private bool isInfected = false;
+
     // Use this for initialization
     void Start () {
-        Assert.IsNotNull(identity);
-        ResetCondition();
+        Assert.IsNotNull(health);
+        Assert.IsNotNull(zombieVersion);
+        Assert.IsTrue(infectedness >= 0.0f);
     }
 	
 	// Update is called once per frame
 	void Update () {
         // Infection spread
-		if(infectedness > 0.0f)
+        if (infectedness > 0.0f)
         {
             infectedness *= (1 + CONSTANT.INFECTION_SPREAD_RATIO);
         }
 
-        if(infectedness >= 100.0f && status != HEALTH_STATUS.Infected)
+        if (infectedness >= 100.0f && !isInfected)
         {
-            Func_OnInfect();
-        }
-	}
+            isInfected = true;
 
-    override protected void ResetCondition()
-    {
-        base.ResetCondition();
-        status = HEALTH_STATUS.Healthy;
-        infectedness = 0.0f;
+            OnInfectOnce.Invoke();
+            OnInfectOnce.RemoveAllListeners();
+
+            TurnZombie();
+        }
     }
 
     /// <summary>
@@ -50,7 +55,7 @@ public class Human_Condition : Abstract_Condition {
     public void addInfection(float infectiousness, Zombie_Identity activator)
     {
         // Infect
-        if(armor == 0.0f)
+        if (health.getArmor() <= 0.0f)
         {
             infectedness += infectiousness;
         }
@@ -60,13 +65,11 @@ public class Human_Condition : Abstract_Condition {
         OnInfectOnce.AddListener(infectedRelayCall);
     }
 
-    public void Func_OnInfect()
+    public void TurnZombie()
     {
-        status = HEALTH_STATUS.Infected;
-
-        OnInfectOnce.Invoke();
-        OnInfectOnce.RemoveAllListeners();
-
-        ((Human_Identity)identity).TurnZombie();
+        // Alter components
+        Assert.IsNotNull(zombieVersion);
+        Instantiate(zombieVersion, transform.position, transform.rotation);
+        Destroy(gameObject);
     }
 }

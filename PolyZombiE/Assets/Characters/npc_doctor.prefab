@@ -42,7 +42,8 @@ GameObject:
   - component: {fileID: 114889468079318562}
   - component: {fileID: 114637558891358410}
   - component: {fileID: 114398554437251216}
-  - component: {fileID: 114580658279102618}
+  - component: {fileID: 114338866852877246}
+  - component: {fileID: 114583506013549490}
   m_Layer: 9
   m_Name: npc_doctor
   m_TagString: Untagged
@@ -203,7 +204,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1282938024591416}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 13.69, y: 7.17, z: -24}
+  m_LocalPosition: {x: -4.89, y: -3.64, z: -24}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4088775479119712}
@@ -459,6 +460,37 @@ MonoBehaviour:
   equipment: {fileID: 114889468079318562}
   teamAttribute: {fileID: 114398554437251216}
   aiEnemyFinder: {fileID: 114380594950317320}
+--- !u!114 &114338866852877246
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1282938024591416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66474d98599803241842971e4078dfbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  infectedness: 0
+  OnInfectOnce:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: Subtract
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  health: {fileID: 114583506013549490}
+  zombieVersion: {fileID: 1423043396970880, guid: 6a3bbf221acc94844abca8b41ccb4229,
+    type: 2}
 --- !u!114 &114380594950317320
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -506,7 +538,7 @@ MonoBehaviour:
   movementSpeed: 800
   RB: {fileID: 50980638249956270}
   animator: {fileID: 95270458786582812}
---- !u!114 &114580658279102618
+--- !u!114 &114583506013549490
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -514,32 +546,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1282938024591416}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 547a092d84903224cbc2816e890b2781, type: 3}
+  m_Script: {fileID: 11500000, guid: 1d1f4588a0f1d194c9fcefd9fc6939d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   health: 20
   maxHealth: 20
   armor: 0
-  status: 0
-  identity: {fileID: 114637558891358410}
-  OnDeathOnce:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: Subtract
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  infectedness: 0
-  OnInfectOnce:
+  OnDeath:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
@@ -567,7 +580,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   teamAttribute: {fileID: 114398554437251216}
-  healthAttribute: {fileID: 114580658279102618}
+  healthAttribute: {fileID: 114583506013549490}
   movementAttribute: {fileID: 114566300440169012}
   equipment: {fileID: 114889468079318562}
   mainBody: {fileID: 1282938024591416}
@@ -581,8 +594,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  zombieVersion: {fileID: 1423043396970880, guid: 6a3bbf221acc94844abca8b41ccb4229,
-    type: 2}
+  infectionComponent: {fileID: 114338866852877246}
 --- !u!114 &114727969773304172
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -591,7 +603,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1880791961763386}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 728d1e8c8039e6644ad9c2d8087db4b7, type: 3}
+  m_Script: {fileID: 11500000, guid: b1b3a90851cfb97428f32cbe4a0a56c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   equipment: {fileID: 114889468079318562}
