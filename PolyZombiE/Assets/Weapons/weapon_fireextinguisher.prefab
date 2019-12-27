@@ -38,6 +38,7 @@ GameObject:
   - component: {fileID: 212979233728430898}
   - component: {fileID: 114558848467484012}
   - component: {fileID: 114933025174398718}
+  - component: {fileID: 114787890182501110}
   m_Layer: 0
   m_Name: weapon_fireextinguisher
   m_TagString: Untagged
@@ -101,11 +102,23 @@ MonoBehaviour:
   primaryCycleTime: 0
   secondaryCycleTime: 0
   hitMultiple: 1
-  primaryAnimation: 
+  primaryAnimation: HAttack_fireextinguisher
   secondaryAnimation: 
   POI: {fileID: 4533855755511276}
   damage: 5
   damageBig: 10
+--- !u!114 &114787890182501110
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1750420034351948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce800475d2c2b74498923ad25b067ad2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parent: {fileID: 0}
 --- !u!114 &114933025174398718
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -117,7 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57f28158f738b0841a3e1fec7c160f71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 2
+  attackRange: 7
 --- !u!212 &212979233728430898
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -149,8 +162,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1284988019
+  m_SortingLayer: -4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 96cd7e810dae10b48961d9e2913da7d3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

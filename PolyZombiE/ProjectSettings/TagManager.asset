@@ -40,6 +40,24 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Ground
+    uniqueID: 2091175895
+    locked: 0
+  - name: Wall
+    uniqueID: 2715821131
+    locked: 0
+  - name: Weapon
+    uniqueID: 1284988019
+    locked: 0
+  - name: Human
+    uniqueID: 3948618961
+    locked: 0
+  - name: Zombie
+    uniqueID: 1643120489
+    locked: 0
+  - name: Player
+    uniqueID: 1898322477
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

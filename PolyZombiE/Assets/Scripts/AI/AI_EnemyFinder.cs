@@ -2,17 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.Events;
 
 public class AI_EnemyFinder : MonoBehaviour {
     [SerializeField] private float viewDist = 10.0f;
     [SerializeField] private float viewConeAngle = 60.0f;
+    [SerializeField] private LayerMask losObstacleLayerMask;
     [SerializeField] private Movement movement;
     [SerializeField] private Orient orient;
     [SerializeField] private Team_Attribute teamAttribute;
     [SerializeField] private Animator AI_StateMachine;
-    private Collider2D[] enemyInRange;
-    private List<Collider2D> enemyInMemory;
+    [SerializeField] private List<Collider2D> enemyInSight;
+    [SerializeField] private List<Collider2D> enemyInMemory;
     private Transform closestEnemy = null;
+
+    [Tooltip("AI established LOS to enemy (old & new enemies)")] [SerializeField] UnityEvent OnSeeEnemyOnce = new UnityEvent();
 
     // Use this for initialization
     void Start () {
@@ -20,30 +24,35 @@ public class AI_EnemyFinder : MonoBehaviour {
         Assert.IsNotNull(orient);
         Assert.IsNotNull(teamAttribute);
 
+        enemyInSight = new List<Collider2D>();
         enemyInMemory = new List<Collider2D>();
     }
 	
 	// Update is called once per frame
 	void Update () {
         // Range detection
-        enemyInRange = Physics2D.OverlapCircleAll(movement.getPosition(), viewDist, teamAttribute.GetOpponentLayerMask());
+        Collider2D[] enemyInRange = Physics2D.OverlapCircleAll(movement.getPosition(), viewDist, teamAttribute.GetOpponentLayerMask());
+        DrawEllipse(transform.position, viewDist, Color.yellow);
 
         // View Cone detection
-        for(int i = 0; i < enemyInRange.Length; i++)
+        enemyInSight.Clear();
+        for (int i = 0; i < enemyInRange.Length; i++)
         {
             Collider2D enemyCollider = enemyInRange[i];
             Vector2 enemyPos = enemyCollider.transform.position;
-            Vector2 enemyDirection = (enemyPos - movement.getPosition()).normalized;
+            Vector2 thisPos = movement.getPosition();
             Vector2 thisDOF = orient.GetDOF();
 
-            float dot = thisDOF.x * enemyDirection.x + thisDOF.y * enemyDirection.y;
-            float dotViewCone = 1 - viewConeAngle / 180.0f;
-            if (dot > dotViewCone)
+            // Test view cone
+            bool inViewCone = enemyInViewCone(enemyPos, thisPos, thisDOF, viewConeAngle);
+
+            // Test Line of sight
+            bool inLOS = enemyInLOS(enemyPos, thisPos, losObstacleLayerMask); 
+
+            if (inViewCone && inLOS)
             {
-                if (!enemyInMemory.Contains(enemyCollider))
-                {
-                    enemyInMemory.Add(enemyCollider);
-                }
+                enemyInSight.Add(enemyCollider);
+                Func_OnSeeEnemy(enemyCollider);
             }
         }
 
@@ -57,7 +66,11 @@ public class AI_EnemyFinder : MonoBehaviour {
             }
         }
 
-        // Actions
+        // State machine
+        AI_StateMachine.SetInteger("EnemyInSight", enemyInSight.Count);
+        AI_StateMachine.SetInteger("EnemyRemembered", enemyInMemory.Count);
+
+        // Find closest enemy
         if (enemyInMemory.Count > 0)
         {
             Transform tmp = enemyInMemory[0].transform;
@@ -80,14 +93,41 @@ public class AI_EnemyFinder : MonoBehaviour {
         {
             closestEnemy = null;
         }
-        AI_StateMachine.SetInteger("EnemyInSight", enemyInMemory.Count);
+    }
 
-        DrawEllipse(transform.position, viewDist, Color.yellow);
+    private void Func_OnSeeEnemy(Collider2D enemyCollider)
+    {
+        // Call back
+        OnSeeEnemyOnce.Invoke();
+        OnSeeEnemyOnce = new UnityEvent();
+
+        // Add to memory if new
+        if (!enemyInMemory.Contains(enemyCollider))
+        {
+            enemyInMemory.Add(enemyCollider);
+        }
     }
 
     public Transform getClosestEnemy()
     {
         return closestEnemy;
+    }
+
+    bool enemyInLOS(Vector2 enemyPos, Vector2 thisPos, LayerMask obstacleMask)
+    {
+        return !Physics2D.Linecast(enemyPos, movement.getPosition(), losObstacleLayerMask);
+    }
+    bool enemyInViewCone(Vector2 enemyPos, Vector2 thisPos, Vector2 thisDOF, float viewCone)
+    {
+        bool inViewCone = false;
+        Vector2 enemyDirection = (enemyPos - thisPos).normalized;
+        float dot = thisDOF.x * enemyDirection.x + thisDOF.y * enemyDirection.y;
+        float dotViewCone = 1 - viewCone / 180.0f;
+        if (dot > dotViewCone)
+        {
+            inViewCone = true;
+        }
+        return inViewCone;
     }
 
     private static void DrawEllipse(Vector3 pos, float radius, Color color)

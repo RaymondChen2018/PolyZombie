@@ -2,16 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AI_EnemyMemory : MonoBehaviour {
-    List<Collider2D> enemyInMemory;
+public class Spawner : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        enemyInMemory = new List<Collider2D>();
-    }
+		
+	}
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
+
+    public void spawn(GameObject prefab)
+    {
+        Instantiate(prefab);
+    }
 }

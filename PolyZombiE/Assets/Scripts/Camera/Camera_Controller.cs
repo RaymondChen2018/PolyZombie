@@ -23,6 +23,5 @@ public class Camera_Controller : MonoBehaviour {
         camTran.position = targetPos;
 
         cam.orthographicSize = Mathf.Clamp(cam.orthographicSize - Input.mouseScrollDelta.y, camZoomMin, camZoomMax);
-        //cam.rotation = targetObject.rotation;
     }
 }

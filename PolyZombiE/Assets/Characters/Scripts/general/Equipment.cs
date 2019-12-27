@@ -29,6 +29,7 @@ public class Equipment : MonoBehaviour {
             Debug.LogWarning("Weapon null!");
             return;
         }
+        
         // Weapon cycle time over && no overlapping attack
         bool weaponReady = weapon.primaryReady();
         bool prevAttackDone = !animator.GetBool("isAttacking");
@@ -75,11 +76,24 @@ public class Equipment : MonoBehaviour {
     public void setDamageMultiplierPercent(int value) { damageMultiplierPercent = value; }
     public int getDamageMultiplierPercent() { return damageMultiplierPercent; }
 
-    public void Equip(GameObject weaponPrefab)
+    public void SpawnEquip(GameObject weaponPrefab)
     {
-        GameObject newWeapon = Instantiate(weaponPrefab, WeaponBoneR);
-        newWeapon.transform.localPosition = new Vector3(0,0,0);
-        newWeapon.transform.localRotation = Quaternion.identity;
+        // Create weapon
+        GameObject newWeapon = Instantiate(weaponPrefab);
         weapon = newWeapon.GetComponent<Abstract_Weapon>();
+
+        // Attach to parent bone
+        Attachment_Helper attachmentHelper = newWeapon.GetComponent<Attachment_Helper>();
+        attachmentHelper.SetAttachment(WeaponBoneR);
+    }
+
+    public void Equip(Abstract_Weapon newWeapon)
+    {
+        // Assign
+        weapon = newWeapon;
+
+        // Attach to parent bone
+        Attachment_Helper attachmentHelper = newWeapon.GetComponent<Attachment_Helper>();
+        attachmentHelper.SetAttachment(WeaponBoneR);
     }
 }

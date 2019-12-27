@@ -33,6 +33,7 @@ public class AI_State_Combat_Melee : StateMachineBehaviour {
             Assert.IsNotNull(weaponAIHelper);
             float meleeRange = weaponAIHelper.getAttackRange();
             float enemyDistSqr = (enemyPos - thisPos).sqrMagnitude;
+            
             if(enemyDistSqr < meleeRange * meleeRange)
             {
                 equipment.initPrimaryAttack();
