@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 114338866852877246}
   - component: {fileID: 114583506013549490}
   m_Layer: 9
-  m_Name: npc_doctor
+  m_Name: human
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -187,9 +187,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4453764491371408}
   - component: {fileID: 95978398277975734}
-  - component: {fileID: 114380594950317320}
   - component: {fileID: 114332406119229866}
   - component: {fileID: 114214575356445908}
+  - component: {fileID: 114024726594115114}
+  - component: {fileID: 114692473689540348}
   m_Layer: 0
   m_Name: Controllers
   m_TagString: Untagged
@@ -203,15 +204,15 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1282938024591416}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.08, y: -0.03, z: -24}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.797636, w: 0.6031392}
+  m_LocalPosition: {x: -4.85, y: -4.26, z: 0}
+  m_LocalScale: {x: 1.0000005, y: 1.0000005, z: 1}
   m_Children:
   - {fileID: 4088775479119712}
   - {fileID: 4453764491371408}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 105.810005}
 --- !u!4 &4034950006504474
 Transform:
   m_ObjectHideFlags: 1
@@ -419,6 +420,54 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114024726594115114
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1957875804402164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce231294da43e2b40b5c4ed7b0cf4d07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetLayerMask:
+    serializedVersion: 2
+    m_Bits: 16384
+  losObstacleLayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
+  viewDist: 40
+  viewConeAngle: 120
+  movement: {fileID: 114566300440169012}
+  orient: {fileID: 114080512136014582}
+  targetInSight: []
+  OnSeeEveryTarget:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEventTranform, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  OnSeeTargets:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114332406119229866}
+        m_MethodName: updateNearbyWeaponCount
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEventInt, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  OnFoundCloserTarget:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEventTranform, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!114 &114080512136014582
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -459,7 +508,9 @@ MonoBehaviour:
   movement: {fileID: 114566300440169012}
   equipment: {fileID: 114889468079318562}
   teamAttribute: {fileID: 114398554437251216}
-  aiEnemyFinder: {fileID: 114380594950317320}
+  aiEnemyFinder: {fileID: 114692473689540348}
+  aiWeaponFinder: {fileID: 114024726594115114}
+  aiCombative: 0
 --- !u!114 &114338866852877246
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -491,23 +542,6 @@ MonoBehaviour:
   health: {fileID: 114583506013549490}
   zombieVersion: {fileID: 1423043396970880, guid: 6a3bbf221acc94844abca8b41ccb4229,
     type: 2}
---- !u!114 &114380594950317320
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1957875804402164}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 141b37fa5e03be044bd76f13184956b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  viewDist: 40
-  viewConeAngle: 90
-  movement: {fileID: 114566300440169012}
-  orient: {fileID: 114080512136014582}
-  teamAttribute: {fileID: 114398554437251216}
-  AI_StateMachine: {fileID: 95978398277975734}
 --- !u!114 &114398554437251216
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -535,7 +569,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aed56f5679eb77944b756848578145e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 800
+  movementSpeed: 500
   RB: {fileID: 50980638249956270}
   animator: {fileID: 95270458786582812}
 --- !u!114 &114583506013549490
@@ -595,6 +629,84 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   infectionComponent: {fileID: 114338866852877246}
+--- !u!114 &114692473689540348
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1957875804402164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c0722c64ffaf6b46b682a6cc665b88a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetLayerMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  losObstacleLayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
+  viewDist: 50
+  viewConeAngle: 90
+  movement: {fileID: 114566300440169012}
+  orient: {fileID: 114080512136014582}
+  targetInSight: []
+  OnSeeEveryTarget:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114692473689540348}
+        m_MethodName: addToMemory
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEventTranform, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  OnSeeTargets:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114332406119229866}
+        m_MethodName: updateEnemyInSight
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEventInt, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  OnFoundCloserTarget:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEventTranform, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  teamAttribute: {fileID: 114398554437251216}
+  enemyInMemory: []
+  memoryCapacity: 3
+  OnRememberTargets:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114332406119229866}
+        m_MethodName: updateEnemyInMemory
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEventInt, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!114 &114727969773304172
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -622,6 +734,10 @@ MonoBehaviour:
   identity: {fileID: 114637558891358410}
   WeaponBoneR: {fileID: 4342081242135338}
   damageMultiplierPercent: 100
+  pickUpRadius: 2
+  weaponLayerMask:
+    serializedVersion: 2
+    m_Bits: 16384
   animator: {fileID: 95270458786582812}
 --- !u!212 &212112756728233418
 SpriteRenderer:
@@ -655,7 +771,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -346348335
-  m_SortingLayer: 4
+  m_SortingLayer: -3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300006, guid: b40031a5e22730e4b8bafca1fe1897d5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -699,7 +815,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -346348335
-  m_SortingLayer: 4
+  m_SortingLayer: -3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300002, guid: b40031a5e22730e4b8bafca1fe1897d5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -743,7 +859,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -346348335
-  m_SortingLayer: 4
+  m_SortingLayer: -3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300010, guid: b40031a5e22730e4b8bafca1fe1897d5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -787,7 +903,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -346348335
-  m_SortingLayer: 4
+  m_SortingLayer: -3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b40031a5e22730e4b8bafca1fe1897d5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -831,7 +947,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -346348335
-  m_SortingLayer: 4
+  m_SortingLayer: -3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300008, guid: b40031a5e22730e4b8bafca1fe1897d5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -875,7 +991,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -346348335
-  m_SortingLayer: 4
+  m_SortingLayer: -3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300004, guid: b40031a5e22730e4b8bafca1fe1897d5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

@@ -498,7 +498,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aed56f5679eb77944b756848578145e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 900
+  movementSpeed: 600
   RB: {fileID: 50906402695697364}
   animator: {fileID: 95331821534354994}
 --- !u!114 &114501684017189796
@@ -560,6 +560,10 @@ MonoBehaviour:
   identity: {fileID: 114129138329961828}
   WeaponBoneR: {fileID: 4649919095713844}
   damageMultiplierPercent: 100
+  pickUpRadius: 2
+  weaponLayerMask:
+    serializedVersion: 2
+    m_Bits: 16384
   animator: {fileID: 95331821534354994}
 --- !u!114 &114768023732577014
 MonoBehaviour:

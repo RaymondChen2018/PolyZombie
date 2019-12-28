@@ -10,7 +10,12 @@ public class AI_StateMachine_Helper : MonoBehaviour
     [SerializeField] Movement movement;
     [SerializeField] Equipment equipment;
     [SerializeField] Team_Attribute teamAttribute;
-    [SerializeField] AI_EnemyFinder aiEnemyFinder;
+    [SerializeField] AI_Finder_Enemy aiEnemyFinder;
+    [SerializeField] AI_Finder aiWeaponFinder;
+
+    [SerializeField] bool aiCombative = false;
+
+    Animator animator;
 
     // Use this for initialization
     void Start()
@@ -20,6 +25,12 @@ public class AI_StateMachine_Helper : MonoBehaviour
         Assert.IsNotNull(equipment);
         Assert.IsNotNull(teamAttribute);
         Assert.IsNotNull(aiEnemyFinder);
+
+        // Getcomponent to verify this object is parallel with an animator at the same time
+        animator = GetComponent<Animator>();
+        Assert.IsNotNull(animator);
+
+        animator.SetBool("Combative", aiCombative);
     }
 
     public Orient getOrient()
@@ -30,10 +41,16 @@ public class AI_StateMachine_Helper : MonoBehaviour
     {
         return movement;
     }
-    public AI_EnemyFinder getEnemyFinder()
+    public AI_Finder_Enemy getEnemyFinder()
     {
         return aiEnemyFinder;
     }
+
+    public AI_Finder getWeaponFinder()
+    {
+        return aiWeaponFinder;
+    }
+
     public Equipment getEquipment()
     {
         return equipment;
@@ -42,5 +59,18 @@ public class AI_StateMachine_Helper : MonoBehaviour
     internal Team_Attribute getTeamAttribute()
     {
         return teamAttribute;
+    }
+
+    public void updateNearbyWeaponCount(int param)
+    {
+        animator.SetInteger("WeaponInSight", param);
+    }
+    public void updateEnemyInSight(int param)
+    {
+        animator.SetInteger("EnemyInSight", param);
+    }
+    public void updateEnemyInMemory(int param)
+    {
+        animator.SetInteger("EnemyRemembered", param);
     }
 }

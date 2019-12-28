@@ -58,16 +58,8 @@ public class Scripted_Sequence : MonoBehaviour {
 
         if (DestroyOnComplete)
         {
+            AI_Agent.GetComponent<Animator>().SetBool("Scripted", false);
             Destroy(gameObject);
         }
-    }
-
-    void OnDestroy()
-    {
-        AI_Agent.GetComponent<Animator>().SetBool("Scripted", false);
-    }
-    void OnDisable()
-    {
-        AI_Agent.GetComponent<Animator>().SetBool("Scripted", false);
     }
 }

@@ -19,7 +19,7 @@ public class AI_State_Flee : StateMachineBehaviour {
         AI_StateMachine_Helper helper = animator.GetComponent<AI_StateMachine_Helper>();
         Movement movement = helper.getMovement();
         Orient orient = helper.getOrient();
-        AI_EnemyFinder aiEnemyFinder = helper.getEnemyFinder();
+        AI_Finder_Enemy aiEnemyFinder = helper.getEnemyFinder();
 
         Transform enemyTransform = aiEnemyFinder.getClosestEnemy();
         if(enemyTransform != null)

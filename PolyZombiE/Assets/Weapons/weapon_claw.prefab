@@ -38,7 +38,8 @@ GameObject:
   - component: {fileID: 114596508029007788}
   - component: {fileID: 114884111016884988}
   - component: {fileID: 114818608494234666}
-  m_Layer: 0
+  - component: {fileID: 114718607119953336}
+  m_Layer: 14
   m_Name: weapon_claw
   m_TagString: Untagged
   m_Icon: {fileID: 2800000, guid: 17fdb65a1222742489a085cb8caadf0c, type: 3}
@@ -104,8 +105,29 @@ MonoBehaviour:
   primaryAnimation: ZMelee
   secondaryAnimation: ZBite
   POI: {fileID: 4932822153780524}
-  damage: 5
+  damage: 9
   biteDamage: 2
+--- !u!114 &114718607119953336
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1400648977992856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e31b0794a77716b4088915fa8a903b47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnEquiped:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnDequiped:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114818608494234666
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -5,11 +5,12 @@ using UnityEditor;
 
 public class Attachment_Helper : MonoBehaviour {
     [SerializeField] Transform parent = null;
+   
 
 	// Use this for initialization
 	void Start () {
-		
-	}
+        
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -20,7 +21,6 @@ public class Attachment_Helper : MonoBehaviour {
     {
         if(parent != null)
         {
-            
             transform.position = parent.position;
             transform.rotation = parent.rotation;
         }

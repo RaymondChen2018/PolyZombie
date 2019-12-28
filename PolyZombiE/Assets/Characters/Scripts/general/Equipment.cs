@@ -8,6 +8,8 @@ public class Equipment : MonoBehaviour {
     [SerializeField] private Abstract_Identity identity;
     [SerializeField] private Transform WeaponBoneR;
     [SerializeField] private int damageMultiplierPercent = 100;
+    [SerializeField] private float pickUpRadius = 2.0f;
+    [SerializeField] private LayerMask weaponLayerMask;
     [SerializeField] Animator animator;
 
     // Use this for initialization
@@ -75,6 +77,10 @@ public class Equipment : MonoBehaviour {
     public Abstract_Weapon getWeapon() { return weapon; }
     public void setDamageMultiplierPercent(int value) { damageMultiplierPercent = value; }
     public int getDamageMultiplierPercent() { return damageMultiplierPercent; }
+    public float getPickUpRadius()
+    {
+        return pickUpRadius;
+    }
 
     public void SpawnEquip(GameObject weaponPrefab)
     {
@@ -89,11 +95,45 @@ public class Equipment : MonoBehaviour {
 
     public void Equip(Abstract_Weapon newWeapon)
     {
-        // Assign
-        weapon = newWeapon;
+        // Call weapon equip
+        Weapon_Equip_Helper equipHelper = newWeapon.GetComponent<Weapon_Equip_Helper>();
+        if(equipHelper.getUser() == null)
+        {
+            equipHelper.setUser(identity);
 
-        // Attach to parent bone
-        Attachment_Helper attachmentHelper = newWeapon.GetComponent<Attachment_Helper>();
-        attachmentHelper.SetAttachment(WeaponBoneR);
+            // Assign
+            weapon = newWeapon;
+
+            // Attach to parent bone
+            Attachment_Helper attachmentHelper = newWeapon.GetComponent<Attachment_Helper>();
+            attachmentHelper.SetAttachment(WeaponBoneR);
+        }
+    }
+    public void Dequip()
+    {
+        if(weapon!= null)
+        {
+            // Attach to parent bone
+            Attachment_Helper attachmentHelper = weapon.GetComponent<Attachment_Helper>();
+            attachmentHelper.SetAttachment(null);
+
+            // Call weapon equip
+            Weapon_Equip_Helper equipHelper = weapon.GetComponent<Weapon_Equip_Helper>();
+            equipHelper.setUser(null);
+
+            // Nullify link
+            weapon = null;
+        }
+    }
+
+    public void pickUp()
+    {
+        Collider2D weaponCollider = Physics2D.OverlapCircle(identity.getMovementComponent().getPosition(), pickUpRadius, weaponLayerMask);
+        if (weaponCollider)
+        {
+            Abstract_Weapon weaponAbstract = weaponCollider.GetComponent<Abstract_Weapon>();
+            Assert.IsNotNull(weaponAbstract);
+            Equip(weaponAbstract);
+        }
     }
 }

@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
-
+public enum ANIMATION_EVENT
+{
+    AE_FireExtinguisherAttack,
+    AE_FireExtinguisherChargeAttack
+}
 public class AE_Helper : MonoBehaviour {
     [SerializeField] private Equipment equipment;
 

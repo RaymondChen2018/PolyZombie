@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AI_State_Combat_Range : StateMachineBehaviour {
+public class AI_State_Combat_RetrieveWeapon : StateMachineBehaviour {
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     //override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
@@ -12,20 +12,32 @@ public class AI_State_Combat_Range : StateMachineBehaviour {
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        Debug.Log("combat range!");
         AI_StateMachine_Helper helper = animator.GetComponent<AI_StateMachine_Helper>();
+        Movement movement = helper.getMovement();
         Orient orient = helper.getOrient();
-        AI_Finder_Enemy aiEnemyFinder = helper.getEnemyFinder();
-
-        Transform enemyTransform = aiEnemyFinder.getClosestEnemy();
-        if (enemyTransform != null)
+        Equipment equipment = helper.getEquipment();
+        AI_Finder weaponFinder = helper.getWeaponFinder();
+        Transform weaponClosest = weaponFinder.getClosestTargetInsight();
+        if (weaponClosest != null)
         {
-            Vector2 enemyPos = enemyTransform.position;
+            // Move & Face enemy
+            Vector2 enemyPos = weaponClosest.position;
+            Vector2 thisPos = movement.getPosition();
             orient.lookAtAI(enemyPos);
+            movement.Move(enemyPos - thisPos);
+
+            // Fetch when close
+            float pickupRadius = equipment.getPickUpRadius();
+            float enemyDistSqr = (enemyPos - thisPos).sqrMagnitude;
+
+            if (enemyDistSqr < pickupRadius * pickupRadius)
+            {
+                equipment.pickUp();
+            }
         }
         else
         {
-            Debug.LogWarning("closest enemy null!");
+            Debug.LogWarning("closest weapon null!");
         }
     }
 

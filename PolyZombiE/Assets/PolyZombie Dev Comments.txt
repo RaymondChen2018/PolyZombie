@@ -10,9 +10,9 @@
 
 
 
-
-leftoff: Was implementing upgrades button & downgrade buttons
-next to-do: make damage multiplier effective to dealt damage
+Left off: 
+implemented combative trait where ai seeks to get weapon to fight;
+next to-do: make ai aware damage, sound source
 
 
 
