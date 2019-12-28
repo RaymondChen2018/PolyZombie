@@ -1,2 +1,2 @@
 # PolyZombie
-Simple 2D Shooter
+Control a zombie and lead a hordes to defeat humans.
