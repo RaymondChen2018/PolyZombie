@@ -1,2 +1,3 @@
 # PolyZombie
-Simple 2D Shooter
+2D Top-Down;
+Control a zombie and lead a hordes to defeat humans.
