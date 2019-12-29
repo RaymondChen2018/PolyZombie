@@ -17,15 +17,15 @@ public class AI_State_Combat_Melee : StateMachineBehaviour {
         Movement movement = helper.getMovement();
         Orient orient = helper.getOrient();
         Equipment equipment = helper.getEquipment();
-        AI_Finder_Enemy aiEnemyFinder = helper.getEnemyFinder();
+        AI_Memory aiMemory = helper.getMemory();
 
-        Transform enemyTransform = aiEnemyFinder.getClosestEnemy();
+        Transform enemyTransform = aiMemory.getClosestEnemy();
         if (enemyTransform != null)
         {
             // Move & Face enemy
             Vector2 enemyPos = enemyTransform.position;
             Vector2 thisPos = movement.getPosition();
-            orient.lookAtAI(enemyPos);
+            orient.lookAtStep(enemyPos);
             movement.Move(enemyPos - thisPos);
 
             // Attack when close

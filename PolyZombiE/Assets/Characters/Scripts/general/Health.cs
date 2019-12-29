@@ -19,6 +19,27 @@ public enum HEALTH
     /// </summary>
     Dead
 }
+[System.Serializable]
+public class DamageInfo
+{
+    public float damageAmount;
+    /// <summary>
+    /// From activator to victim
+    /// </summary>
+    public Vector2 direction;
+    public Abstract_Identity activator;
+    public DamageInfo(float _damageAmount, Vector2 _direction, Abstract_Identity _activator)
+    {
+        damageAmount = _damageAmount;
+        direction = _direction;
+        activator = _activator;
+    }
+}
+[System.Serializable]
+public class UnityEventDamageInfo : UnityEvent<DamageInfo>
+{
+
+}
 public class Health : MonoBehaviour
 {
     [Header("Stat")]
@@ -29,6 +50,7 @@ public class Health : MonoBehaviour
 
     [Header("Output")]
     [SerializeField] protected UnityEvent OnDeath = new UnityEvent();
+    [SerializeField] private UnityEventDamageInfo OnDamaged = new UnityEventDamageInfo();
 
     // Use this for initialization
     void Start () {
@@ -46,13 +68,14 @@ public class Health : MonoBehaviour
     /// Deals only damage, does not spread infection
     /// </summary>
     /// <param name="damage"> Amount to decrease health</param>
-    public void subtractHealth(float damage, Abstract_Identity activator)
+    public void subtractHealth(DamageInfo damageInfo)//float damage, Abstract_Identity activator)
     {
-        health -= damage;
+        health -= damageInfo.damageAmount;
+        OnDamaged.Invoke(damageInfo);
         if (health <= 0.0f && !isDead)
         {
             // Killer call-back
-            activator.Func_OnKilledSomeOne();
+            damageInfo.activator.Func_OnKilledSomeOne();
 
             // this call back
             OnDeath.Invoke();

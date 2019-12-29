@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AI_State_Combat_RetrieveWeapon : StateMachineBehaviour {
+public class AI_State_Alert_Guard : StateMachineBehaviour {
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     //override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
@@ -12,33 +12,7 @@ public class AI_State_Combat_RetrieveWeapon : StateMachineBehaviour {
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        AI_StateMachine_Helper helper = animator.GetComponent<AI_StateMachine_Helper>();
-        Movement movement = helper.getMovement();
-        Orient orient = helper.getOrient();
-        Equipment equipment = helper.getEquipment();
-        AI_Finder weaponFinder = helper.getWeaponFinder();
-        Transform weaponClosest = weaponFinder.getClosestTargetInsight();
-        if (weaponClosest != null)
-        {
-            // Move & Face enemy
-            Vector2 enemyPos = weaponClosest.position;
-            Vector2 thisPos = movement.getPosition();
-            orient.lookAtAI(enemyPos);
-            movement.Move(enemyPos - thisPos);
 
-            // Fetch when close
-            float pickupRadius = equipment.getPickUpRadius();
-            float enemyDistSqr = (enemyPos - thisPos).sqrMagnitude;
-
-            if (enemyDistSqr < pickupRadius * pickupRadius)
-            {
-                equipment.pickUp();
-            }
-        }
-        else
-        {
-            Debug.LogWarning("closest weapon null!");
-        }
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

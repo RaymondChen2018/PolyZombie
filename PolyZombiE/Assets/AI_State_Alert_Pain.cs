@@ -2,15 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AI_State_Flee : StateMachineBehaviour {
-
+public class AI_State_Alert_Pain : StateMachineBehaviour {
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
-    //override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    Vector2 enemyPos = aiEnemyFinder.getClosestEnemy().position;
-    //    Vector2 thisPos = movement.getPosition();
-    //    movement.SetDirectionVector(thisPos - enemyPos);
+    //override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
+    //
     //}
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -19,21 +15,25 @@ public class AI_State_Flee : StateMachineBehaviour {
         AI_StateMachine_Helper helper = animator.GetComponent<AI_StateMachine_Helper>();
         Movement movement = helper.getMovement();
         Orient orient = helper.getOrient();
-        AI_Memory aiMemory = helper.getMemory();
+        Vector2 thisPos = movement.getPosition();
+        
+        bool feelPain = animator.GetBool("FeelPain");
+        //List<Vector2> locationMemory = helper.getMemory().getLocations();
+        if (feelPain)
+        {
+            AI_Sense_Pain painRecepter = helper.getPainRecepter();
+            Vector2 painDirection = painRecepter.getLatestDamageDirection();
+            Vector2 respondToDir = thisPos + painDirection;
+            orient.lookAtStep(respondToDir);
+        }
+        //else if(locationMemory.Count > 0)
+        //{
+        //    Vector2 targetLocation = locationMemory[locationMemory.Count - 1];
+        //    orient.lookAtStep(targetLocation);
 
-        Transform enemyTransform = aiMemory.getClosestEnemy();
-        if(enemyTransform != null)
-        {
-            Vector2 enemyPos = enemyTransform.position;
-            Vector2 thisPos = movement.getPosition();
-            Vector2 moveDir = thisPos - enemyPos;
-            orient.lookAtStep(thisPos + moveDir);
-            movement.Move(moveDir);
-        }
-        else
-        {
-            Debug.LogWarning("closest enemy null!");
-        }
+        //    //bool weaponized = 
+        //    //movement.Move(targetLocation - thisPos);
+        //}
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

@@ -20,7 +20,7 @@ public class Weapon_Claw : Abstract_Weapon {
     protected void sideEffect_Primary(Abstract_Identity victim, Abstract_Identity activator)
     {
         float damageScaled = damage * activator.getEquipmentComponent().getDamageMultiplierPercent() / 100.0f;
-        victim.getHealthComponent().subtractHealth(damageScaled, activator);
+        victim.getHealthComponent().subtractHealth(new DamageInfo(damageScaled, activator.transform.position - victim.transform.position, activator));
     }
 
     protected void sideEffect_Secondary(Abstract_Identity victim, Abstract_Identity activator)
@@ -39,6 +39,6 @@ public class Weapon_Claw : Abstract_Weapon {
 
         // Damage
         float biteDamageScaled = biteDamage * activator.getEquipmentComponent().getDamageMultiplierPercent() / 100.0f;
-        victimHealthComponent.subtractHealth(biteDamageScaled, activator);
+        victimHealthComponent.subtractHealth(new DamageInfo(biteDamageScaled, activator.transform.position - victim.transform.position, activator));
     }
 }

@@ -10,8 +10,10 @@ public class AI_StateMachine_Helper : MonoBehaviour
     [SerializeField] Movement movement;
     [SerializeField] Equipment equipment;
     [SerializeField] Team_Attribute teamAttribute;
-    [SerializeField] AI_Finder_Enemy aiEnemyFinder;
+    [SerializeField] AI_Memory aiMemory;
+    [SerializeField] AI_Finder aiEnemyFinder;
     [SerializeField] AI_Finder aiWeaponFinder;
+    [SerializeField] AI_Sense_Pain aiPainRecepter;
 
     [SerializeField] bool aiCombative = false;
 
@@ -41,14 +43,25 @@ public class AI_StateMachine_Helper : MonoBehaviour
     {
         return movement;
     }
-    public AI_Finder_Enemy getEnemyFinder()
+
+    public AI_Memory getMemory()
+    {
+        return aiMemory;
+    }
+    public AI_Finder getEnemyFinder()
     {
         return aiEnemyFinder;
     }
 
+
     public AI_Finder getWeaponFinder()
     {
         return aiWeaponFinder;
+    }
+
+    public AI_Sense_Pain getPainRecepter()
+    {
+        return aiPainRecepter;
     }
 
     public Equipment getEquipment()
@@ -72,5 +85,17 @@ public class AI_StateMachine_Helper : MonoBehaviour
     public void updateEnemyInMemory(int param)
     {
         animator.SetInteger("EnemyRemembered", param);
+    }
+    public void updatePainState(bool param)
+    {
+        animator.SetBool("FeelPain", param);
+    }
+    public void updateReactionState(bool param)
+    {
+        animator.SetBool("Reacting", param);
+    }
+    public void updateAlertLocation(int param)
+    {
+        animator.SetInteger("AlertLocations", param);
     }
 }

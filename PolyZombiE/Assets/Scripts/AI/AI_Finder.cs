@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.Events;
+using UnityEditor;
 
 [System.Serializable]
 public class UnityEventTranform : UnityEvent<Transform>
@@ -14,8 +15,6 @@ public class AI_Finder : MonoBehaviour {
     [SerializeField] private LayerMask losObstacleLayerMask;
     [SerializeField] private float viewDist = 10.0f;
     [SerializeField] private float viewConeAngle = 60.0f;
-    [SerializeField] protected Movement movement;
-    [SerializeField] protected Orient orient;
     [SerializeField] private List<Transform> targetInSight;
     private Transform closestTargetInSight = null;
 
@@ -23,19 +22,22 @@ public class AI_Finder : MonoBehaviour {
     [SerializeField] private UnityEventInt OnSeeTargets = new UnityEventInt();
     [SerializeField] private UnityEventTranform OnFoundCloserTarget = new UnityEventTranform();
 
+    [Header("Debug")]
+    [SerializeField] private bool debugOn = false;
+    [SerializeField] private Color debugColor = Color.red;
+
     // Use this for initialization
     void Start () {
-        Assert.IsNotNull(movement);
-        Assert.IsNotNull(orient);
-
         targetInSight = new List<Transform>();
     }
 	
 	// Update is called once per frame
 	void Update () {
+        Vector2 thisPos = transform.position;
+        Vector2 thisDOF = transform.right;
+
         // Range detection
-        Collider2D[] enemyInRange = Physics2D.OverlapCircleAll(movement.getPosition(), viewDist, targetLayerMask);
-        DrawEllipse(transform.position, viewDist, Color.yellow);
+        Collider2D[] enemyInRange = Physics2D.OverlapCircleAll(thisPos, viewDist, targetLayerMask);
 
         // View Cone detection
         targetInSight.Clear();
@@ -44,8 +46,6 @@ public class AI_Finder : MonoBehaviour {
         {
             Collider2D enemyCollider = enemyInRange[i];
             Vector2 enemyPos = enemyCollider.transform.position;
-            Vector2 thisPos = movement.getPosition();
-            Vector2 thisDOF = orient.GetDOF();
 
             // Test view cone
             bool inViewCone = enemyInViewCone(enemyPos, thisPos, thisDOF, viewConeAngle);
@@ -65,12 +65,12 @@ public class AI_Finder : MonoBehaviour {
         {
             Transform tmp = targetInSight[0].transform;
             Transform ret = tmp;
-            float closestDistSqrTmp = ((Vector2)tmp.position - movement.getPosition()).sqrMagnitude;
+            float closestDistSqrTmp = ((Vector2)tmp.position - thisPos).sqrMagnitude;
             float closestDistSqr = closestDistSqrTmp;
             for (int i = 1; i < targetInSight.Count; i++)
             {
                 tmp = targetInSight[i].transform;
-                closestDistSqrTmp = ((Vector2)tmp.position - movement.getPosition()).sqrMagnitude;
+                closestDistSqrTmp = ((Vector2)tmp.position - thisPos).sqrMagnitude;
                 if (closestDistSqr > closestDistSqrTmp)
                 {
                     closestDistSqr = closestDistSqrTmp;
@@ -88,10 +88,10 @@ public class AI_Finder : MonoBehaviour {
             closestTargetInSight = null;
         }
 
-        // Child class update
-        UpdateDerived();
+        // Debug
+        debug();
     }
-    virtual protected void UpdateDerived() { }
+
     private void Func_OnSeeEveryTarget(Transform targetTransform)
     {
         // Call back
@@ -110,18 +110,24 @@ public class AI_Finder : MonoBehaviour {
 
     bool enemyInLOS(Vector2 enemyPos, Vector2 thisPos, LayerMask obstacleMask)
     {
-        return !Physics2D.Linecast(enemyPos, movement.getPosition(), losObstacleLayerMask);
+        return !Physics2D.Linecast(enemyPos, thisPos, losObstacleLayerMask);
     }
     bool enemyInViewCone(Vector2 enemyPos, Vector2 thisPos, Vector2 thisDOF, float viewCone)
     {
         bool inViewCone = false;
         Vector2 enemyDirection = (enemyPos - thisPos).normalized;
-        float dot = thisDOF.x * enemyDirection.x + thisDOF.y * enemyDirection.y;
-        float dotViewCone = 1 - viewCone / 180.0f;
-        if (dot > dotViewCone)
+        //float dot = thisDOF.x * enemyDirection.x + thisDOF.y * enemyDirection.y;
+        //float dotViewCone = 1.0f - viewCone / 180.0f;
+
+        //if (dot > dotViewCone)
+        //{
+        //    inViewCone = true;
+        //}
+
+        if (Vector2.Angle(thisDOF, enemyDirection) < viewCone / 2.0f)
         {
             inViewCone = true;
-        }
+        };
         return inViewCone;
     }
 
@@ -146,5 +152,50 @@ public class AI_Finder : MonoBehaviour {
             lastPoint = thisPoint;
             angle += 360f / segments;
         }
+    }
+
+    void debug()
+    {
+        if (!debugOn)
+        {
+            return;
+        }
+
+        Vector2 thisPos = transform.position;
+        Vector2 thisDOF = transform.right;
+        Vector2 leftViewBound = Quaternion.AngleAxis(viewConeAngle / 2.0f, Vector3.forward) * thisDOF;
+        Vector2 rightViewBound = Quaternion.AngleAxis(-viewConeAngle / 2.0f, Vector3.forward) * thisDOF;
+
+        DrawEllipse(thisPos, viewDist, debugColor);
+        Debug.DrawLine(thisPos, thisDOF * viewDist + thisPos, debugColor); // DOF
+        Debug.DrawLine(thisPos, leftViewBound * viewDist + thisPos, debugColor); // Left view bound
+        Debug.DrawLine(thisPos, rightViewBound * viewDist + thisPos, debugColor); // Right view bound
+
+        // Detected targets
+        Collider2D[] enemyInRange = Physics2D.OverlapCircleAll(thisPos, viewDist, targetLayerMask);
+        for (int i = 0; i < enemyInRange.Length; i++)
+        {
+            Collider2D enemyCollider = enemyInRange[i];
+            Vector2 enemyPos = enemyCollider.transform.position;
+
+            // Test view cone
+            bool inViewCone = enemyInViewCone(enemyPos, thisPos, thisDOF, viewConeAngle);
+
+            // Test Line of sight
+            bool inLOS = enemyInLOS(enemyPos, thisPos, losObstacleLayerMask);
+
+            if (inViewCone && inLOS)
+            {
+                Color tmp = debugColor;
+                tmp.r = 1.0f - debugColor.r;
+                tmp.g = 1.0f - debugColor.g;
+                tmp.b = 1.0f - debugColor.b;
+                Debug.DrawLine(thisPos, enemyPos, tmp);
+            }
+        }
+    }
+    void OnDrawGizmos()
+    {
+        debug();
     }
 }

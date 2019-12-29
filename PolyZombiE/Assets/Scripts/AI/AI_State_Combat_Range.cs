@@ -15,13 +15,13 @@ public class AI_State_Combat_Range : StateMachineBehaviour {
         Debug.Log("combat range!");
         AI_StateMachine_Helper helper = animator.GetComponent<AI_StateMachine_Helper>();
         Orient orient = helper.getOrient();
-        AI_Finder_Enemy aiEnemyFinder = helper.getEnemyFinder();
+        AI_Memory aiMemory = helper.getMemory();
 
-        Transform enemyTransform = aiEnemyFinder.getClosestEnemy();
+        Transform enemyTransform = aiMemory.getClosestEnemy();
         if (enemyTransform != null)
         {
             Vector2 enemyPos = enemyTransform.position;
-            orient.lookAtAI(enemyPos);
+            orient.lookAtStep(enemyPos);
         }
         else
         {

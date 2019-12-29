@@ -5,6 +5,7 @@ using UnityEngine.Assertions;
 
 public class Orient : MonoBehaviour {
     [SerializeField] private Rigidbody2D RB;
+    [SerializeField] private float stepRatio = 0.3f;
     private Vector2 dof = Vector2.right;
 
     // Use this for initialization
@@ -32,12 +33,12 @@ public class Orient : MonoBehaviour {
     /// <summary>
     /// For AI controller use
     /// </summary>
-    /// <param name="pos"></param>
-    public void lookAtAI(Vector2 pos)
+    /// <param name="targetPos"></param>
+    public void lookAtStep(Vector2 targetPos)
     {
-        dof = pos - RB.position;
+        dof = targetPos - RB.position;
         float destAngle = Vector2.SignedAngle(Vector2.right, dof);
-        RB.rotation = Mathf.LerpAngle(RB.rotation, destAngle, 0.3f);
+        RB.rotation = Mathf.LerpAngle(RB.rotation, destAngle, stepRatio);
     }
 
     public Vector2 GetDOF()

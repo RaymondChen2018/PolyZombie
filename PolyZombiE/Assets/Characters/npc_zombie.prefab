@@ -27,6 +27,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1060189640815142
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4023699369340010}
+  - component: {fileID: 114344962418124308}
+  m_Layer: 0
+  m_Name: AI_painRecepter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1120884450384740
 GameObject:
   m_ObjectHideFlags: 0
@@ -109,7 +125,6 @@ GameObject:
   - component: {fileID: 95467465800243452}
   - component: {fileID: 114726662595240880}
   - component: {fileID: 114260019570788096}
-  - component: {fileID: 114317316399504736}
   m_Layer: 0
   m_Name: Controllers
   m_TagString: Untagged
@@ -128,6 +143,23 @@ GameObject:
   - component: {fileID: 212480178793104836}
   m_Layer: 10
   m_Name: ArmR
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1638321456534770
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4818205556391570}
+  - component: {fileID: 114157872683310578}
+  - component: {fileID: 114807149465390760}
+  m_Layer: 0
+  m_Name: AI_enemyFinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -196,6 +228,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &4023699369340010
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1060189640815142}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4390575137884236}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4076889785368586
 Transform:
   m_ObjectHideFlags: 1
@@ -259,7 +304,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 4818205556391570}
+  - {fileID: 4023699369340010}
   m_Father: {fileID: 4437294127350196}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -270,7 +317,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1423043396970880}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.52, y: -0.3, z: 0}
+  m_LocalPosition: {x: -16.107235, y: 1.8383006, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4076889785368586}
@@ -335,6 +382,19 @@ Transform:
   m_Father: {fileID: 4584631154452136}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -23.147}
+--- !u!4 &4818205556391570
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1638321456534770}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4390575137884236}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4930757861229952
 Transform:
   m_ObjectHideFlags: 1
@@ -430,6 +490,66 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RB: {fileID: 50680137565465604}
+  stepRatio: 0.1
+--- !u!114 &114157872683310578
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1638321456534770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce231294da43e2b40b5c4ed7b0cf4d07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetLayerMask:
+    serializedVersion: 2
+    m_Bits: 512
+  losObstacleLayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
+  viewDist: 50
+  viewConeAngle: 90
+  targetInSight: []
+  OnSeeEveryTarget:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114807149465390760}
+        m_MethodName: addToMemory
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEventTranform, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  OnSeeTargets:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114726662595240880}
+        m_MethodName: updateEnemyInSight
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEventInt, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  OnFoundCloserTarget:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEventTranform, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  debugOn: 0
+  debugColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &114179149991462240
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -471,74 +591,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   equipment: {fileID: 114749900416243670}
   AIStateMachine: {fileID: 95467465800243452}
---- !u!114 &114317316399504736
+--- !u!114 &114344962418124308
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1529999528050642}
+  m_GameObject: {fileID: 1060189640815142}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c0722c64ffaf6b46b682a6cc665b88a, type: 3}
+  m_Script: {fileID: 11500000, guid: 6a21ce6c6f69fae48bd77321081443f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetLayerMask:
-    serializedVersion: 2
-    m_Bits: 512
-  losObstacleLayerMask:
-    serializedVersion: 2
-    m_Bits: 2048
-  viewDist: 50
-  viewConeAngle: 120
-  movement: {fileID: 114820406271398686}
-  orient: {fileID: 114005825973281656}
-  targetInSight: []
-  OnSeeEveryTarget:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 114317316399504736}
-        m_MethodName: addToMemory
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEventTranform, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-  OnSeeTargets:
+  painLastDuration: 2
+  OnFeelPain:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114726662595240880}
-        m_MethodName: updateEnemyInSight
-        m_Mode: 0
+        m_MethodName: updatePainState
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
-    m_TypeName: UnityEventInt, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-  OnFoundCloserTarget:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEventTranform, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-  teamAttribute: {fileID: 114200180462222248}
-  enemyInMemory: []
-  memoryCapacity: 3
-  OnRememberTargets:
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnPainReceded:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114726662595240880}
-        m_MethodName: updateEnemyInMemory
-        m_Mode: 0
+        m_MethodName: updatePainState
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -547,8 +633,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEventInt, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114678724097805132
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -568,6 +654,22 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  OnDamaged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114344962418124308}
+        m_MethodName: receivePain
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEventDamageInfo, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!114 &114726662595240880
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -583,8 +685,11 @@ MonoBehaviour:
   movement: {fileID: 114820406271398686}
   equipment: {fileID: 114749900416243670}
   teamAttribute: {fileID: 114200180462222248}
-  aiEnemyFinder: {fileID: 114317316399504736}
+  aiMemory: {fileID: 114807149465390760}
+  aiEnemyFinder: {fileID: 114157872683310578}
   aiWeaponFinder: {fileID: 0}
+  aiPainRecepter: {fileID: 114344962418124308}
+  aiCombative: 0
 --- !u!114 &114749900416243670
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -605,6 +710,47 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 16384
   animator: {fileID: 95905009864086908}
+--- !u!114 &114807149465390760
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1638321456534770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 691a341e3804b9d4e9d5fd3f04714fd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyInMemory: []
+  memoryDurection: 10
+  memoryCapacity: 3
+  OnRememberTargets:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114726662595240880}
+        m_MethodName: updateEnemyInMemory
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEventInt, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  OnForgetTarget:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEventTranform, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  memoryLocationCapacity: 3
+  OnRememberLocations:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEventInt, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!114 &114820406271398686
 MonoBehaviour:
   m_ObjectHideFlags: 1
