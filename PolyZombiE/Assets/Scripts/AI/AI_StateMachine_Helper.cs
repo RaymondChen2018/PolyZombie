@@ -14,6 +14,7 @@ public class AI_StateMachine_Helper : MonoBehaviour
     [SerializeField] AI_Finder aiEnemyFinder;
     [SerializeField] AI_Finder aiWeaponFinder;
     [SerializeField] AI_Sense_Pain aiPainRecepter;
+    [SerializeField] AI_Sense_Sound aiSoundReceiver;
 
     [SerializeField] bool aiCombative = false;
 
@@ -52,26 +53,22 @@ public class AI_StateMachine_Helper : MonoBehaviour
     {
         return aiEnemyFinder;
     }
-
-
     public AI_Finder getWeaponFinder()
     {
         return aiWeaponFinder;
     }
-
     public AI_Sense_Pain getPainRecepter()
     {
         return aiPainRecepter;
+    }
+    public AI_Sense_Sound getSoundReceiver()
+    {
+        return aiSoundReceiver;
     }
 
     public Equipment getEquipment()
     {
         return equipment;
-    }
-
-    internal Team_Attribute getTeamAttribute()
-    {
-        return teamAttribute;
     }
 
     public void updateNearbyWeaponCount(int param)
@@ -97,5 +94,9 @@ public class AI_StateMachine_Helper : MonoBehaviour
     public void updateAlertLocation(int param)
     {
         animator.SetInteger("AlertLocations", param);
+    }
+    public void updateSoundInMemory(int param)
+    {
+        animator.SetInteger("SoundRemembered", param);
     }
 }

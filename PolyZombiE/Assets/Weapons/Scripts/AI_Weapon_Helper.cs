@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class AI_Weapon_Helper : MonoBehaviour {
     [SerializeField] private float attackRange = 5.0f;
-
-	// Use this for initialization
-	void Start () {
+    [SerializeField] private bool isRanged = false;
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -18,5 +18,10 @@ public class AI_Weapon_Helper : MonoBehaviour {
     public float getAttackRange()
     {
         return attackRange;
+    }
+
+    public bool isRangeWeapon()
+    {
+        return isRanged;
     }
 }

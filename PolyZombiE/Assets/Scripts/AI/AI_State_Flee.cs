@@ -20,20 +20,35 @@ public class AI_State_Flee : StateMachineBehaviour {
         Movement movement = helper.getMovement();
         Orient orient = helper.getOrient();
         AI_Memory aiMemory = helper.getMemory();
+        Vector2 thisPos = movement.getPosition();
 
-        Transform enemyTransform = aiMemory.getClosestEnemy();
-        if(enemyTransform != null)
+        List<Memory> memoryCache = aiMemory.getMemoryCache();
+        if (memoryCache.Count == 0)
         {
-            Vector2 enemyPos = enemyTransform.position;
-            Vector2 thisPos = movement.getPosition();
-            Vector2 moveDir = thisPos - enemyPos;
-            orient.lookAtStep(thisPos + moveDir);
-            movement.Move(moveDir);
+            Debug.LogWarning("flee target not found");
+            return;
         }
-        else
+
+        // Get closest
+        Vector2 tmp = memoryCache[0].lastSeenPosition;
+        Vector2 enemyPos = tmp;
+        float closestDistSqrTmp = (tmp - thisPos).sqrMagnitude;
+        float closestDistSqr = closestDistSqrTmp;
+        for (int i = 1; i < memoryCache.Count; i++)
         {
-            Debug.LogWarning("closest enemy null!");
+            tmp = memoryCache[i].lastSeenPosition;
+            closestDistSqrTmp = (tmp - thisPos).sqrMagnitude;
+            if (closestDistSqr > closestDistSqrTmp)
+            {
+                closestDistSqr = closestDistSqrTmp;
+                enemyPos = tmp;
+            }
         }
+
+        // Flee from
+        Vector2 moveDir = thisPos - enemyPos;
+        orient.lookAtStep(thisPos + moveDir);
+        movement.Move(moveDir);
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

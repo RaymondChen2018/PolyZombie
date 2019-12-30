@@ -170,6 +170,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1765735225469756
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4179645610140236}
+  - component: {fileID: 114439042865337166}
+  - component: {fileID: 114905150620913950}
+  - component: {fileID: 58989876996087036}
+  m_Layer: 15
+  m_Name: AI_ear
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1855980031665348
 GameObject:
   m_ObjectHideFlags: 1
@@ -258,6 +276,19 @@ Transform:
   - {fileID: 4404653735595158}
   m_Father: {fileID: 4286617002856382}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4179645610140236
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1765735225469756}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4424312786799356}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4188490703584370
 Transform:
@@ -355,6 +386,7 @@ Transform:
   - {fileID: 4237769076749878}
   - {fileID: 4188490703584370}
   - {fileID: 4881749668368534}
+  - {fileID: 4179645610140236}
   m_Father: {fileID: 4621907824823138}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -404,15 +436,15 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1922372079198378}
-  m_LocalRotation: {x: -0, y: -0, z: 0.5391201, w: 0.842229}
-  m_LocalPosition: {x: -1.75, y: -4.74, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0.854952, w: 0.5187073}
+  m_LocalPosition: {x: -10.91, y: 4.64, z: 0}
   m_LocalScale: {x: 1.0000005, y: 1.0000005, z: 1}
   m_Children:
   - {fileID: 4378373542088928}
   - {fileID: 4424312786799356}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 65.248}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -117.509}
 --- !u!4 &4801960731556196
 Transform:
   m_ObjectHideFlags: 1
@@ -475,6 +507,21 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.28
+--- !u!58 &58989876996087036
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1765735225469756}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!95 &95127686417080660
 Animator:
   serializedVersion: 3
@@ -520,6 +567,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 691a341e3804b9d4e9d5fd3f04714fd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uniqueMemory: 1
   enemyInMemory: []
   memoryDurection: 10
   memoryCapacity: 3
@@ -543,12 +591,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEventTranform, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-  memoryLocationCapacity: 3
-  OnRememberLocations:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEventInt, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
 --- !u!114 &114077072048657164
 MonoBehaviour:
@@ -645,6 +687,33 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 16384
   animator: {fileID: 95127686417080660}
+--- !u!114 &114439042865337166
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1765735225469756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a425954acc0c04346908522a61436dcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnHearSound:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114905150620913950}
+        m_MethodName: addToMemory
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEventVector2, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!114 &114601366997411766
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -806,6 +875,7 @@ MonoBehaviour:
   aiEnemyFinder: {fileID: 114847596091670208}
   aiWeaponFinder: {fileID: 114126993325165966}
   aiPainRecepter: {fileID: 114617454765183686}
+  aiSoundReceiver: {fileID: 114439042865337166}
   aiCombative: 1
 --- !u!114 &114847596091670208
 MonoBehaviour:
@@ -913,6 +983,42 @@ MonoBehaviour:
   opponentLayerMask:
     serializedVersion: 2
     m_Bits: 1024
+--- !u!114 &114905150620913950
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1765735225469756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 691a341e3804b9d4e9d5fd3f04714fd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueMemory: 0
+  enemyInMemory: []
+  memoryDurection: 10
+  memoryCapacity: 3
+  OnRememberTargets:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114836768288914520}
+        m_MethodName: updateSoundInMemory
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEventInt, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  OnForgetTarget:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEventTranform, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!212 &212197396341975166
 SpriteRenderer:
   m_ObjectHideFlags: 1

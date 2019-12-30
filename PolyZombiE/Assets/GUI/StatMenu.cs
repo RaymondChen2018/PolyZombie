@@ -28,6 +28,7 @@ public class StatMenu : MonoBehaviour {
     public void SetZombieStat(Zombie_Identity zIdentity)
     {
         zIdentity.getHealthComponent().setMaxHealth(maxHealth.getValue());
+        zIdentity.getHealthComponent().setHealth(maxHealth.getValue());
         zIdentity.getMovementComponent().setMovementSpeed(mobileSpeed.getValue());
         zIdentity.setInfectiousness(infectiousness.getValue());
         zIdentity.getEquipmentComponent().setDamageMultiplierPercent(damageMultiplierPercent.getValue());

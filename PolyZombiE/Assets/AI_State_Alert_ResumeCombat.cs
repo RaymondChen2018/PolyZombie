@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AI_State_Combat_Range : StateMachineBehaviour {
+public class AI_State_Alert_ResumeCombat : StateMachineBehaviour {
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     //override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
@@ -21,28 +21,40 @@ public class AI_State_Combat_Range : StateMachineBehaviour {
         List<Memory> memoryCache = aiMemory.getMemoryCache();
         if (memoryCache.Count == 0)
         {
-            Debug.LogWarning("attack target not found");
+            Debug.LogWarning("flee target not found");
             return;
         }
 
         // Get closest
-        Vector2 tmp = memoryCache[0].lastSeenPosition;
-        Vector2 enemyPos = tmp;
-        float closestDistSqrTmp = (tmp - thisPos).sqrMagnitude;
-        float closestDistSqr = closestDistSqrTmp;
-        for (int i = 1; i < memoryCache.Count; i++)
-        {
-            tmp = memoryCache[i].lastSeenPosition;
-            closestDistSqrTmp = (tmp - thisPos).sqrMagnitude;
-            if (closestDistSqr > closestDistSqrTmp)
-            {
-                closestDistSqr = closestDistSqrTmp;
-                enemyPos = tmp;
-            }
-        }
+        //Vector2 tmp = memoryCache[0].lastSeenPosition;
+        //Vector2 lastSeenEnemyPos = tmp;
+        //float closestDistSqrTmp = (tmp - thisPos).sqrMagnitude;
+        //float closestDistSqr = closestDistSqrTmp;
+        //for (int i = 1; i < memoryCache.Count; i++)
+        //{
+        //    tmp = memoryCache[i].lastSeenPosition;
+        //    closestDistSqrTmp = (tmp - thisPos).sqrMagnitude;
+        //    if (closestDistSqr > closestDistSqrTmp)
+        //    {
+        //        closestDistSqr = closestDistSqrTmp;
+        //        lastSeenEnemyPos = tmp;
+        //    }
+        //}
 
-        // Engage
-        orient.lookAtStep(enemyPos);
+        Vector2 lastSeenEnemyPos = memoryCache[0].lastSeenPosition;
+
+        // Flee from
+        Vector2 moveDir = lastSeenEnemyPos - thisPos;
+        orient.lookAtStep(thisPos + moveDir);
+        movement.Move(moveDir);
+
+        // Combat point reach
+        bool positionReached = movement.positionReached(lastSeenEnemyPos);
+        if (positionReached)
+        {
+            memoryCache.RemoveAt(0);
+            animator.SetTrigger("CombatPointReached");
+        }
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

@@ -5,10 +5,11 @@ using UnityEditor;
 
 public class Attachment_Helper : MonoBehaviour {
     [SerializeField] Transform parent = null;
-   
+    [SerializeField] private bool fixRotation = false;
+    [SerializeField] private bool fixZ = false;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         
     }
 	
@@ -21,8 +22,16 @@ public class Attachment_Helper : MonoBehaviour {
     {
         if(parent != null)
         {
-            transform.position = parent.position;
-            transform.rotation = parent.rotation;
+            Vector3 tmp = parent.position;
+            if (fixZ)
+            {
+                tmp.z = transform.position.z;
+            }
+            transform.position = tmp;
+            if (!fixRotation)
+            {
+                transform.rotation = parent.rotation;
+            }
         }
     }
 

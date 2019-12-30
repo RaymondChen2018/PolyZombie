@@ -76,6 +76,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1306854167715612
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4858679993890262}
+  - component: {fileID: 114685934447296868}
+  - component: {fileID: 114361498754987396}
+  - component: {fileID: 58003328974630184}
+  m_Layer: 15
+  m_Name: AI_ear
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1328766026459936
 GameObject:
   m_ObjectHideFlags: 1
@@ -307,6 +325,7 @@ Transform:
   m_Children:
   - {fileID: 4818205556391570}
   - {fileID: 4023699369340010}
+  - {fileID: 4858679993890262}
   m_Father: {fileID: 4437294127350196}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -395,6 +414,19 @@ Transform:
   m_Father: {fileID: 4390575137884236}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4858679993890262
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1306854167715612}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4390575137884236}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4930757861229952
 Transform:
   m_ObjectHideFlags: 1
@@ -429,6 +461,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!58 &58003328974630184
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1306854167715612}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!58 &58877536583860836
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -635,6 +682,42 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114361498754987396
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1306854167715612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 691a341e3804b9d4e9d5fd3f04714fd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueMemory: 0
+  enemyInMemory: []
+  memoryDurection: 10
+  memoryCapacity: 3
+  OnRememberTargets:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114726662595240880}
+        m_MethodName: updateSoundInMemory
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEventInt, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  OnForgetTarget:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEventTranform, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!114 &114678724097805132
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -670,6 +753,33 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEventDamageInfo, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+--- !u!114 &114685934447296868
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1306854167715612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a425954acc0c04346908522a61436dcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnHearSound:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114361498754987396}
+        m_MethodName: addToMemory
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEventVector2, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!114 &114726662595240880
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -689,6 +799,7 @@ MonoBehaviour:
   aiEnemyFinder: {fileID: 114157872683310578}
   aiWeaponFinder: {fileID: 0}
   aiPainRecepter: {fileID: 114344962418124308}
+  aiSoundReceiver: {fileID: 114685934447296868}
   aiCombative: 0
 --- !u!114 &114749900416243670
 MonoBehaviour:
@@ -721,6 +832,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 691a341e3804b9d4e9d5fd3f04714fd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uniqueMemory: 1
   enemyInMemory: []
   memoryDurection: 10
   memoryCapacity: 3
@@ -744,12 +856,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEventTranform, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-  memoryLocationCapacity: 3
-  OnRememberLocations:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEventInt, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
 --- !u!114 &114820406271398686
 MonoBehaviour:

@@ -8,14 +8,16 @@ using UnityEngine.Events;
 public class Memory
 {
     public Transform enemy;
+    public Vector2 lastSeenPosition;
     public float timeRememberedLatest;
 }
 
 public class AI_Memory: MonoBehaviour {
+    [Tooltip("Does memory remove entries of same identity (eg. sound source has no identity, should be false)")][SerializeField] private bool uniqueMemory = true;
     [SerializeField] private List<Memory> enemyInMemory;
     [SerializeField] private float memoryDurection = 10;
     [SerializeField] int memoryCapacity = 3;
-    private Transform closestEnemyRemembered = null;
+
     [SerializeField] UnityEventInt OnRememberTargets = new UnityEventInt();
     [SerializeField] UnityEventTranform OnForgetTarget = new UnityEventTranform();
 
@@ -34,11 +36,13 @@ public class AI_Memory: MonoBehaviour {
         for (int i = 0; i < enemyInMemory.Count; i++)
         {
             Memory mem = enemyInMemory[i];
-            if (mem.enemy == null)
+            // Target is missing (eg. Dead)
+            if (uniqueMemory && mem.enemy == null)
             {
                 enemyInMemory.RemoveAt(i);
                 i--;
             }
+            // Memory expired
             else if (mem.timeRememberedLatest + memoryDurection < Time.time)
             {
                 OnForgetTarget.Invoke(mem.enemy);
@@ -49,44 +53,42 @@ public class AI_Memory: MonoBehaviour {
 
         // Call back
         OnRememberTargets.Invoke(enemyInMemory.Count);
+    }
 
-        // Find closest enemy
-        if (enemyInMemory.Count > 0)
+    public void addToMemory(Vector2 newLocation)
+    {
+        if (uniqueMemory)
         {
-            Transform tmp = enemyInMemory[0].enemy.transform;
-            Transform ret = tmp;
-            float closestDistSqrTmp = ((Vector2)tmp.position - thisPos).sqrMagnitude;
-            float closestDistSqr = closestDistSqrTmp;
-            for (int i = 1; i < enemyInMemory.Count; i++)
-            {
-                tmp = enemyInMemory[i].enemy.transform;
-                closestDistSqrTmp = ((Vector2)tmp.position - thisPos).sqrMagnitude;
-                if (closestDistSqr > closestDistSqrTmp)
-                {
-                    closestDistSqr = closestDistSqrTmp;
-                    ret = tmp;
-                }
-            }
-            closestEnemyRemembered = ret;
+            Debug.LogWarning("You are adding entry without unique id, but ask for unique memory!");
         }
-        else
+
+        Memory mem = new Memory();
+        mem.enemy = null;
+        mem.lastSeenPosition = newLocation;
+        mem.timeRememberedLatest = Time.time;
+        enemyInMemory.Add(mem);
+
+        // Too many
+        while (enemyInMemory.Count > memoryCapacity)
         {
-            closestEnemyRemembered = null;
+            enemyInMemory.RemoveAt(0);
         }
     }
 
     public void addToMemory(Transform newEnemy)
     {
         Memory mem = enemyInMemory.Find(x => x.enemy == newEnemy);
-        if (mem == null)
-        { // New enemy
+        if (mem == null) // New enemy
+        { 
             mem = new Memory();
             mem.enemy = newEnemy;
+            mem.lastSeenPosition = newEnemy.transform.position;
             mem.timeRememberedLatest = Time.time;
             enemyInMemory.Add(mem);
         }
         else
         {
+            mem.lastSeenPosition = newEnemy.transform.position;
             mem.timeRememberedLatest = Time.time;
 
             // Prioritize
@@ -100,8 +102,9 @@ public class AI_Memory: MonoBehaviour {
             enemyInMemory.RemoveAt(0);
         }
     }
-    public Transform getClosestEnemy()
+
+    public List<Memory> getMemoryCache()
     {
-        return closestEnemyRemembered;
+        return enemyInMemory;
     }
 }

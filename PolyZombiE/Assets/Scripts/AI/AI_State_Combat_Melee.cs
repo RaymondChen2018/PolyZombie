@@ -19,29 +19,44 @@ public class AI_State_Combat_Melee : StateMachineBehaviour {
         Equipment equipment = helper.getEquipment();
         AI_Memory aiMemory = helper.getMemory();
 
-        Transform enemyTransform = aiMemory.getClosestEnemy();
-        if (enemyTransform != null)
-        {
-            // Move & Face enemy
-            Vector2 enemyPos = enemyTransform.position;
-            Vector2 thisPos = movement.getPosition();
-            orient.lookAtStep(enemyPos);
-            movement.Move(enemyPos - thisPos);
+        Vector2 thisPos = movement.getPosition();
 
-            // Attack when close
-            AI_Weapon_Helper weaponAIHelper = equipment.getWeapon().GetComponent<AI_Weapon_Helper>();
-            Assert.IsNotNull(weaponAIHelper);
-            float meleeRange = weaponAIHelper.getAttackRange();
-            float enemyDistSqr = (enemyPos - thisPos).sqrMagnitude;
-            
-            if(enemyDistSqr < meleeRange * meleeRange)
+        List<Memory> memoryCache = aiMemory.getMemoryCache();
+        if(memoryCache.Count == 0)
+        {
+            Debug.LogWarning("attack target not found");
+            return;
+        }
+        
+        // Get closest
+        Vector2 tmp = memoryCache[0].lastSeenPosition;
+        Vector2 closestPos = tmp;
+        float closestDistSqrTmp = (tmp - thisPos).sqrMagnitude;
+        float closestDistSqr = closestDistSqrTmp;
+        for (int i = 1; i < memoryCache.Count; i++)
+        {
+            tmp = memoryCache[i].lastSeenPosition;
+            closestDistSqrTmp = (tmp - thisPos).sqrMagnitude;
+            if (closestDistSqr > closestDistSqrTmp)
             {
-                equipment.initPrimaryAttack();
+                closestDistSqr = closestDistSqrTmp;
+                closestPos = tmp;
             }
         }
-        else
+
+        // Engage
+        orient.lookAtStep(closestPos);
+        movement.Move(closestPos - thisPos);
+
+        // Attack when close
+        AI_Weapon_Helper weaponAIHelper = equipment.getWeapon().GetComponent<AI_Weapon_Helper>();
+        Assert.IsNotNull(weaponAIHelper);
+        float meleeRange = weaponAIHelper.getAttackRange();
+        float enemyDistSqr = (closestPos - thisPos).sqrMagnitude;
+
+        if (enemyDistSqr < meleeRange * meleeRange)
         {
-            Debug.LogWarning("closest enemy null!");
+            equipment.initPrimaryAttack();
         }
     }
 

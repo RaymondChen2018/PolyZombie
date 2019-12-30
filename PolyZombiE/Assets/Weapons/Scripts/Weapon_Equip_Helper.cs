@@ -7,6 +7,7 @@ public class Weapon_Equip_Helper : MonoBehaviour {
     private Abstract_Identity user;
     [SerializeField] private UnityEvent OnEquiped = new UnityEvent();
     [SerializeField] private UnityEvent OnDequiped = new UnityEvent();
+
     bool prevEquiped = false;
 
     // Use this for initialization
@@ -38,4 +39,6 @@ public class Weapon_Equip_Helper : MonoBehaviour {
     {
         return user;
     }
+
+    
 }
