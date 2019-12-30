@@ -681,12 +681,30 @@ MonoBehaviour:
   weapon: {fileID: 0}
   identity: {fileID: 114601366997411766}
   WeaponBoneR: {fileID: 4513281427003036}
-  damageMultiplierPercent: 100
-  pickUpRadius: 2
   weaponLayerMask:
     serializedVersion: 2
     m_Bits: 16384
   animator: {fileID: 95127686417080660}
+  damageMultiplierPercent: 100
+  pickUpRadius: 2.66
+  OnEquip:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114836768288914520}
+        m_MethodName: updateWeaponRangeType
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEventWeapon, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  debugOn: 1
+  debugColor: {r: 0.3897059, g: 0.3939148, b: 1, a: 1}
 --- !u!114 &114439042865337166
 MonoBehaviour:
   m_ObjectHideFlags: 1

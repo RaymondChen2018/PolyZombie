@@ -99,4 +99,9 @@ public class AI_StateMachine_Helper : MonoBehaviour
     {
         animator.SetInteger("SoundRemembered", param);
     }
+    public void updateWeaponRangeType(Abstract_Weapon newWeapon)
+    {
+        AI_Weapon_Helper aiWeaponHelper = newWeapon.GetComponent<AI_Weapon_Helper>();
+        animator.SetBool("isRange", aiWeaponHelper.isRangeWeapon());
+    }
 }

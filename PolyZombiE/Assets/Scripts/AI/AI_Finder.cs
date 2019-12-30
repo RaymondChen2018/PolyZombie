@@ -131,7 +131,7 @@ public class AI_Finder : MonoBehaviour {
         return inViewCone;
     }
 
-    private static void DrawEllipse(Vector3 pos, float radius, Color color)
+    public static void DrawEllipse(Vector3 pos, float radius, Color color)
     {
         int segments = 32;
         float angle = 0f;

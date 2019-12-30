@@ -2538,7 +2538,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53597ba35571acf49baaab8f54e25527, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 50
+  maxHealth: 20
   mobileSpeed: 900
   infectiousness: 20
   damageMultiplierPercent: 100

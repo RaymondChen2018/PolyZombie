@@ -2,15 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.Events;
+using UnityEditor;
+[System.Serializable]
+public class UnityEventWeapon : UnityEvent<Abstract_Weapon>
+{
 
+}
 public class Equipment : MonoBehaviour {
     [SerializeField] private Abstract_Weapon weapon;
     [SerializeField] private Abstract_Identity identity;
     [SerializeField] private Transform WeaponBoneR;
-    [SerializeField] private int damageMultiplierPercent = 100;
-    [SerializeField] private float pickUpRadius = 2.0f;
     [SerializeField] private LayerMask weaponLayerMask;
     [SerializeField] Animator animator;
+
+    [Header("Stat")]
+    [SerializeField] private int damageMultiplierPercent = 100;
+    [SerializeField] private float pickUpRadius = 2.0f;
+
+    [SerializeField] UnityEventWeapon OnEquip = new UnityEventWeapon();
+
+    [Header("Debug")]
+    [SerializeField] private bool debugOn = false;
+    [SerializeField] private Color debugColor = Color.red;
 
     // Use this for initialization
     void Start () {
@@ -95,6 +109,7 @@ public class Equipment : MonoBehaviour {
 
     public void Equip(Abstract_Weapon newWeapon)
     {
+        OnEquip.Invoke(newWeapon);
         // Call weapon equip
         Weapon_Equip_Helper equipHelper = newWeapon.GetComponent<Weapon_Equip_Helper>();
         if(equipHelper.getUser() == null)
@@ -134,6 +149,14 @@ public class Equipment : MonoBehaviour {
             Abstract_Weapon weaponAbstract = weaponCollider.GetComponent<Abstract_Weapon>();
             Assert.IsNotNull(weaponAbstract);
             Equip(weaponAbstract);
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (debugOn)
+        {
+            AI_Finder.DrawEllipse(transform.position, pickUpRadius, debugColor);
         }
     }
 }
