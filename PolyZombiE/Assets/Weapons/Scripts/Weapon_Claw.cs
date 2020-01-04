@@ -7,24 +7,32 @@ public class Weapon_Claw : Abstract_Weapon {
     [SerializeField] float damage = 5.0f;
     [SerializeField] float biteDamage = 2.0f;
 
-    public override void Func_OnPrimary(LayerMask targetFilter, Abstract_Identity activator)
+    public override void Func_OnPrimary(Attack attackInfo)
     {
-        AttackPrototype_Melee(targetFilter, activator, sideEffect_Primary);
+        attackInfo.damage = damage;
+        AttackPrototype_Melee(attackInfo, sideEffect_Primary);
     }
 
-    public override void Func_OnSecondary(LayerMask targetFilter, Abstract_Identity activator)
+    public override void Func_OnSecondary(Attack attackInfo)
     {
-        AttackPrototype_Melee(targetFilter, activator, sideEffect_Secondary);
+        attackInfo.damage = biteDamage;
+        AttackPrototype_Melee(attackInfo, sideEffect_Secondary);
     }
 
-    protected void sideEffect_Primary(Abstract_Identity victim, Abstract_Identity activator)
+    protected void sideEffect_Primary(Attack attack)
     {
-        float damageScaled = damage * activator.getEquipmentComponent().getDamageMultiplierPercent() / 100.0f;
+        float damageDealt = attack.damage;
+        Abstract_Identity activator = attack.activator;
+        Abstract_Identity victim = attack.victim;
+        float damageScaled = damageDealt * activator.getEquipmentComponent().getDamageMultiplierPercent() / 100.0f;
         victim.getHealthComponent().subtractHealth(new DamageInfo(damageScaled, activator.transform.position - victim.transform.position, activator));
     }
 
-    protected void sideEffect_Secondary(Abstract_Identity victim, Abstract_Identity activator)
+    protected void sideEffect_Secondary(Attack attack)
     {
+        float damageDealt = attack.damage;
+        Abstract_Identity activator = attack.activator;
+        Abstract_Identity victim = attack.victim;
         // Victim must be human
         Human_Identity victimHuman = (Human_Identity)victim;
         Health victimHealthComponent = victimHuman.getHealthComponent();
@@ -38,7 +46,7 @@ public class Weapon_Claw : Abstract_Weapon {
         victimInfectionComponent.addInfection(infectiousness, activatorZomb);
 
         // Damage
-        float biteDamageScaled = biteDamage * activator.getEquipmentComponent().getDamageMultiplierPercent() / 100.0f;
+        float biteDamageScaled = damageDealt * activator.getEquipmentComponent().getDamageMultiplierPercent() / 100.0f;
         victimHealthComponent.subtractHealth(new DamageInfo(biteDamageScaled, activator.transform.position - victim.transform.position, activator));
     }
 }

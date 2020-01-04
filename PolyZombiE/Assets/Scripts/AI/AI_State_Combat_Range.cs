@@ -13,6 +13,7 @@ public class AI_State_Combat_Range : StateMachineBehaviour {
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         AI_StateMachine_Helper helper = animator.GetComponent<AI_StateMachine_Helper>();
+        Equipment equipment = helper.getEquipment();
         Movement movement = helper.getMovement();
         Orient orient = helper.getOrient();
         AI_Memory aiMemory = helper.getMemory();
@@ -43,6 +44,7 @@ public class AI_State_Combat_Range : StateMachineBehaviour {
 
         // Engage
         orient.lookAtStep(enemyPos);
+        equipment.initPrimaryAttack();
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
