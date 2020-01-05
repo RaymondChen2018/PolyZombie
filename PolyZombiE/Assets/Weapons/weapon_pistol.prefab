@@ -19,6 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4875962311118138}
+  - component: {fileID: 114097482826322896}
   m_Layer: 0
   m_Name: POI
   m_TagString: Untagged
@@ -54,7 +55,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1581804663829380}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.44, y: 4.756, z: 24}
+  m_LocalPosition: {x: 13.41, y: -3.81, z: 24}
   m_LocalScale: {x: 2.5352242, y: 0.48825863, z: 1}
   m_Children:
   - {fileID: 4875962311118138}
@@ -99,6 +100,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.64, y: 1.28}
   m_EdgeRadius: 0
+--- !u!114 &114097482826322896
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1006071427760682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f66ed3f43c55ad46a08815ad81d2f47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundTravelDistance: 100
+  aiSoundEarMask:
+    serializedVersion: 2
+    m_Bits: 32768
 --- !u!114 &114411092725135784
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -137,7 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05680fb09bd35374c969af3feeb2a05e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  primaryCycleTime: 0.5
+  primaryCycleTime: 0.3
   secondaryCycleTime: 0
   hitMultiple: 1
   projectilePrefab: {fileID: 1024124385177928, guid: bdb4653174f016a4ca894be812b73a35,
@@ -145,7 +161,23 @@ MonoBehaviour:
   primaryAnimation: HAttack_pistol
   secondaryAnimation: 
   POI: {fileID: 4875962311118138}
-  damage: 12
+  damage: 7
+  OnShoot:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114097482826322896}
+        m_MethodName: makeSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114705310175309990
 MonoBehaviour:
   m_ObjectHideFlags: 1

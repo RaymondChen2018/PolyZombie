@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AI_State_Alert_Guard : StateMachineBehaviour {
+public class AI_State_Alert_RunSound : StateMachineBehaviour {
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     //override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
@@ -15,10 +15,11 @@ public class AI_State_Alert_Guard : StateMachineBehaviour {
         AI_StateMachine_Helper helper = animator.GetComponent<AI_StateMachine_Helper>();
         Movement movement = helper.getMovement();
         Orient orient = helper.getOrient();
-        AI_Memory aiMemory = helper.getMemory();
+        AI_Memory aiSoundMemory = helper.getSoundReceiver();
         Vector2 thisPos = movement.getPosition();
 
-        List<Memory> memoryCache = aiMemory.getMemoryCache();
+        List<Memory> memoryCache = aiSoundMemory.getMemoryCache();
+        
         if (memoryCache.Count == 0)
         {
             Debug.LogWarning("flee target not found");
@@ -29,6 +30,7 @@ public class AI_State_Alert_Guard : StateMachineBehaviour {
         Vector2 lastSeenEnemyPos = memoryCache[0].lastSeenPosition;
         Vector2 moveDir = lastSeenEnemyPos - thisPos;
         orient.lookAtStep(thisPos + moveDir);
+        movement.Move(moveDir);
 
         // Combat point reach
         bool positionReached = movement.positionReached(lastSeenEnemyPos);

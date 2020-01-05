@@ -52,6 +52,7 @@ public class AI_Memory: MonoBehaviour {
         }
 
         // Call back
+        //Debug.Log("memory mem: " + enemyInMemory.Count);
         OnRememberTargets.Invoke(enemyInMemory.Count);
     }
 

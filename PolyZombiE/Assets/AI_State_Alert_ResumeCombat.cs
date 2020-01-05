@@ -25,25 +25,8 @@ public class AI_State_Alert_ResumeCombat : StateMachineBehaviour {
             return;
         }
 
-        // Get closest
-        //Vector2 tmp = memoryCache[0].lastSeenPosition;
-        //Vector2 lastSeenEnemyPos = tmp;
-        //float closestDistSqrTmp = (tmp - thisPos).sqrMagnitude;
-        //float closestDistSqr = closestDistSqrTmp;
-        //for (int i = 1; i < memoryCache.Count; i++)
-        //{
-        //    tmp = memoryCache[i].lastSeenPosition;
-        //    closestDistSqrTmp = (tmp - thisPos).sqrMagnitude;
-        //    if (closestDistSqr > closestDistSqrTmp)
-        //    {
-        //        closestDistSqr = closestDistSqrTmp;
-        //        lastSeenEnemyPos = tmp;
-        //    }
-        //}
-
+        // Go to last combat location
         Vector2 lastSeenEnemyPos = memoryCache[0].lastSeenPosition;
-
-        // Flee from
         Vector2 moveDir = lastSeenEnemyPos - thisPos;
         orient.lookAtStep(thisPos + moveDir);
         movement.Move(moveDir);

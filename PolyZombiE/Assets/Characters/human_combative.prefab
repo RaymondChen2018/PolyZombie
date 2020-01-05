@@ -893,8 +893,9 @@ MonoBehaviour:
   aiEnemyFinder: {fileID: 114847596091670208}
   aiWeaponFinder: {fileID: 114126993325165966}
   aiPainRecepter: {fileID: 114617454765183686}
-  aiSoundReceiver: {fileID: 114439042865337166}
+  aiSoundMemory: {fileID: 114905150620913950}
   aiCombative: 1
+  aiDefensive: 0
 --- !u!114 &114847596091670208
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -14,9 +14,10 @@ public class AI_StateMachine_Helper : MonoBehaviour
     [SerializeField] AI_Finder aiEnemyFinder;
     [SerializeField] AI_Finder aiWeaponFinder;
     [SerializeField] AI_Sense_Pain aiPainRecepter;
-    [SerializeField] AI_Sense_Sound aiSoundReceiver;
+    [SerializeField] AI_Memory aiSoundMemory;
 
     [SerializeField] bool aiCombative = false;
+    [SerializeField] bool aiDefensive = false;
 
     Animator animator;
 
@@ -34,6 +35,7 @@ public class AI_StateMachine_Helper : MonoBehaviour
         Assert.IsNotNull(animator);
 
         animator.SetBool("Combative", aiCombative);
+        animator.SetBool("Defensive", aiDefensive);
     }
 
     public Orient getOrient()
@@ -61,9 +63,9 @@ public class AI_StateMachine_Helper : MonoBehaviour
     {
         return aiPainRecepter;
     }
-    public AI_Sense_Sound getSoundReceiver()
+    public AI_Memory getSoundReceiver()
     {
-        return aiSoundReceiver;
+        return aiSoundMemory;
     }
 
     public Equipment getEquipment()

@@ -799,8 +799,9 @@ MonoBehaviour:
   aiEnemyFinder: {fileID: 114157872683310578}
   aiWeaponFinder: {fileID: 0}
   aiPainRecepter: {fileID: 114344962418124308}
-  aiSoundReceiver: {fileID: 114685934447296868}
+  aiSoundMemory: {fileID: 114361498754987396}
   aiCombative: 0
+  aiDefensive: 0
 --- !u!114 &114749900416243670
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -815,12 +816,19 @@ MonoBehaviour:
   weapon: {fileID: 0}
   identity: {fileID: 114998019885025714}
   WeaponBoneR: {fileID: 4275783402456642}
-  damageMultiplierPercent: 100
-  pickUpRadius: 2
   weaponLayerMask:
     serializedVersion: 2
     m_Bits: 16384
   animator: {fileID: 95905009864086908}
+  damageMultiplierPercent: 100
+  pickUpRadius: 2
+  OnEquip:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEventWeapon, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  debugOn: 0
+  debugColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &114807149465390760
 MonoBehaviour:
   m_ObjectHideFlags: 1

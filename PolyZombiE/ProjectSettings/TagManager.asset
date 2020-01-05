@@ -23,7 +23,7 @@ TagManager:
   - ExitTrigger
   - Weapon
   - AI_Ear
-  - 
+  - NavMesh
   - 
   - 
   - 
@@ -60,4 +60,7 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Fx_bullet
+    uniqueID: 2059890713
     locked: 0
