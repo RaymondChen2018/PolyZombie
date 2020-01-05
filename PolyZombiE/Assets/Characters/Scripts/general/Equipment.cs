@@ -74,13 +74,11 @@ public class Equipment : MonoBehaviour {
 
     public void AE_primaryAttack()
     {
-        //LayerMask targetFilter = identity.getTeamComponent().GetOpponentLayerMask();
-        weapon.PrimaryAttack(new Attack(identity));
+        weapon.PrimaryAttack(new AttackVictim(identity));
     }
     public void AE_secondaryAttack()
     {
-        //LayerMask targetFilter = identity.getTeamComponent().GetOpponentLayerMask();
-        weapon.SecondaryAttack(new Attack(identity));
+        weapon.SecondaryAttack(new AttackVictim(identity));
     }
 
     public bool hasWeapon()

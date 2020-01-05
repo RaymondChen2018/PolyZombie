@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-[System.Serializable]
-public class UnityEventAttackHit : UnityEvent<float, Abstract_Identity, Abstract_Identity>
-{
-
-}
 public class Projectile_Bullet : MonoBehaviour {
-    Attack attackInfo;
+    [SerializeField] float speed = 10.0f;
+    AttackVictim attackInfo;
     public UnityEventAttack OnHit = new UnityEventAttack();
+    [SerializeField] LayerMask hitMask;
+
+    [Header("Debug")]
+    [SerializeField] private bool debugOn = false;
+    [SerializeField] private Color debugColor = Color.red;
 
     // Use this for initialization
     void Start () {
@@ -18,13 +19,38 @@ public class Projectile_Bullet : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (false)
+        float distanceTravelled = speed * Time.deltaTime;
+        Vector2 direction = transform.rotation * Vector2.right;
+
+        if (debugOn)
         {
-            OnHit.Invoke(attackInfo);
+            Debug.DrawLine(transform.position, (Vector2)transform.position + direction * distanceTravelled, debugColor);
         }
-	}
-    public void SetInfo(Attack _attackInfo)
+
+        // Hit detection
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, distanceTravelled, hitMask);
+        if (hit)
+        {
+            // Update position
+            transform.position = hit.point;
+
+            // Call back
+            attackInfo.posImpact = hit.point;
+            attackInfo.victim = hit.collider;
+            OnHit.Invoke(attackInfo);
+
+            // Destroy bullet
+            Destroy(gameObject);
+        }
+        else
+        {
+            // Travel
+            transform.position = (Vector2)transform.position + direction * distanceTravelled;
+        }
+    }
+    public void SetInfo(AttackVictim _attackInfo)
     {
         attackInfo = _attackInfo;
+        hitMask |= _attackInfo.activator.getTeamComponent().GetOpponentLayerMask();
     }
 }
