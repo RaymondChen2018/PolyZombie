@@ -143,6 +143,7 @@ GameObject:
   - component: {fileID: 95467465800243452}
   - component: {fileID: 114726662595240880}
   - component: {fileID: 114260019570788096}
+  - component: {fileID: 114735442920179820}
   m_Layer: 0
   m_Name: Controllers
   m_TagString: Untagged
@@ -336,7 +337,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1423043396970880}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -16.107235, y: 1.8383006, z: 0}
+  m_LocalPosition: {x: -10.784091, y: 1.592979, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4076889785368586}
@@ -793,6 +794,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orient: {fileID: 114005825973281656}
   movement: {fileID: 114820406271398686}
+  aiMovement: {fileID: 114735442920179820}
   equipment: {fileID: 114749900416243670}
   teamAttribute: {fileID: 114200180462222248}
   aiMemory: {fileID: 114807149465390760}
@@ -802,6 +804,24 @@ MonoBehaviour:
   aiSoundMemory: {fileID: 114361498754987396}
   aiCombative: 0
   aiDefensive: 0
+--- !u!114 &114735442920179820
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1529999528050642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdc74454cf0ab3d4691c9b280f972071, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  navBlockMask:
+    serializedVersion: 2
+    m_Bits: 6144
+  colliderAgent: {fileID: 58877536583860836}
+  movement: {fileID: 114820406271398686}
+  debugOn: 1
+  debugColor: {r: 0, g: 1, b: 1, a: 1}
 --- !u!114 &114749900416243670
 MonoBehaviour:
   m_ObjectHideFlags: 1

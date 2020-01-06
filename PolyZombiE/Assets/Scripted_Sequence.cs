@@ -27,7 +27,7 @@ public class Scripted_Sequence : MonoBehaviour {
                 // Move the AI
                 Vector2 agentPos = AI_Agent.getMovement().getPosition();
                 AI_Agent.getOrient().lookAtStep(destination);
-                AI_Agent.getMovement().Move(destination - agentPos);
+                AI_Agent.getAIMovement().Move(destination);
 
                 // Check distance
                 float distSqr = (destination - AI_Agent.getMovement().getPosition()).sqrMagnitude;

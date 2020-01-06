@@ -18,6 +18,7 @@ public class AI_State_Flee : StateMachineBehaviour {
     {
         AI_StateMachine_Helper helper = animator.GetComponent<AI_StateMachine_Helper>();
         Movement movement = helper.getMovement();
+        AI_Movement aiMovement = helper.getAIMovement();
         Orient orient = helper.getOrient();
         AI_Memory aiMemory = helper.getMemory();
         Vector2 thisPos = movement.getPosition();

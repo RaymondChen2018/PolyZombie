@@ -8,6 +8,7 @@ public class AI_StateMachine_Helper : MonoBehaviour
 {
     [SerializeField] Orient orient;
     [SerializeField] Movement movement;
+    [SerializeField] AI_Movement aiMovement;
     [SerializeField] Equipment equipment;
     [SerializeField] Team_Attribute teamAttribute;
     [SerializeField] AI_Memory aiMemory;
@@ -26,6 +27,7 @@ public class AI_StateMachine_Helper : MonoBehaviour
     {
         Assert.IsNotNull(orient);
         Assert.IsNotNull(movement);
+        Assert.IsNotNull(aiMovement);
         Assert.IsNotNull(equipment);
         Assert.IsNotNull(teamAttribute);
         Assert.IsNotNull(aiEnemyFinder);
@@ -45,6 +47,10 @@ public class AI_StateMachine_Helper : MonoBehaviour
     public Movement getMovement()
     {
         return movement;
+    }
+    public AI_Movement getAIMovement()
+    {
+        return aiMovement;
     }
 
     public AI_Memory getMemory()

@@ -16,7 +16,7 @@ public class AI_Finder : MonoBehaviour {
     [SerializeField] private float viewDist = 10.0f;
     [SerializeField] private float viewConeAngle = 60.0f;
     [SerializeField] private List<Transform> targetInSight;
-    private Transform closestTargetInSight = null;
+    //private Transform closestTargetInSight = null;
 
     [SerializeField] private UnityEventTranform OnSeeEveryTarget = new UnityEventTranform();
     [SerializeField] private UnityEventInt OnSeeTargets = new UnityEventInt();
@@ -61,32 +61,32 @@ public class AI_Finder : MonoBehaviour {
         }
         OnSeeTargets.Invoke(targetInSight.Count);
         // Find closest enemy
-        if (targetInSight.Count > 0)
-        {
-            Transform tmp = targetInSight[0].transform;
-            Transform ret = tmp;
-            float closestDistSqrTmp = ((Vector2)tmp.position - thisPos).sqrMagnitude;
-            float closestDistSqr = closestDistSqrTmp;
-            for (int i = 1; i < targetInSight.Count; i++)
-            {
-                tmp = targetInSight[i].transform;
-                closestDistSqrTmp = ((Vector2)tmp.position - thisPos).sqrMagnitude;
-                if (closestDistSqr > closestDistSqrTmp)
-                {
-                    closestDistSqr = closestDistSqrTmp;
-                    ret = tmp;
-                }
-            }
-            if(closestTargetInSight != ret)
-            {
-                Func_OnSeeCloserTarget(ret);
-            }
-            closestTargetInSight = ret;
-        }
-        else
-        {
-            closestTargetInSight = null;
-        }
+        //if (targetInSight.Count > 0)
+        //{
+        //    Transform tmp = targetInSight[0].transform;
+        //    Transform ret = tmp;
+        //    float closestDistSqrTmp = ((Vector2)tmp.position - thisPos).sqrMagnitude;
+        //    float closestDistSqr = closestDistSqrTmp;
+        //    for (int i = 1; i < targetInSight.Count; i++)
+        //    {
+        //        tmp = targetInSight[i].transform;
+        //        closestDistSqrTmp = ((Vector2)tmp.position - thisPos).sqrMagnitude;
+        //        if (closestDistSqr > closestDistSqrTmp)
+        //        {
+        //            closestDistSqr = closestDistSqrTmp;
+        //            ret = tmp;
+        //        }
+        //    }
+        //    if (closestTargetInSight != ret)
+        //    {
+        //        Func_OnSeeCloserTarget(ret);
+        //    }
+        //    closestTargetInSight = ret;
+        //}
+        //else
+        //{
+        //    closestTargetInSight = null;
+        //}
 
         // Debug
         debug();
@@ -97,17 +97,28 @@ public class AI_Finder : MonoBehaviour {
         // Call back
         OnSeeEveryTarget.Invoke(targetTransform);
     }
-    private void Func_OnSeeCloserTarget(Transform targetTransform)
-    {
-        // Call back
-        OnFoundCloserTarget.Invoke(targetTransform);
-    }
+    //private void Func_OnSeeCloserTarget(Transform targetTransform)
+    //{
+    //    // Call back
+    //    OnFoundCloserTarget.Invoke(targetTransform);
+    //}
 
-    public Transform getClosestTargetInsight()
+    //public Transform getClosestTargetInsight()
+    //{
+    //    return closestTargetInSight;
+    //}
+    public List<Transform> getSightCache()
     {
-        return closestTargetInSight;
+        for(int i = 0; i < targetInSight.Count; i++)
+        {
+            if(targetInSight[i] == null)
+            {
+                targetInSight.RemoveAt(i);
+                i--;
+            }
+        }
+        return targetInSight;
     }
-
     bool enemyInLOS(Vector2 enemyPos, Vector2 thisPos, LayerMask obstacleMask)
     {
         return !Physics2D.Linecast(enemyPos, thisPos, losObstacleLayerMask);

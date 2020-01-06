@@ -256,6 +256,7 @@ GameObject:
   - component: {fileID: 95172793132721336}
   - component: {fileID: 114836768288914520}
   - component: {fileID: 114077072048657164}
+  - component: {fileID: 114855708762944986}
   m_Layer: 0
   m_Name: Controllers
   m_TagString: Untagged
@@ -887,6 +888,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orient: {fileID: 114674036565262408}
   movement: {fileID: 114164338790233828}
+  aiMovement: {fileID: 114855708762944986}
   equipment: {fileID: 114268837824154844}
   teamAttribute: {fileID: 114882997427331820}
   aiMemory: {fileID: 114063033835480522}
@@ -894,6 +896,7 @@ MonoBehaviour:
   aiWeaponFinder: {fileID: 114126993325165966}
   aiPainRecepter: {fileID: 114617454765183686}
   aiSoundMemory: {fileID: 114905150620913950}
+  aiThreatPrioritizer: {fileID: 0}
   aiCombative: 1
   aiDefensive: 0
 --- !u!114 &114847596091670208
@@ -954,6 +957,24 @@ MonoBehaviour:
     m_TypeName: UnityEventTranform, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   debugOn: 1
+  debugColor: {r: 1, g: 0, b: 0, a: 1}
+--- !u!114 &114855708762944986
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1965364199507086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdc74454cf0ab3d4691c9b280f972071, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  navBlockMask:
+    serializedVersion: 2
+    m_Bits: 6144
+  colliderAgent: {fileID: 58808163961917524}
+  movement: {fileID: 114164338790233828}
+  debugOn: 0
   debugColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &114861560611268298
 MonoBehaviour:

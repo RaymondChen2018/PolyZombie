@@ -15,13 +15,13 @@ public class AI_State_Combat_Melee : StateMachineBehaviour {
     {
         AI_StateMachine_Helper helper = animator.GetComponent<AI_StateMachine_Helper>();
         Movement movement = helper.getMovement();
+        AI_Movement aiMovement = helper.getAIMovement();
         Orient orient = helper.getOrient();
         Equipment equipment = helper.getEquipment();
-        AI_Memory aiMemory = helper.getMemory();
-
+        AI_Finder aiEnemyFinder = helper.getEnemyFinder();
         Vector2 thisPos = movement.getPosition();
 
-        List<Memory> memoryCache = aiMemory.getMemoryCache();
+        List<Transform> memoryCache = aiEnemyFinder.getSightCache();
         if(memoryCache.Count == 0)
         {
             Debug.LogWarning("attack target not found");
@@ -29,13 +29,13 @@ public class AI_State_Combat_Melee : StateMachineBehaviour {
         }
         
         // Get closest
-        Vector2 tmp = memoryCache[0].lastSeenPosition;
+        Vector2 tmp = memoryCache[0].position;
         Vector2 closestPos = tmp;
         float closestDistSqrTmp = (tmp - thisPos).sqrMagnitude;
         float closestDistSqr = closestDistSqrTmp;
         for (int i = 1; i < memoryCache.Count; i++)
         {
-            tmp = memoryCache[i].lastSeenPosition;
+            tmp = memoryCache[i].position;
             closestDistSqrTmp = (tmp - thisPos).sqrMagnitude;
             if (closestDistSqr > closestDistSqrTmp)
             {
@@ -46,7 +46,7 @@ public class AI_State_Combat_Melee : StateMachineBehaviour {
 
         // Engage
         orient.lookAtStep(closestPos);
-        movement.Move(closestPos - thisPos);
+        aiMovement.Move(closestPos);
 
         // Attack when close
         AI_Weapon_Helper weaponAIHelper = equipment.getWeapon().GetComponent<AI_Weapon_Helper>();

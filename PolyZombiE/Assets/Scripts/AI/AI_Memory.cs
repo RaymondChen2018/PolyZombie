@@ -106,6 +106,14 @@ public class AI_Memory: MonoBehaviour {
 
     public List<Memory> getMemoryCache()
     {
+        for (int i = 0; i < enemyInMemory.Count; i++)
+        {
+            if (enemyInMemory[i] == null)
+            {
+                enemyInMemory.RemoveAt(i);
+                i--;
+            }
+        }
         return enemyInMemory;
     }
 }

@@ -14,6 +14,7 @@ public class AI_State_Alert_ResumeCombat : StateMachineBehaviour {
     {
         AI_StateMachine_Helper helper = animator.GetComponent<AI_StateMachine_Helper>();
         Movement movement = helper.getMovement();
+        AI_Movement aiMovement = helper.getAIMovement();
         Orient orient = helper.getOrient();
         AI_Memory aiMemory = helper.getMemory();
         Vector2 thisPos = movement.getPosition();
@@ -27,9 +28,8 @@ public class AI_State_Alert_ResumeCombat : StateMachineBehaviour {
 
         // Go to last combat location
         Vector2 lastSeenEnemyPos = memoryCache[0].lastSeenPosition;
-        Vector2 moveDir = lastSeenEnemyPos - thisPos;
-        orient.lookAtStep(thisPos + moveDir);
-        movement.Move(moveDir);
+        orient.lookAtStep(lastSeenEnemyPos);
+        aiMovement.Move(lastSeenEnemyPos);
 
         // Combat point reach
         bool positionReached = movement.positionReached(lastSeenEnemyPos);

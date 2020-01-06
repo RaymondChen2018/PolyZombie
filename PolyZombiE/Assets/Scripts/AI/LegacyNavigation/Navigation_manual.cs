@@ -2,17 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.Assertions;
 
 public class NavRequest
 {
-    public NavRequest(AI_NavHelper who, Vector2 whereTo, Vector2 fromWhere, float yourSize)
+    public NavRequest(AI_Movement who, Vector2 whereTo, Vector2 fromWhere, float yourSize)
     {
         subject = who;
         destineLocation = whereTo;
         currLocation = fromWhere;
         agentSize = yourSize;
     }
-    public AI_NavHelper subject;
+    public void update(NavRequest newRequest)
+    {
+        destineLocation = newRequest.destineLocation;
+        currLocation = newRequest.currLocation;
+        agentSize = newRequest.agentSize;
+    }
+
+    public AI_Movement subject;
     public Vector2 destineLocation;
     public Vector2 currLocation;
     public float agentSize = 1.0f;
@@ -107,7 +115,7 @@ public class Navigation_manual : MonoBehaviour {
 
         for (int i = 0; i < nodes_gameobjects.Length; i++)//destroy static nodes
         {
-            Destroy(nodes_gameobjects[i].gameObject);
+            //Destroy(nodes_gameobjects[i].gameObject);
         }
         
     }
@@ -129,11 +137,12 @@ public class Navigation_manual : MonoBehaviour {
 
             if (navRequest.subject != null)
             {
-                AI_NavHelper ai = navRequest.subject;
+                AI_Movement ai = navRequest.subject;
 
                 //Navigate
-                ai.setNavigationPath(Astar_Algorithm_pathVector2(navRequest.currLocation, navRequest.destineLocation, ai.getNavSize(), ai.getNavSize()));
                 
+                List<Vector2> solution = Astar_Algorithm_pathVector2(navRequest.currLocation, navRequest.destineLocation, navRequest.agentSize);
+                ai.setNavigationPath(solution);
                 //Debug.DrawLine(ai.transform.position, ai.path[0].position, Color.white, 10);
                 //Debug.DrawLine(ai.path[0].position, destine_location, Color.white, 10);
             }
@@ -143,7 +152,7 @@ public class Navigation_manual : MonoBehaviour {
     {
         for(int i = 0; i < nodes_dyn.Count; i++)
         {
-            Destroy(nodes_dyn[i].reference);
+            //Destroy(nodes_dyn[i].reference);
         }
     }
     
@@ -178,7 +187,7 @@ public class Navigation_manual : MonoBehaviour {
         {
             if (!nodes_list[i].reference.GetComponent<Node>().isDynamic)
             {
-                Destroy(nodes_list[i].reference);
+                //Destroy(nodes_list[i].reference);
 
             }else
             {
@@ -187,76 +196,86 @@ public class Navigation_manual : MonoBehaviour {
         }
     }
     //This algorithm doesnt include target objects' positions as nodes
-    List<Vector2> Astar_Algorithm_pathVector2(Vector2 zombie, Vector2 player, float zombie_size, float player_size)
+    List<Vector2> Astar_Algorithm_pathVector2(Vector2 zombie, Vector2 player, float agentSize)
     {
-        List<_Node> ret = Astar_algorithm(zombie, player, zombie_size, player_size);
+        List<_Node> ret = Astar_algorithm(zombie, player, agentSize, agentSize);
         List<Vector2> retPos = new List<Vector2>();
         for(int i = 0; i < ret.Count; i++)
         {
-            retPos.Add(ret[i].position);
+            Node refNode = ret[i].reference.GetComponent<Node>();
+            Vector2 scaledPosition = refNode.getAgentScaledPosition(agentSize);
+            retPos.Add(scaledPosition);
         }
+        retPos.Add(player);
         return retPos;
     }
     List<_Node> Astar_algorithm(Vector2 zombie, Vector2 player, float zombie_size, float player_size)
     {
-        List<_Node> startNode = surround_nodes(zombie, -1, 0.1f);
-        List<_Node> targetNode = surround_nodes(player, -1, 0.1f);
+        List<_Node> ret = new List<_Node>();
 
-        if ((targetNode.Count == 0) || (startNode.Count == 0))//if there is no nearby node to keep the player/zombie in touch, abort search
-        {
-            startNode = surround_nodes(zombie, -1, zombie_size);
-            targetNode = surround_nodes(player, -1, player_size);
-        }
-        
-        if ((targetNode.Count == 0) || (startNode.Count == 0))
-        {
-            return null;
-        }
-        for (int i = 0; i < startNode.Count; i++)
-        {
-            startNode[i].gCost = Vector2.Distance(startNode[i].position, zombie);
-            startNode[i].hCost = Vector2.Distance(startNode[i].position, player);
-        }
-        List<_Node> openSet = startNode;
-        HashSet<_Node> closeSet = new HashSet<_Node>();
-        while (openSet.Count > 0)
-        {
-            _Node currentNode = openSet[0];
-            for (int i = 1; i < openSet.Count; i++)
-            {
-                if (openSet[i].fCost < currentNode.fCost || openSet[i].fCost == currentNode.fCost && openSet[i].hCost < currentNode.hCost)
-                {
-                    currentNode = openSet[i];
-                }
-            }
-            openSet.Remove(currentNode);
-            closeSet.Add(currentNode);
-            if (targetNode.Contains(currentNode))
-            {
-                return RetracePath(startNode, currentNode);
-            }
-            for (int i = 0; i < currentNode.link.Count; i++)
-            {
-                _Node neighboor = currentNode.link[i];
+        List<_Node> startNode = surround_nodes(zombie, zombie_size);
+        List<_Node> targetNode = surround_nodes(player, zombie_size);
 
-                if (closeSet.Contains(neighboor))
+        if (startNode.Count == 0)
+        {
+            Debug.LogWarning("Agent not within nav network!");
+        }
+        else if (targetNode.Count == 0)
+        {
+            Debug.LogWarning("Target not within nav network!");
+        }
+        else
+        {
+            for (int i = 0; i < startNode.Count; i++)
+            {
+                startNode[i].gCost = Vector2.Distance(startNode[i].position, zombie);
+                startNode[i].hCost = Vector2.Distance(startNode[i].position, player);
+            }
+            List<_Node> openSet = startNode;
+            HashSet<_Node> closeSet = new HashSet<_Node>();
+            while (openSet.Count > 0)
+            {
+                _Node currentNode = openSet[0];
+                for (int i = 1; i < openSet.Count; i++)
                 {
-                    continue;
-                }
-                float newMovementCostToNeighboor = currentNode.gCost + Vector2.Distance(neighboor.position, currentNode.position);
-                if (newMovementCostToNeighboor < neighboor.gCost || !openSet.Contains(neighboor))
-                {
-                    neighboor.gCost = newMovementCostToNeighboor;
-                    neighboor.hCost = Vector2.Distance(neighboor.position, player);
-                    neighboor.parent = currentNode;
-                    if (!openSet.Contains(neighboor))//neighboor unexplored
+                    if (openSet[i].fCost < currentNode.fCost || openSet[i].fCost == currentNode.fCost && openSet[i].hCost < currentNode.hCost)
                     {
-                        openSet.Add(neighboor);
+                        currentNode = openSet[i];
+                    }
+                }
+                openSet.Remove(currentNode);
+                closeSet.Add(currentNode);
+                if (targetNode.Contains(currentNode))
+                {
+                    ret = RetracePath(startNode, currentNode);
+                    break;
+                    //return RetracePath(startNode, currentNode);
+                }
+                for (int i = 0; i < currentNode.link.Count; i++)
+                {
+                    _Node neighboor = currentNode.link[i];
+
+                    if (closeSet.Contains(neighboor))
+                    {
+                        continue;
+                    }
+                    float newMovementCostToNeighboor = currentNode.gCost + Vector2.Distance(neighboor.position, currentNode.position);
+                    if (newMovementCostToNeighboor < neighboor.gCost || !openSet.Contains(neighboor))
+                    {
+                        neighboor.gCost = newMovementCostToNeighboor;
+                        neighboor.hCost = Vector2.Distance(neighboor.position, player);
+                        neighboor.parent = currentNode;
+                        if (!openSet.Contains(neighboor))//neighboor unexplored
+                        {
+                            openSet.Add(neighboor);
+                        }
                     }
                 }
             }
         }
-        return null;
+
+        return ret;
+        
     }
     List<_Node> RetracePath(List<_Node> startNode, _Node endNode)
     {
@@ -273,7 +292,7 @@ public class Navigation_manual : MonoBehaviour {
     }
 
     //Get the surrounding nodes within the area
-    public List<_Node> surround_nodes(Vector2 position, float size, float min_dist)
+    public List<_Node> surround_nodes(Vector2 position, float size)
     {
         List<_Node> ret = new List<_Node>();
         Nav_area_generic area = get_area(position);
@@ -281,8 +300,8 @@ public class Navigation_manual : MonoBehaviour {
         {
             for (int i = 0; i < area.area_nodes.Count; i++)
             {
-                bool seen = LOS(position, area.area_nodes[i].position, size, Path_block);
-                if (seen && Vector2.Distance(position, area.area_nodes[i].position) > size)
+                bool seen = LOS(position, area.area_nodes[i].reference.GetComponent<Node>().getAgentScaledPosition(size), size, Path_block);
+                if (seen)
                 {
                     ret.Add(area.area_nodes[i]);
                 }
@@ -476,7 +495,13 @@ public class Navigation_manual : MonoBehaviour {
     //return false when something between
     public bool LOS(Vector2 start, Vector2 end, float size, LayerMask los_b)
     {
-        if(size != -1)
+        //RaycastHit2D Hit = Physics2D.Linecast(start, end, los_b);
+        //if (Hit.collider == null)
+        //{
+        //    return true;
+        //}
+        //return false;
+        if (size != -1)
         {
             float viewdist = Vector2.Distance(start, end);
             RaycastHit2D Hit = Physics2D.BoxCast(start, new Vector2(size, size), Vector2.Distance(end, start), end - start, viewdist, los_b);
@@ -485,7 +510,8 @@ public class Navigation_manual : MonoBehaviour {
                 return true;
             }
             return false;
-        }else
+        }
+        else
         {
             RaycastHit2D Hit = Physics2D.Linecast(start, end, los_b);
             if (Hit.collider == null)
@@ -500,11 +526,8 @@ public class Navigation_manual : MonoBehaviour {
 
     public static void RequestPath(NavRequest navRequest)//, GameObject player, float z_size, float p_size)
     {
-        NavRequest req = Singleton.pathRequestQueue.Find(x => x.subject == navRequest.subject);
-        if (req == null)// new agent request, add
-        {
-            Singleton.pathRequestQueue.Add(navRequest);
-        }
+        Singleton.pathRequestQueue.Remove(navRequest);
+        Singleton.pathRequestQueue.Add(navRequest);
     }
 
     void OnDestroy()

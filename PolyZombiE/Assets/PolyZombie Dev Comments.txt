@@ -11,8 +11,9 @@
 
 
 Left off: 
-implemented combative trait where ai seeks to get weapon to fight;
-next to-do: make ai aware damage, sound source
+finished navigation system
+
+next: add navigation to previous maps, test, clean up
 
 
 

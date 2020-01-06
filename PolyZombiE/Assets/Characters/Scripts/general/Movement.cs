@@ -40,9 +40,8 @@ public class Movement : MonoBehaviour
         movementSpeed = value;
     }
 
-    public bool positionReached(Vector2 destinatedPosition)
+    public bool positionReached(Vector2 destinatedPosition, float tolerance = 1.0f)
     {
-        float tolerance = 1.0f;
         return (RB.position - destinatedPosition).sqrMagnitude < tolerance * tolerance;
     }
 }

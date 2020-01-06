@@ -16,24 +16,24 @@ public class AI_State_Combat_Range : StateMachineBehaviour {
         Equipment equipment = helper.getEquipment();
         Movement movement = helper.getMovement();
         Orient orient = helper.getOrient();
-        AI_Memory aiMemory = helper.getMemory();
+        AI_Finder aiEnemyFinder = helper.getEnemyFinder();
         Vector2 thisPos = movement.getPosition();
-
-        List<Memory> memoryCache = aiMemory.getMemoryCache();
-        if (memoryCache.Count == 0)
+       
+        List<Transform> sightCache = aiEnemyFinder.getSightCache();
+        if (sightCache.Count == 0)
         {
             Debug.LogWarning("attack target not found");
             return;
         }
 
         // Get closest
-        Vector2 tmp = memoryCache[0].lastSeenPosition;
+        Vector2 tmp = sightCache[0].position;
         Vector2 enemyPos = tmp;
         float closestDistSqrTmp = (tmp - thisPos).sqrMagnitude;
         float closestDistSqr = closestDistSqrTmp;
-        for (int i = 1; i < memoryCache.Count; i++)
+        for (int i = 1; i < sightCache.Count; i++)
         {
-            tmp = memoryCache[i].lastSeenPosition;
+            tmp = sightCache[i].position;
             closestDistSqrTmp = (tmp - thisPos).sqrMagnitude;
             if (closestDistSqr > closestDistSqrTmp)
             {

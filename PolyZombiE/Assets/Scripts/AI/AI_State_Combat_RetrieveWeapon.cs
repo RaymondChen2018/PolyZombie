@@ -14,30 +14,47 @@ public class AI_State_Combat_RetrieveWeapon : StateMachineBehaviour {
     {
         AI_StateMachine_Helper helper = animator.GetComponent<AI_StateMachine_Helper>();
         Movement movement = helper.getMovement();
+        AI_Movement aiMovement = helper.getAIMovement();
         Orient orient = helper.getOrient();
         Equipment equipment = helper.getEquipment();
         AI_Finder weaponFinder = helper.getWeaponFinder();
-        Transform weaponClosest = weaponFinder.getClosestTargetInsight();
-        if (weaponClosest != null)
+
+        List<Transform> sightCache = weaponFinder.getSightCache();
+        if (sightCache.Count == 0)
         {
-            // Move & Face enemy
-            Vector2 enemyPos = weaponClosest.position;
-            Vector2 thisPos = movement.getPosition();
-            orient.lookAtStep(enemyPos);
-            movement.Move(enemyPos - thisPos);
+            Debug.LogWarning("Weapon not found");
+            return;
+        }
 
-            // Fetch when close
-            float pickupRadius = equipment.getPickUpRadius();
-            float enemyDistSqr = (enemyPos - thisPos).sqrMagnitude;
-
-            if (enemyDistSqr < pickupRadius * pickupRadius)
+        // Find closest weapon
+        Vector2 thisPos = movement.getPosition();
+        Transform tmp = sightCache[0];
+        Transform weaponClosest = tmp;
+        float closestDistSqrTmp = ((Vector2)tmp.position - thisPos).sqrMagnitude;
+        float closestDistSqr = closestDistSqrTmp;
+        for (int i = 1; i < sightCache.Count; i++)
+        {
+            tmp = sightCache[i];
+            closestDistSqrTmp = ((Vector2)tmp.position - thisPos).sqrMagnitude;
+            if (closestDistSqr > closestDistSqrTmp)
             {
-                equipment.pickUp();
+                closestDistSqr = closestDistSqrTmp;
+                weaponClosest = tmp;
             }
         }
-        else
+
+        // Move & Face enemy
+        Vector2 enemyPos = weaponClosest.position;
+        orient.lookAtStep(enemyPos);
+        aiMovement.Move(enemyPos);
+
+        // Fetch when close
+        float pickupRadius = equipment.getPickUpRadius();
+        float enemyDistSqr = (enemyPos - thisPos).sqrMagnitude;
+
+        if (enemyDistSqr < pickupRadius * pickupRadius)
         {
-            Debug.LogWarning("closest weapon null!");
+            equipment.pickUp();
         }
     }
 

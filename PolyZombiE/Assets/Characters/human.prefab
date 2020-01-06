@@ -240,6 +240,7 @@ GameObject:
   - component: {fileID: 95978398277975734}
   - component: {fileID: 114332406119229866}
   - component: {fileID: 114214575356445908}
+  - component: {fileID: 114220305797326822}
   m_Layer: 0
   m_Name: Controllers
   m_TagString: Untagged
@@ -632,6 +633,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   equipment: {fileID: 114889468079318562}
   AIStateMachine: {fileID: 95978398277975734}
+--- !u!114 &114220305797326822
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1957875804402164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdc74454cf0ab3d4691c9b280f972071, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  navBlockMask:
+    serializedVersion: 2
+    m_Bits: 6144
+  colliderAgent: {fileID: 58758794588509218}
+  movement: {fileID: 114566300440169012}
+  debugOn: 0
+  debugColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &114332406119229866
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -645,6 +664,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orient: {fileID: 114080512136014582}
   movement: {fileID: 114566300440169012}
+  aiMovement: {fileID: 114220305797326822}
   equipment: {fileID: 114889468079318562}
   teamAttribute: {fileID: 114398554437251216}
   aiMemory: {fileID: 114767538563750944}
@@ -652,6 +672,7 @@ MonoBehaviour:
   aiWeaponFinder: {fileID: 0}
   aiPainRecepter: {fileID: 114187397475179710}
   aiSoundMemory: {fileID: 114100727696982162}
+  aiThreatPrioritizer: {fileID: 0}
   aiCombative: 0
   aiDefensive: 0
 --- !u!114 &114338866852877246
