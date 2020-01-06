@@ -14,7 +14,6 @@ public class Node : MonoBehaviour {
     [SerializeField] private float normalAngle = 0.0f;
     private Vector2 normalEndPosition;
 
-
     private void OnDrawGizmos()
     {
         for (int i = 0; i < neighboor.Count; i++)
@@ -39,10 +38,6 @@ public class Node : MonoBehaviour {
         Debug.DrawLine(transform.position, normalEndPosition);
     }
 
-    public Vector2 getNormal()
-    {
-        return (normalEndPosition - (Vector2)transform.position).normalized;
-    }
     public Vector2 getAgentScaledPosition(float agentSize)
     {
         Vector2 normal = (normalEndPosition - (Vector2)transform.position).normalized;

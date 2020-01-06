@@ -21,22 +21,14 @@ public class AI_State_Alert_Guard : StateMachineBehaviour {
         List<Memory> memoryCache = aiMemory.getMemoryCache();
         if (memoryCache.Count == 0)
         {
-            Debug.LogWarning("flee target not found");
+            Debug.LogWarning("Threat location not found");
             return;
         }
 
         // Go to last combat location
         Vector2 lastSeenEnemyPos = memoryCache[0].lastSeenPosition;
-        Vector2 moveDir = lastSeenEnemyPos - thisPos;
-        orient.lookAtStep(thisPos + moveDir);
+        orient.lookAtStep(lastSeenEnemyPos);
 
-        // Combat point reach
-        bool positionReached = movement.positionReached(lastSeenEnemyPos);
-        if (positionReached)
-        {
-            memoryCache.RemoveAt(0);
-            animator.SetTrigger("CombatPointReached");
-        }
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

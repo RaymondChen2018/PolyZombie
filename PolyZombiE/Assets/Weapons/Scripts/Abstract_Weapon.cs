@@ -97,6 +97,11 @@ public abstract class Abstract_Weapon: MonoBehaviour{
     // Attack End
     protected void Func_OnHitHurt(AttackVictim attack)
     {
+        if(attack.activator == null)
+        {
+            attack.activator = World_Identity.singleton;
+        }
+
         Assert.IsNotNull(attack.activator);
         Assert.IsNotNull(attack.victim);
 

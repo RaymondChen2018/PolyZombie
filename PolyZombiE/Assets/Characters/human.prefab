@@ -650,7 +650,7 @@ MonoBehaviour:
   colliderAgent: {fileID: 58758794588509218}
   movement: {fileID: 114566300440169012}
   debugOn: 0
-  debugColor: {r: 1, g: 0, b: 0, a: 1}
+  debugColor: {r: 0.43382353, g: 1, b: 0.92971605, a: 1}
 --- !u!114 &114332406119229866
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -672,7 +672,6 @@ MonoBehaviour:
   aiWeaponFinder: {fileID: 0}
   aiPainRecepter: {fileID: 114187397475179710}
   aiSoundMemory: {fileID: 114100727696982162}
-  aiThreatPrioritizer: {fileID: 0}
   aiCombative: 0
   aiDefensive: 0
 --- !u!114 &114338866852877246

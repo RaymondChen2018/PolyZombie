@@ -46,10 +46,31 @@ public class AI_State_Flee : StateMachineBehaviour {
             }
         }
 
-        // Flee from
-        Vector2 moveDir = thisPos - enemyPos;
-        orient.lookAtStep(thisPos + moveDir);
-        movement.Move(moveDir);
+        // Get hiding spot
+        Transform hidingSpot = Navigation_manual.nearest_cover(thisPos, enemyPos);
+
+        // Flee to hiding spot
+        if(hidingSpot != null)
+        {
+            orient.lookAtStep(hidingSpot.position);
+            aiMovement.Move(hidingSpot.position);
+
+            // Combat point reach
+            bool positionReached = movement.positionReached(hidingSpot.position);
+            if (positionReached)
+            {
+                animator.SetTrigger("CoverPointReached");
+            }
+        }
+        // Flee from enemy
+        else
+        {
+            Vector2 moveDir = thisPos - enemyPos;
+            orient.lookAtStep(enemyPos);
+            movement.Move(moveDir);
+        }
+
+        
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

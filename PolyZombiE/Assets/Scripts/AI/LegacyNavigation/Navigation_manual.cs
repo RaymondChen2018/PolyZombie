@@ -68,11 +68,9 @@ public class Navigation_manual : MonoBehaviour {
     public LayerMask LOS_block;
     public LayerMask nav_area_layer;
     public BoxCollider2D[] patrol_areas;
-    public Nav_area_generic[] nav_areas;
     public List<_Node> area_dict = new List<_Node>();//set of navigation nodes via area code
-    public _Node[] nodes;
-    public Vector2 hiding_spots;
     public List<_Node> nodes_dyn = new List<_Node>();
+    [SerializeField] private List<Transform> hidingSpots = new List<Transform>();
 
     void Awake()
     {
@@ -90,24 +88,23 @@ public class Navigation_manual : MonoBehaviour {
             new_node.reference = nodes_gameobjects[i].gameObject;
             Collider2D[] areas = Physics2D.OverlapPointAll(new_node.position, nav_area_layer);
             area_dict.Add(new_node);
-            if (areas == null || areas.Length == 0)
-            {
-                Debug.LogError("Node "+ nodes_gameobjects[i].name + " cant find an nav_area");
-            }
-            for(int j = 0; j < areas.Length; j++)
-            {
-                //Debug.Log("node: " + nodes_gameobjects[i].name + " added to: " + areas[j].name);
+            //if (areas == null || areas.Length == 0)
+            //{
+            //    Debug.LogError("Node "+ nodes_gameobjects[i].name + " cant find an nav_area");
+            //}
+            //for(int j = 0; j < areas.Length; j++)
+            //{
+            //    //Debug.Log("node: " + nodes_gameobjects[i].name + " added to: " + areas[j].name);
 
-                areas[j].GetComponent<Nav_area_generic>().area_nodes.Add(new_node);
+            //    areas[j].GetComponent<Nav_area_generic>().area_nodes.Add(new_node);
                 
-            }
+            //}
             
         }
         for (int i = 0; i < nodes_gameobjects.Length; i++)//create nav nodes and correspond actual nodes with them
         {
             for (int j = 0; j < nodes_gameobjects[i].neighboor.Count; j++)//Assign neighboors
             {
-                
                 nodes_gameobjects[i].reference.neighboor.Add(nodes_gameobjects[i].neighboor[j].GetComponent<Node>().reference);
             }
         }
@@ -295,82 +292,94 @@ public class Navigation_manual : MonoBehaviour {
     public List<_Node> surround_nodes(Vector2 position, float size)
     {
         List<_Node> ret = new List<_Node>();
-        Nav_area_generic area = get_area(position);
-        if (area != null)
+        for (int i = 0; i < area_dict.Count; i++)
         {
-            for (int i = 0; i < area.area_nodes.Count; i++)
+            _Node currNode = area_dict[i];
+            bool seen = LOS(position, currNode.reference.GetComponent<Node>().getAgentScaledPosition(size), size, Path_block);
+            if (seen)
             {
-                bool seen = LOS(position, area.area_nodes[i].reference.GetComponent<Node>().getAgentScaledPosition(size), size, Path_block);
-                if (seen)
-                {
-                    ret.Add(area.area_nodes[i]);
-                }
+                ret.Add(currNode);
             }
         }
-        else if(ret.Count == 0)
-        {
-            //Debug.LogError("Position: " + position + " cant find surrounding nodes");
-        }
+
+
+        //Nav_area_generic area = get_area(position);
+        //if (area != null)
+        //{
+        //    for (int i = 0; i < area.area_nodes.Count; i++)
+        //    {
+        //        bool seen = LOS(position, area.area_nodes[i].reference.GetComponent<Node>().getAgentScaledPosition(size), size, Path_block);
+        //        if (seen)
+        //        {
+        //            ret.Add(area.area_nodes[i]);
+        //        }
+        //    }
+        //}
+        //else if(ret.Count == 0)
+        //{
+        //    //Debug.LogError("Position: " + position + " cant find surrounding nodes");
+        //}
         return ret;
     }
-    public Vector2 nearest_cover(Vector2 pos, Vector2 enemy_pos)
+
+    /// <summary>
+    /// Known issue: This doesn't take pathfinding into consideration when finding closest hidingspot
+    /// </summary>
+    /// <param name="pos"></param>
+    /// <param name="enemy_pos"></param>
+    /// <returns></returns>
+    public static Transform nearest_cover(Vector2 pos, Vector2 enemy_pos)
     {
-        List<_Node> ret = new List<_Node>();
-        Nav_area_generic area = get_area(pos);
-
-        //Get a list of nodes where the enemy doesn't have a LOS to
-        if (area != null)
+        if(Singleton.hidingSpots.Count == 0)
         {
-            int idx = 0;
-            do
-            {
-                for (int i = 0; i < area.area_nodes.Count; i++)
-                {
-                    bool seen = LOS(enemy_pos, area.area_nodes[i].position, -1, LOS_block);
-                    if (!seen)
-                    {
-                        ret.Add(area.area_nodes[i]);
-                    }
-                }
-                if (ret.Count > 0)
-                {
-                    break;
-                }
-                area = nav_areas[idx];
-                idx++;
-            }
-            while (idx <= nav_areas.Length);
-        }
-        if (ret.Count == 0)
-        {
-            Debug.LogError("Position: " + pos + "cant find a cover");
-            return Vector2.zero;
-        }
-
-        //Find the closest cover
-        float min_dist = Vector2.Distance(pos, ret[0].position);
-        int j = 0;
-        for (int i = 1; i < ret.Count; i++)
-        {
-            if (Vector2.Distance(pos, ret[i].position) < min_dist)
-            {
-                min_dist = Vector2.Distance(pos, ret[i].position);
-                j = i;
-            }
-        }
-        return ret[j].position;
-    }
-
-    Nav_area_generic get_area(Vector2 position)
-    {
-        Collider2D area = Physics2D.OverlapPoint(position, nav_area_layer);
-        if(area == null)
-        {
-            //Debug.LogError("Navigation area Error: " + position + "  cant find a navigation area");
+            Debug.LogWarning("No hiding spot found");
             return null;
         }
-        return area.GetComponent<Nav_area_generic>();
+
+        // Find spots enemy cant see
+        List<Transform> safeSpots = new List<Transform>();
+        for(int i=0;i< Singleton.hidingSpots.Count; i++)
+        {
+            Transform spotPos = Singleton.hidingSpots[i];
+            if (Physics2D.Linecast(enemy_pos, spotPos.position, Singleton.LOS_block))
+            {
+                safeSpots.Add(spotPos);
+            }
+        }
+        if (safeSpots.Count == 0)
+        {
+            Debug.LogWarning("No safe spot found");
+            return null;
+        }
+
+        // Find closest can go to
+        Transform tmp = safeSpots[0];
+        Transform ret = tmp;
+        float closestDistanceSqr = ((Vector2)tmp.position - pos).sqrMagnitude;
+        for (int i = 1; i < safeSpots.Count; i++)
+        {
+            tmp = safeSpots[i];
+            float spotDistance = ((Vector2)tmp.position - pos).sqrMagnitude;
+            if (spotDistance < closestDistanceSqr)
+            {
+                ret = tmp;
+                closestDistanceSqr = spotDistance;
+            }
+        }
+
+        return ret;
     }
+
+    //Nav_area_generic get_area(Vector2 position)
+    //{
+    //    Collider2D area = Physics2D.OverlapPoint(position, nav_area_layer);
+    //    if(area == null)
+    //    {
+    //        //Debug.LogError("Navigation area Error: " + position + "  cant find a navigation area");
+    //        return null;
+    //    }
+    //    return area.GetComponent<Nav_area_generic>();
+    //}
     /*
     List<_Node> Astar_algorithm(Vector2 zombie, Vector2 player, float zombie_size, float player_size)
     {
@@ -524,10 +533,15 @@ public class Navigation_manual : MonoBehaviour {
 
 
 
-    public static void RequestPath(NavRequest navRequest)//, GameObject player, float z_size, float p_size)
+    public static void RequestPath(NavRequest navRequest)
     {
         Singleton.pathRequestQueue.Remove(navRequest);
         Singleton.pathRequestQueue.Add(navRequest);
+    }
+
+    public static List<Vector2> RequestPathInstant(Vector2 from, Vector2 to, float agentSize)
+    {
+        return Singleton.Astar_Algorithm_pathVector2(from, to, agentSize);
     }
 
     void OnDestroy()

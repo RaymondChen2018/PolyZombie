@@ -5,6 +5,7 @@ using UnityEngine.Events;
 
 public class Logic_auto : MonoBehaviour {
     [SerializeField] private UnityEvent OnMapSpawn = new UnityEvent();
+    [SerializeField] private UnityEvent OnLevelStart = new UnityEvent();
 
     // Use this for initialization
     void Start () {
@@ -15,4 +16,9 @@ public class Logic_auto : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    public void levelStart()
+    {
+        OnLevelStart.Invoke();
+    }
 }

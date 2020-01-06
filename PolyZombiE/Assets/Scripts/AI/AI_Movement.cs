@@ -42,7 +42,8 @@ public class AI_Movement : MonoBehaviour {
         Vector2 thisPos = movement.getPosition();
         Vector2 direction = targetPosition - thisPos;
         float distance = direction.magnitude;
-        RaycastHit2D block = Physics2D.CircleCast(thisPos, agentSize, direction, distance, navBlockMask);
+        float agentSizeTolerance = 0.2f;
+        RaycastHit2D block = Physics2D.CircleCast(thisPos, agentSize - agentSizeTolerance, direction, distance, navBlockMask);
 
         if (block)
         {
@@ -50,11 +51,14 @@ public class AI_Movement : MonoBehaviour {
             if (navPath.Count == 0)
             {
                 Navigation_manual.RequestPath(new NavRequest(this, targetPosition, thisPos, agentSize));
+                movement.Move(targetPosition - thisPos);
+                Debug.LogWarning("Navigation unavailable");
             }
             // Destination changed
             else if (prevTargetPosition != targetPosition)
             {
                 Navigation_manual.RequestPath(new NavRequest(this, targetPosition, thisPos, agentSize));
+                movement.Move(targetPosition - thisPos);
             }
             // Navigation available
             else
@@ -62,10 +66,10 @@ public class AI_Movement : MonoBehaviour {
                 // Debug
                 if (debugOn)
                 {
-                    Debug.DrawLine(thisPos, navPath[0], Color.red);
+                    Debug.DrawLine(thisPos, navPath[0], debugColor);
                     for (int i = 0; i < navPath.Count - 1; i++)
                     {
-                        Debug.DrawLine(navPath[i], navPath[i + 1], Color.red);
+                        Debug.DrawLine(navPath[i], navPath[i + 1], debugColor);
                     }
                 }
 
@@ -74,7 +78,7 @@ public class AI_Movement : MonoBehaviour {
                 movement.Move(straightPosition - thisPos);
 
                 // Reach node location
-                if (movement.positionReached(straightPosition, 0.2f))
+                if (movement.positionReached(straightPosition, agentSizeTolerance))
                 {
                     navPath.RemoveAt(0);
                 }
@@ -84,11 +88,32 @@ public class AI_Movement : MonoBehaviour {
         {
             if (debugOn)
             {
-                Debug.DrawLine(thisPos, targetPosition, Color.red);
+                Debug.DrawLine(thisPos, targetPosition, debugColor);
             }
             movement.Move(targetPosition - thisPos);
         }
 
         prevTargetPosition = targetPosition;
+    }
+
+    public float getNavigationDistance(Vector2 from, Vector2 to)
+    {
+        float ret = 0;
+
+        List<Vector2> route = Navigation_manual.RequestPathInstant(from, to, navSize);
+        if(route.Count > 0)
+        {
+            ret += (route[0] - movement.getPosition()).magnitude;
+            for(int i = 1; i < route.Count; i++)
+            {
+                ret += (route[i] - route[i-1]).magnitude;
+            }
+        }
+        else
+        {
+            ret += (to - movement.getPosition()).magnitude;
+        }
+
+        return ret;
     }
 }

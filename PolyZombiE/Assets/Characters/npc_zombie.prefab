@@ -820,7 +820,7 @@ MonoBehaviour:
     m_Bits: 6144
   colliderAgent: {fileID: 58877536583860836}
   movement: {fileID: 114820406271398686}
-  debugOn: 1
+  debugOn: 0
   debugColor: {r: 0, g: 1, b: 1, a: 1}
 --- !u!114 &114749900416243670
 MonoBehaviour:
