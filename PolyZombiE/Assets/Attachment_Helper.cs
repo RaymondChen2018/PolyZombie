@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 
 public class Attachment_Helper : MonoBehaviour {
     [SerializeField] Transform parent = null;

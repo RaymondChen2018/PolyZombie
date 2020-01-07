@@ -34,6 +34,7 @@ public class AI_Movement : MonoBehaviour {
     {
         navPath = path;
     }
+    
 
     public void Move(Vector2 _targetPosition)
     {
