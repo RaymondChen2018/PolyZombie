@@ -22,6 +22,13 @@ public class AI_StateMachine_Helper : MonoBehaviour
 
     Animator animator;
 
+    private void Awake()
+    {
+        // Getcomponent to verify this object is parallel with an animator at the same time
+        animator = GetComponent<Animator>();
+        Assert.IsNotNull(animator);
+    }
+
     // Use this for initialization
     void Start()
     {
@@ -31,10 +38,6 @@ public class AI_StateMachine_Helper : MonoBehaviour
         Assert.IsNotNull(equipment);
         Assert.IsNotNull(teamAttribute);
         Assert.IsNotNull(aiEnemyFinder);
-
-        // Getcomponent to verify this object is parallel with an animator at the same time
-        animator = GetComponent<Animator>();
-        Assert.IsNotNull(animator);
 
         animator.SetBool("Combative", aiCombative);
         animator.SetBool("Defensive", aiDefensive);

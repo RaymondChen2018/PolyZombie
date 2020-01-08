@@ -55,6 +55,12 @@ TagManager:
   - name: Zombie
     uniqueID: 1643120489
     locked: 0
+  - name: Eyes
+    uniqueID: 3760455469
+    locked: 0
+  - name: Curtain
+    uniqueID: 15498853
+    locked: 0
   - name: Player
     uniqueID: 1898322477
     locked: 0

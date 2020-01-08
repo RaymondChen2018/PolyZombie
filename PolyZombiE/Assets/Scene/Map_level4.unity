@@ -235,19 +235,28 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4233672341782760, guid: b658bf55c38f3704d9f5201789523abb, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 114562678517090364, guid: b658bf55c38f3704d9f5201789523abb,
+    - target: {fileID: 114018823600251080, guid: b658bf55c38f3704d9f5201789523abb,
         type: 2}
-      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      propertyPath: OnSpawn.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
-      objectReference: {fileID: 1183724438}
+      objectReference: {fileID: 2115212294}
     - target: {fileID: 114644176622402864, guid: b658bf55c38f3704d9f5201789523abb,
         type: 2}
       propertyPath: OnInfectOnce.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1183724438}
+    - target: {fileID: 114562678517090364, guid: b658bf55c38f3704d9f5201789523abb,
+        type: 2}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1183724438}
     - target: {fileID: 1956492137403562, guid: b658bf55c38f3704d9f5201789523abb, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1973295428164582, guid: b658bf55c38f3704d9f5201789523abb, type: 2}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -300,7 +309,7 @@ MonoBehaviour:
   OnLevelStart:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1287981179}
+      - m_Target: {fileID: 849406790}
         m_MethodName: SetActive
         m_Mode: 6
         m_Arguments:
@@ -311,7 +320,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1363219859}
+      - m_Target: {fileID: 1883598014}
         m_MethodName: SetActive
         m_Mode: 6
         m_Arguments:
@@ -322,7 +331,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 675801867}
+      - m_Target: {fileID: 464184467}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1603979991}
         m_MethodName: SetActive
         m_Mode: 6
         m_Arguments:
@@ -346,7 +366,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 223345068}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &116218992
 GameObject:
@@ -873,7 +893,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1579146165
-  m_SortingLayer: -5
+  m_SortingLayer: -7
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 8f830aff03bb2664db8698964636f4c3, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -910,13 +930,13 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 24}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 6557620}
   - {fileID: 90182620}
   - {fileID: 1183724437}
-  - {fileID: 1937542883}
+  - {fileID: 6557620}
   - {fileID: 1161370898}
   - {fileID: 554149631}
   - {fileID: 1139384453}
+  - {fileID: 1937542883}
   - {fileID: 1810408247}
   - {fileID: 1812001995}
   - {fileID: 1946132042}
@@ -1060,7 +1080,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1579146165
-  m_SortingLayer: -5
+  m_SortingLayer: -7
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 8f830aff03bb2664db8698964636f4c3, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -1313,7 +1333,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1579146165
-  m_SortingLayer: -5
+  m_SortingLayer: -7
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 8f830aff03bb2664db8698964636f4c3, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -1630,7 +1650,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1579146165
-  m_SortingLayer: -5
+  m_SortingLayer: -7
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 8f830aff03bb2664db8698964636f4c3, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -1684,6 +1704,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d5090337db252eb41a5ffeef3e123ec0, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &464184467 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1973295428164582, guid: b658bf55c38f3704d9f5201789523abb,
+    type: 2}
+  m_PrefabInternal: {fileID: 67009376}
 --- !u!1 &501239603
 GameObject:
   m_ObjectHideFlags: 0
@@ -1771,7 +1796,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1579146165
-  m_SortingLayer: -5
+  m_SortingLayer: -7
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 8f830aff03bb2664db8698964636f4c3, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -1926,7 +1951,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4437294127350196, guid: 6a3bbf221acc94844abca8b41ccb4229, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4437294127350196, guid: 6a3bbf221acc94844abca8b41ccb4229, type: 2}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -1942,11 +1967,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1529999528050642, guid: 6a3bbf221acc94844abca8b41ccb4229, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1423043396970880, guid: 6a3bbf221acc94844abca8b41ccb4229, type: 2}
       propertyPath: m_Name
       value: npc_zombie (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1423043396970880, guid: 6a3bbf221acc94844abca8b41ccb4229, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6a3bbf221acc94844abca8b41ccb4229, type: 2}
@@ -2116,7 +2145,7 @@ Prefab:
     - target: {fileID: 114234953715928724, guid: 29435618d56fd02438bba4df3c655949,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 224871517394627044, guid: 29435618d56fd02438bba4df3c655949,
         type: 2}
@@ -2222,7 +2251,7 @@ Prefab:
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 849406790}
+      objectReference: {fileID: 90182619}
     - target: {fileID: 114234953715928724, guid: 29435618d56fd02438bba4df3c655949,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
@@ -2252,6 +2281,21 @@ Prefab:
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114234953715928724, guid: 29435618d56fd02438bba4df3c655949,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114234953715928724, guid: 29435618d56fd02438bba4df3c655949,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: levelStart
+      objectReference: {fileID: 0}
+    - target: {fileID: 114234953715928724, guid: 29435618d56fd02438bba4df3c655949,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 29435618d56fd02438bba4df3c655949, type: 2}
@@ -2465,11 +2509,6 @@ Transform:
   m_Father: {fileID: 2054779811}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &675801867 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1529999528050642, guid: 6a3bbf221acc94844abca8b41ccb4229,
-    type: 2}
-  m_PrefabInternal: {fileID: 554149630}
 --- !u!1 &726160486
 GameObject:
   m_ObjectHideFlags: 0
@@ -2557,7 +2596,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1579146165
-  m_SortingLayer: -5
+  m_SortingLayer: -7
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 8f830aff03bb2664db8698964636f4c3, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -2656,7 +2695,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1579146165
-  m_SortingLayer: -5
+  m_SortingLayer: -7
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 8f830aff03bb2664db8698964636f4c3, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -2951,7 +2990,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1579146165
-  m_SortingLayer: -5
+  m_SortingLayer: -7
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 8f830aff03bb2664db8698964636f4c3, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -3297,7 +3336,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2091175895
-  m_SortingLayer: -6
+  m_SortingLayer: -8
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 5856360d68a55e34a82c5a921905069d, type: 3}
   m_Color: {r: 0.38235295, g: 0.38235295, b: 0.38235295, a: 1}
@@ -3542,7 +3581,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Map_level0
+          m_StringArgument: Map_level5
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -3784,7 +3823,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1088096612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4061,7 +4100,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4546739415002820, guid: cb31d16ac6de9d445a3ad37d40869a16, type: 2}
       propertyPath: m_RootOrder
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114129138329961828, guid: cb31d16ac6de9d445a3ad37d40869a16,
         type: 2}
@@ -4220,7 +4259,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 223345068}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1183724438
 MonoBehaviour:
@@ -4519,7 +4558,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1579146165
-  m_SortingLayer: -5
+  m_SortingLayer: -7
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 8f830aff03bb2664db8698964636f4c3, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -4630,11 +4669,6 @@ Transform:
   m_Father: {fileID: 364638409}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1287981179 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1529999528050642, guid: 6a3bbf221acc94844abca8b41ccb4229,
-    type: 2}
-  m_PrefabInternal: {fileID: 2100385408}
 --- !u!1 &1335558339
 GameObject:
   m_ObjectHideFlags: 0
@@ -4697,7 +4731,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1579146165
-  m_SortingLayer: -5
+  m_SortingLayer: -7
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 8f830aff03bb2664db8698964636f4c3, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -4762,11 +4796,6 @@ Transform:
   m_Father: {fileID: 364638409}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1363219859 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1956492137403562, guid: b658bf55c38f3704d9f5201789523abb,
-    type: 2}
-  m_PrefabInternal: {fileID: 67009376}
 --- !u!1 &1411829019
 GameObject:
   m_ObjectHideFlags: 0
@@ -4904,7 +4933,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1579146165
-  m_SortingLayer: -5
+  m_SortingLayer: -7
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 8f830aff03bb2664db8698964636f4c3, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -5411,6 +5440,11 @@ Transform:
   m_Father: {fileID: 2054779811}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1603979991 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1423043396970880, guid: 6a3bbf221acc94844abca8b41ccb4229,
+    type: 2}
+  m_PrefabInternal: {fileID: 2100385408}
 --- !u!1 &1631282001
 GameObject:
   m_ObjectHideFlags: 0
@@ -5546,7 +5580,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1579146165
-  m_SortingLayer: -5
+  m_SortingLayer: -7
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 8f830aff03bb2664db8698964636f4c3, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -5748,6 +5782,11 @@ Transform:
   m_Father: {fileID: 2054779811}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1883598014 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1423043396970880, guid: 6a3bbf221acc94844abca8b41ccb4229,
+    type: 2}
+  m_PrefabInternal: {fileID: 554149630}
 --- !u!1 &1891161681
 GameObject:
   m_ObjectHideFlags: 0
@@ -6070,7 +6109,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1579146165
-  m_SortingLayer: -5
+  m_SortingLayer: -7
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 8f830aff03bb2664db8698964636f4c3, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -6295,7 +6334,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1579146165
-  m_SortingLayer: -5
+  m_SortingLayer: -7
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 8f830aff03bb2664db8698964636f4c3, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -6394,7 +6433,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1579146165
-  m_SortingLayer: -5
+  m_SortingLayer: -7
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 8f830aff03bb2664db8698964636f4c3, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -6493,7 +6532,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1579146165
-  m_SortingLayer: -5
+  m_SortingLayer: -7
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 8f830aff03bb2664db8698964636f4c3, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -6570,7 +6609,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4437294127350196, guid: 6a3bbf221acc94844abca8b41ccb4229, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4437294127350196, guid: 6a3bbf221acc94844abca8b41ccb4229, type: 2}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -6585,6 +6624,10 @@ Prefab:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1529999528050642, guid: 6a3bbf221acc94844abca8b41ccb4229, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1423043396970880, guid: 6a3bbf221acc94844abca8b41ccb4229, type: 2}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -6628,8 +6671,14 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4279715896493246, guid: da26982d5798e8144ad6b7fec4c23758, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: da26982d5798e8144ad6b7fec4c23758, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &2115212294 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114659887597891868, guid: da26982d5798e8144ad6b7fec4c23758,
+    type: 2}
+  m_PrefabInternal: {fileID: 2115212293}
+  m_Script: {fileID: 11500000, guid: 05680fb09bd35374c969af3feeb2a05e, type: 3}

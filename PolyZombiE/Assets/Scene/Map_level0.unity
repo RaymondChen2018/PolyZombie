@@ -1139,14 +1139,14 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114583506013549490, guid: f04a3f8c67dc5e24e9bac6900df6ea0b,
-        type: 2}
-      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1183724438}
     - target: {fileID: 114338866852877246, guid: f04a3f8c67dc5e24e9bac6900df6ea0b,
         type: 2}
       propertyPath: OnInfectOnce.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1183724438}
+    - target: {fileID: 114583506013549490, guid: f04a3f8c67dc5e24e9bac6900df6ea0b,
+        type: 2}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1183724438}
     m_RemovedComponents: []
@@ -2711,11 +2711,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 223345068}
     m_Modifications:
-    - target: {fileID: 114501684017189796, guid: cb31d16ac6de9d445a3ad37d40869a16,
-        type: 2}
-      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4546739415002820, guid: cb31d16ac6de9d445a3ad37d40869a16, type: 2}
       propertyPath: m_LocalPosition.x
       value: 2.32
@@ -2738,16 +2733,21 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4546739415002820, guid: cb31d16ac6de9d445a3ad37d40869a16, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0.99464124
+      value: 0.9918165
       objectReference: {fileID: 0}
     - target: {fileID: 4546739415002820, guid: cb31d16ac6de9d445a3ad37d40869a16, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 0.10338646
+      value: 0.12767169
       objectReference: {fileID: 0}
     - target: {fileID: 4546739415002820, guid: cb31d16ac6de9d445a3ad37d40869a16, type: 2}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114501684017189796, guid: cb31d16ac6de9d445a3ad37d40869a16,
+        type: 2}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2005667529}
     - target: {fileID: 114129138329961828, guid: cb31d16ac6de9d445a3ad37d40869a16,
         type: 2}
       propertyPath: OnKilledSomeOne.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2760,58 +2760,8 @@ Prefab:
       objectReference: {fileID: 542607495}
     - target: {fileID: 4546739415002820, guid: cb31d16ac6de9d445a3ad37d40869a16, type: 2}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 168.132
+      value: 165.33
       objectReference: {fileID: 0}
-    - target: {fileID: 114501684017189796, guid: cb31d16ac6de9d445a3ad37d40869a16,
-        type: 2}
-      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 114501684017189796, guid: cb31d16ac6de9d445a3ad37d40869a16,
-        type: 2}
-      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114501684017189796, guid: cb31d16ac6de9d445a3ad37d40869a16,
-        type: 2}
-      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 2005667529}
-    - target: {fileID: 114501684017189796, guid: cb31d16ac6de9d445a3ad37d40869a16,
-        type: 2}
-      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetActive
-      objectReference: {fileID: 0}
-    - target: {fileID: 114501684017189796, guid: cb31d16ac6de9d445a3ad37d40869a16,
-        type: 2}
-      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 114501684017189796, guid: cb31d16ac6de9d445a3ad37d40869a16,
-        type: 2}
-      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114501684017189796, guid: cb31d16ac6de9d445a3ad37d40869a16,
-        type: 2}
-      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114501684017189796, guid: cb31d16ac6de9d445a3ad37d40869a16,
-        type: 2}
-      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114501684017189796, guid: cb31d16ac6de9d445a3ad37d40869a16,
-        type: 2}
-      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114501684017189796, guid: cb31d16ac6de9d445a3ad37d40869a16,
-        type: 2}
-      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 1088096611}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cb31d16ac6de9d445a3ad37d40869a16, type: 2}
   m_IsPrefabParent: 0

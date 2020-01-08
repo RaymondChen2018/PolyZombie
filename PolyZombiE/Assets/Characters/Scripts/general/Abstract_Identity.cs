@@ -33,7 +33,7 @@ public abstract class Abstract_Identity : MonoBehaviour
 
     void Awake()
     {
-        OnSpawn.Invoke();
+        
     }
 
     // Use this for initialization
@@ -47,6 +47,8 @@ public abstract class Abstract_Identity : MonoBehaviour
         {
             playerIdentity = this;
         }
+
+        OnSpawn.Invoke();
     }
 	
 	// Update is called once per frame

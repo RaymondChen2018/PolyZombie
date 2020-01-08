@@ -56,6 +56,12 @@ public class AI_Memory: MonoBehaviour {
         OnRememberTargets.Invoke(enemyInMemory.Count);
     }
 
+    public void clearMemory()
+    {
+        enemyInMemory.Clear();
+        OnRememberTargets.Invoke(0);
+    }
+
     public void addToMemory(Vector2 newLocation)
     {
         if (uniqueMemory)

@@ -107,6 +107,7 @@ public class Equipment : MonoBehaviour {
 
     public void Equip(Abstract_Weapon newWeapon)
     {
+
         OnEquip.Invoke(newWeapon);
         // Call weapon equip
         Weapon_Equip_Helper equipHelper = newWeapon.GetComponent<Weapon_Equip_Helper>();
