@@ -32,7 +32,7 @@ public class AI_State_Alert_RunSound : StateMachineBehaviour {
         orient.lookAtStep(lastSeenEnemyPos);
         aiMovement.Move(lastSeenEnemyPos);
 
-        // Combat point reach
+        // Sound point reach
         bool positionReached = movement.positionReached(lastSeenEnemyPos);
         if (positionReached)
         {

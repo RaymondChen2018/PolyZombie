@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
+//using UnityEditor;
 using UnityEngine;
 
 
@@ -12,6 +12,7 @@ public class Node : MonoBehaviour {
     public Navigation_manual._Node reference;
 
     [SerializeField] private float normalAngle = 0.0f;
+    [SerializeField] private float sideAngle = 0.0f;
 
     private void OnDrawGizmos()
     {
@@ -30,7 +31,7 @@ public class Node : MonoBehaviour {
                 Gizmos.DrawLine(transform.position, neighboor[i].transform.position);
             }
         }
-        Handles.Label(transform.position, gameObject.name);
+        //Handles.Label(transform.position, gameObject.name);
 
         Debug.DrawLine(transform.position, getAgentScaledPosition(2.0f));
     }
@@ -39,5 +40,25 @@ public class Node : MonoBehaviour {
     {
         float radian = normalAngle * Mathf.PI / 180.0f;
         return (Vector2)transform.position + new Vector2(Mathf.Cos(radian), Mathf.Sin(radian)).normalized * agentSize;
+    }
+
+    public void setNormalAngle(float _angle)
+    {
+        normalAngle = _angle;
+    }
+
+    public void setSideAngle(float _angle)
+    {
+        sideAngle = _angle;
+    }
+
+    public float getNormalAngle()
+    {
+        return normalAngle;
+    }
+
+    public float getSideAngle()
+    {
+        return sideAngle;
     }
 }

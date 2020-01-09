@@ -67,10 +67,11 @@ public class Navigation_manual : MonoBehaviour {
     public LayerMask Path_block;
     public LayerMask LOS_block;
     public LayerMask nav_area_layer;
-    public BoxCollider2D[] patrol_areas;
+    //public BoxCollider2D[] patrol_areas;
     public List<_Node> area_dict = new List<_Node>();//set of navigation nodes via area code
     public List<_Node> nodes_dyn = new List<_Node>();
     [SerializeField] private List<Transform> hidingSpots = new List<Transform>();
+    [SerializeField] private List<Transform> patrolSpots = new List<Transform>();
 
     void Awake()
     {
@@ -320,6 +321,21 @@ public class Navigation_manual : MonoBehaviour {
         //    //Debug.LogError("Position: " + position + " cant find surrounding nodes");
         //}
         return ret;
+    }
+
+    public static Transform getRandomPatrolLocation()
+    {
+        int locationIndex = UnityEngine.Random.Range(0, Singleton.patrolSpots.Count - 1);
+
+        return Singleton.patrolSpots[locationIndex];
+    }
+    public static int getPatrolLocationCount()
+    {
+        return Singleton.patrolSpots.Count;
+    }
+    public static Transform getPatrolLocation(int index)
+    {
+        return Singleton.patrolSpots[index];
     }
 
     /// <summary>
