@@ -32,6 +32,7 @@ public class AI_Movement : MonoBehaviour {
 
     public void setNavigationPath(List<Vector2> path)
     {
+        navPath.Clear();
         navPath = path;
     }
     
@@ -44,7 +45,7 @@ public class AI_Movement : MonoBehaviour {
         Vector2 direction = targetPosition - thisPos;
         float distance = direction.magnitude;
         float agentSizeTolerance = 0.2f;
-        RaycastHit2D block = Physics2D.CircleCast(thisPos, agentSize - agentSizeTolerance, direction, distance, navBlockMask);
+        RaycastHit2D block = Physics2D.CircleCast(thisPos, agentSize, direction, distance, navBlockMask);
 
         if (block)
         {

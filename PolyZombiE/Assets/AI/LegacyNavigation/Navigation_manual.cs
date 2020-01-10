@@ -72,6 +72,7 @@ public class Navigation_manual : MonoBehaviour {
     public List<_Node> nodes_dyn = new List<_Node>();
     [SerializeField] private List<Transform> hidingSpots = new List<Transform>();
     [SerializeField] private List<Transform> patrolSpots = new List<Transform>();
+    [SerializeField] private bool slerpNode = true;
 
     void Awake()
     {
@@ -141,8 +142,6 @@ public class Navigation_manual : MonoBehaviour {
                 
                 List<Vector2> solution = Astar_Algorithm_pathVector2(navRequest.currLocation, navRequest.destineLocation, navRequest.agentSize);
                 ai.setNavigationPath(solution);
-                //Debug.DrawLine(ai.transform.position, ai.path[0].position, Color.white, 10);
-                //Debug.DrawLine(ai.path[0].position, destine_location, Color.white, 10);
             }
         }
     }
@@ -196,23 +195,58 @@ public class Navigation_manual : MonoBehaviour {
     //This algorithm doesnt include target objects' positions as nodes
     List<Vector2> Astar_Algorithm_pathVector2(Vector2 zombie, Vector2 player, float agentSize)
     {
-        List<_Node> ret = Astar_algorithm(zombie, player, agentSize, agentSize);
+        List<_Node> ret = Astar_algorithm(zombie, player, agentSize);
         List<Vector2> retPos = new List<Vector2>();
-        for(int i = 0; i < ret.Count; i++)
+
+        if (ret.Count <= 2 || !slerpNode)
         {
-            Node refNode = ret[i].reference.GetComponent<Node>();
-            Vector2 scaledPosition = refNode.getAgentScaledPosition(agentSize);
-            retPos.Add(scaledPosition);
+            for (int i = 0; i < ret.Count; i++)
+            {
+                Node node = ret[i].reference.GetComponent<Node>();
+                Vector2 nodePos = node.transform.position;
+
+
+                Vector2 scaledPosition = node.getScaledNormalPosition(agentSize);
+                retPos.Add(scaledPosition);
+            }
+            retPos.Add(player);
         }
-        retPos.Add(player);
+        else
+        {
+            int slerpCount = 3;
+
+            List<Vector2> temp = new List<Vector2>();
+            retPos.Add(zombie);
+
+            retPos.Add(ret[0].reference.GetComponent<Node>().getScaledNormalPosition(agentSize));
+            for (int i = 0; i < ret.Count; i++)
+            {
+                temp.Add(ret[i].position);
+            }
+
+            for (int i = 1; i < temp.Count - 1; i++)
+            {
+                Vector2[] slerpVerts = Test_script.getSlerpVerts(temp[i - 1], temp[i], temp[i + 1], agentSize, slerpCount);
+
+                for (int j = 0; j < slerpCount; j++)
+                {
+                    retPos.Add(slerpVerts[j]);
+                }
+            }
+            retPos.Add(ret[ret.Count - 1].reference.GetComponent<Node>().getScaledNormalPosition(agentSize));
+            retPos.Add(player);
+        }
+        
+        
         return retPos;
     }
-    List<_Node> Astar_algorithm(Vector2 zombie, Vector2 player, float zombie_size, float player_size)
+    List<_Node> Astar_algorithm(Vector2 zombie, Vector2 player, float zombie_size)
     {
         List<_Node> ret = new List<_Node>();
 
-        List<_Node> startNode = surround_nodes(zombie, zombie_size);
-        List<_Node> targetNode = surround_nodes(player, zombie_size);
+        float nodeFindingTolerance = 0.5f;
+        List<_Node> startNode = surround_nodes(zombie, zombie_size * nodeFindingTolerance);
+        List<_Node> targetNode = surround_nodes(player, zombie_size * nodeFindingTolerance);
 
         if (startNode.Count == 0)
         {
@@ -290,36 +324,21 @@ public class Navigation_manual : MonoBehaviour {
     }
 
     //Get the surrounding nodes within the area
-    public List<_Node> surround_nodes(Vector2 position, float size)
+    public List<_Node> surround_nodes(Vector2 position, float agentSize)
     {
+        Assert.IsTrue(agentSize >= 0.0f);
+
         List<_Node> ret = new List<_Node>();
         for (int i = 0; i < area_dict.Count; i++)
         {
-            _Node currNode = area_dict[i];
-            bool seen = LOS(position, currNode.reference.GetComponent<Node>().getAgentScaledPosition(size), size, Path_block);
+            _Node _node = area_dict[i];
+            Node node = _node.reference.GetComponent<Node>();
+            bool seen = LOS(position, node.getScaledNormalPosition(agentSize), agentSize, Path_block);
             if (seen)
             {
-                ret.Add(currNode);
+                ret.Add(_node);
             }
         }
-
-
-        //Nav_area_generic area = get_area(position);
-        //if (area != null)
-        //{
-        //    for (int i = 0; i < area.area_nodes.Count; i++)
-        //    {
-        //        bool seen = LOS(position, area.area_nodes[i].reference.GetComponent<Node>().getAgentScaledPosition(size), size, Path_block);
-        //        if (seen)
-        //        {
-        //            ret.Add(area.area_nodes[i]);
-        //        }
-        //    }
-        //}
-        //else if(ret.Count == 0)
-        //{
-        //    //Debug.LogError("Position: " + position + " cant find surrounding nodes");
-        //}
         return ret;
     }
 
@@ -386,150 +405,14 @@ public class Navigation_manual : MonoBehaviour {
         return ret;
     }
 
-    //Nav_area_generic get_area(Vector2 position)
-    //{
-    //    Collider2D area = Physics2D.OverlapPoint(position, nav_area_layer);
-    //    if(area == null)
-    //    {
-    //        //Debug.LogError("Navigation area Error: " + position + "  cant find a navigation area");
-    //        return null;
-    //    }
-    //    return area.GetComponent<Nav_area_generic>();
-    //}
-    /*
-    List<_Node> Astar_algorithm(Vector2 zombie, Vector2 player, float zombie_size, float player_size)
-    {
-        List<_Node> startNode = surround_nodes(zombie, zombie_size, 0.1f);
-        List<_Node> targetNode = surround_nodes(player, player_size, 0.1f);
-        
-        if ((targetNode.Count == 0) || (startNode.Count == 0))//if there is no nearby node to keep the player/zombie in touch, abort search
-        {
-            startNode = surround_nodes(zombie, -1, zombie_size);
-            targetNode = surround_nodes(player, -1, player_size);
-        }
-        if ((targetNode.Count == 0) || (startNode.Count == 0))
-        {
-            return null;
-        }
-        for (int i = 0; i < startNode.Count; i++)
-        {
-            startNode[i].gCost = Vector2.Distance(startNode[i].position, zombie);
-            startNode[i].hCost = Vector2.Distance(startNode[i].position, player);
-        }
-        List<_Node> openSet = startNode;
-        HashSet<_Node> closeSet = new HashSet<_Node>();
-        while (openSet.Count > 0)
-        {
-            _Node currentNode = openSet[0];
-            for (int i = 1; i < openSet.Count; i++)
-            {
-                if (openSet[i].fCost < currentNode.fCost || openSet[i].fCost == currentNode.fCost && openSet[i].hCost < currentNode.hCost)
-                {
-                    currentNode = openSet[i];
-                }
-            }
-            openSet.Remove(currentNode);
-            closeSet.Add(currentNode);
-            if (targetNode.Contains(currentNode))
-            {
-                //Debug.DrawLine(currentNode.position, player.transform.position, Color.red);
-                return RetracePath(startNode, currentNode);
-            }
-            for (int i = 0; i < currentNode.link.Count; i++) //foreach (Node neighboor in currentNode.link)
-            {
-                _Node neighboor = currentNode.link[i];
-                if (closeSet.Contains(neighboor))
-                {
-                    continue;
-                }
-                float newMovementCostToNeighboor = currentNode.gCost + Vector2.Distance(neighboor.position, currentNode.position);
-                if (newMovementCostToNeighboor < neighboor.gCost || !openSet.Contains(neighboor))
-                {
-                    neighboor.gCost = newMovementCostToNeighboor;
-                    neighboor.hCost = Vector2.Distance(neighboor.position, player);
-                    neighboor.parent = currentNode;
-                    if (!openSet.Contains(neighboor))//neighboor unexplored
-                    {
-                        openSet.Add(neighboor);
-                    }
-                }
-            }
-        }
-        return null;
-    }
-
     
-    List<_Node> RetracePath(List<_Node> startNode, _Node endNode)
-    {
-        List<_Node> path = new List<_Node>();
-        _Node currentNode = endNode;
-        while (!startNode.Contains(currentNode) && currentNode != null)
-        {
-            path.Add(currentNode);
-            currentNode = currentNode.parent;
-        }
-        path.Reverse();
-        
-        return path;
-        
-    }
-    
-    public List<_Node> surround_nodes(Vector2 position, float size, float min_dist)
-    {
-        List<_Node> ret = new List<_Node>();
-        for (int i = 0; i < nodes.Length; i++)
-        {
-            bool seen = LOS(position, nodes[i].position, size, Path_block);
-            if (seen && Vector2.Distance(position, nodes[i].position) > size)
-            {
-                ret.Add(nodes[i]);
-            }
-        }
-        return ret;
-    }
-    
-    public Vector2 nearest_cover(Vector2 pos, Vector2 enemy_pos)
-    {
-        List<_Node> ret = new List<_Node>();
-        for (int i = 0; i < nodes.Length; i++)
-        {
-            bool seen = LOS(enemy_pos, nodes[i].position, -1, LOS_block);
-            if (!seen)
-            {
-                ret.Add(nodes[i]);
-            }
-        }
-        if (ret == null)
-        {
-            return new Vector2();
-        }
-        float min_dist = Vector2.Distance(pos, ret[0].position);
-        int j = 0;
-        for (int i = 1; i < ret.Count; i++)
-        {
-            if (Vector2.Distance(pos, ret[i].position) < min_dist)
-            {
-                min_dist = Vector2.Distance(pos, ret[i].position);
-                j = i;
-            }
-        }
-        return ret[j].position;
-    }
-    */
     //return true when sight/path clear
     //return false when something between
     public bool LOS(Vector2 start, Vector2 end, float size, LayerMask los_b)
     {
-        //RaycastHit2D Hit = Physics2D.Linecast(start, end, los_b);
-        //if (Hit.collider == null)
-        //{
-        //    return true;
-        //}
-        //return false;
-        if (size != -1)
+        if (size <= 0.0f)
         {
-            float viewdist = Vector2.Distance(start, end);
-            RaycastHit2D Hit = Physics2D.BoxCast(start, new Vector2(size, size), Vector2.Distance(end, start), end - start, viewdist, los_b);
+            RaycastHit2D Hit = Physics2D.Linecast(start, end, los_b);
             if (Hit.collider == null)
             {
                 return true;
@@ -538,7 +421,9 @@ public class Navigation_manual : MonoBehaviour {
         }
         else
         {
-            RaycastHit2D Hit = Physics2D.Linecast(start, end, los_b);
+            float viewdist = Vector2.Distance(start, end);
+            //RaycastHit2D Hit = Physics2D.CircleCast(start, size, end - start, viewdist, los_b);
+            RaycastHit2D Hit = Physics2D.BoxCast(start, new Vector2(size, size), Vector2.Distance(end, start), end - start, viewdist, los_b);
             if (Hit.collider == null)
             {
                 return true;
