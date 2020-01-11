@@ -43,6 +43,17 @@ public class Node : MonoBehaviour {
         return (Vector2)transform.position + new Vector2(Mathf.Cos(radian), Mathf.Sin(radian)).normalized * agentSize;
     }
 
+    public Vector2 getLeftWall()
+    {
+        float radian = (normalAngle + sideAngle) * Mathf.PI / 180.0f;
+        return (new Vector2(Mathf.Cos(radian), Mathf.Sin(radian))).normalized;
+    }
+    public Vector2 getRightWall()
+    {
+        float radian = (normalAngle - sideAngle) * Mathf.PI / 180.0f;
+        return (new Vector2(Mathf.Cos(radian), Mathf.Sin(radian))).normalized;
+    }
+
     public Vector2 getLeftNormalPosition(float agentSize)
     {
         float angleDegree = normalAngle + sideAngle - 90.0f;

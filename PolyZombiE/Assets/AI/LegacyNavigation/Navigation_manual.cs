@@ -436,8 +436,14 @@ public class Navigation_manual : MonoBehaviour {
 
     public static void RequestPath(NavRequest navRequest)
     {
-        Singleton.pathRequestQueue.Remove(navRequest);
+        NavRequest request = Singleton.pathRequestQueue.Find(x => x.subject == navRequest.subject);
+        Singleton.pathRequestQueue.Remove(request);
         Singleton.pathRequestQueue.Add(navRequest);
+    }
+    public static void CancelRequestPath(AI_Movement subject)
+    {
+        NavRequest request = Singleton.pathRequestQueue.Find(x => x.subject == subject);
+        Singleton.pathRequestQueue.Remove(request);
     }
 
     public static List<Vector2> RequestPathInstant(Vector2 from, Vector2 to, float agentSize)
