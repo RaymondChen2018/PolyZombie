@@ -5,12 +5,12 @@ using UnityEngine.Assertions;
 using UnityEngine.Events;
 
 [System.Serializable]
-public class UnityEventWeapon : UnityEvent<Abstract_Weapon>
+public class UnityEventWeapon : UnityEvent<Weapon>
 {
 
 }
 public class Equipment : MonoBehaviour {
-    [SerializeField] private Abstract_Weapon weapon;
+    [SerializeField] private Weapon weapon;
     [SerializeField] private Abstract_Identity identity;
     [SerializeField] private Transform WeaponBoneR;
     [SerializeField] private LayerMask weaponLayerMask;
@@ -45,7 +45,7 @@ public class Equipment : MonoBehaviour {
             Debug.LogWarning("Weapon null!");
             return;
         }
-        
+
         // Weapon cycle time over && no overlapping attack
         bool weaponReady = weapon.primaryReady();
         bool prevAttackDone = !animator.GetBool("isAttacking");
@@ -74,11 +74,11 @@ public class Equipment : MonoBehaviour {
 
     public void AE_primaryAttack()
     {
-        weapon.PrimaryAttack(new AttackVictim(identity));
+        weapon.PrimaryAttack(new AttackInfo(identity));
     }
     public void AE_secondaryAttack()
     {
-        weapon.SecondaryAttack(new AttackVictim(identity));
+        weapon.SecondaryAttack(new AttackInfo(identity));
     }
 
     public bool hasWeapon()
@@ -86,7 +86,7 @@ public class Equipment : MonoBehaviour {
         return weapon != null;
     }
 
-    public Abstract_Weapon getWeapon() { return weapon; }
+    public Weapon getWeapon() { return weapon; }
     public void setDamageMultiplierPercent(int value) { damageMultiplierPercent = value; }
     public int getDamageMultiplierPercent() { return damageMultiplierPercent; }
     public float getPickUpRadius()
@@ -98,16 +98,16 @@ public class Equipment : MonoBehaviour {
     {
         // Create weapon
         GameObject newWeapon = Instantiate(weaponPrefab);
-        weapon = newWeapon.GetComponent<Abstract_Weapon>();
+        weapon = newWeapon.GetComponent<Weapon>();
 
         // Attach to parent bone
         Attachment_Helper attachmentHelper = newWeapon.GetComponent<Attachment_Helper>();
         attachmentHelper.SetAttachment(WeaponBoneR);
     }
 
-    public void Equip(Abstract_Weapon newWeapon)
+    public void Equip(Weapon newWeapon)
     {
-
+        
         OnEquip.Invoke(newWeapon);
         // Call weapon equip
         Weapon_Equip_Helper equipHelper = newWeapon.GetComponent<Weapon_Equip_Helper>();
@@ -117,7 +117,7 @@ public class Equipment : MonoBehaviour {
 
             // Assign
             weapon = newWeapon;
-
+            
             // Attach to parent bone
             Attachment_Helper attachmentHelper = newWeapon.GetComponent<Attachment_Helper>();
             attachmentHelper.SetAttachment(WeaponBoneR);
@@ -145,7 +145,7 @@ public class Equipment : MonoBehaviour {
         Collider2D weaponCollider = Physics2D.OverlapCircle(identity.getMovementComponent().getPosition(), pickUpRadius, weaponLayerMask);
         if (weaponCollider)
         {
-            Abstract_Weapon weaponAbstract = weaponCollider.GetComponent<Abstract_Weapon>();
+            Weapon weaponAbstract = weaponCollider.GetComponent<Weapon>();
             Assert.IsNotNull(weaponAbstract);
             Equip(weaponAbstract);
         }

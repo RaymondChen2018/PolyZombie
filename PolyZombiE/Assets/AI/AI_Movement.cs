@@ -40,6 +40,7 @@ public class AI_Movement : MonoBehaviour {
         navPath.Clear();
         navPath = path;
     }
+
     //public void setNavigationNodePath(List<Node> path)
     //{
     //    nodePath.Clear();

@@ -16,7 +16,6 @@ public enum AgentEdge
 }
 public class Test_script : MonoBehaviour {
     [SerializeField] List<Transform> testPath = new List<Transform>();
-    [SerializeField] float agentSize = 1.0f;
 
 	// Use this for initialization
 	void Start () {
@@ -42,7 +41,7 @@ public class Test_script : MonoBehaviour {
         Vector2 segPoint1 = testPath[0].position;
         Vector2 segPoint2 = testPath[1].position;
 
-        Vector2[] verts = getSlerpVerts(segPoint0, segPoint1, segPoint2, agentSize, 3);
+        //Vector2[] verts = getSlerpVerts(segPoint0, segPoint1, segPoint2, agentSize, 3);
 
         // Original
         Debug.DrawLine(segPoint0, segPoint1, Color.gray);

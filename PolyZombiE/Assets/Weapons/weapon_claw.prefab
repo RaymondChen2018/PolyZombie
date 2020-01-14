@@ -35,10 +35,12 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4199929645974152}
-  - component: {fileID: 114596508029007788}
   - component: {fileID: 114884111016884988}
   - component: {fileID: 114818608494234666}
   - component: {fileID: 114718607119953336}
+  - component: {fileID: 114291035105974476}
+  - component: {fileID: 114573150583599562}
+  - component: {fileID: 114672075763871716}
   m_Layer: 14
   m_Name: weapon_claw
   m_TagString: Untagged
@@ -88,7 +90,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.8
---- !u!114 &114596508029007788
+--- !u!114 &114291035105974476
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -96,18 +98,114 @@ MonoBehaviour:
   m_GameObject: {fileID: 1400648977992856}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b89602341ee7ebf42b4033dfa60b02a7, type: 3}
+  m_Script: {fileID: 11500000, guid: 0cee622464b4b264dbeed9a86bf14a20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damagePrimary: 9
+  damageSecondary: 2
   primaryCycleTime: 0
   secondaryCycleTime: 0
-  hitMultiple: 5
-  projectilePrefab: {fileID: 0}
+  hitMultiple: 1
   primaryAnimation: ZMelee
   secondaryAnimation: ZBite
   POI: {fileID: 4932822153780524}
-  damage: 9
-  biteDamage: 2
+  OnPrimary:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114291035105974476}
+        m_MethodName: Melee
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEventAttack, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  OnSecondary:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114291035105974476}
+        m_MethodName: Melee
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEventAttack, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  OnHitPrimary:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114573150583599562}
+        m_MethodName: inflict
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEventAttack, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  OnHitSecondary:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114672075763871716}
+        m_MethodName: inflict
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 114573150583599562}
+        m_MethodName: inflict
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEventAttack, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+--- !u!114 &114573150583599562
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1400648977992856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ded6c419de41cf04d9d74b1bb98857c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114672075763871716
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1400648977992856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2e4009cfd1839b43b234064078396b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114718607119953336
 MonoBehaviour:
   m_ObjectHideFlags: 1

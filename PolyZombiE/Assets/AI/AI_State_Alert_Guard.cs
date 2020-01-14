@@ -13,10 +13,8 @@ public class AI_State_Alert_Guard : StateMachineBehaviour {
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         AI_StateMachine_Helper helper = animator.GetComponent<AI_StateMachine_Helper>();
-        Movement movement = helper.getMovement();
         Orient orient = helper.getOrient();
         AI_Memory aiMemory = helper.getMemory();
-        Vector2 thisPos = movement.getPosition();
 
         List<Memory> memoryCache = aiMemory.getMemoryCache();
         if (memoryCache.Count == 0)

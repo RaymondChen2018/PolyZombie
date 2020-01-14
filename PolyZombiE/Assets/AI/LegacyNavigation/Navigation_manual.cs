@@ -88,7 +88,7 @@ public class Navigation_manual : MonoBehaviour {
             new_node.position = nodes_gameobjects[i].transform.position;
             nodes_gameobjects[i].reference = new_node;
             new_node.reference = nodes_gameobjects[i].gameObject;
-            Collider2D[] areas = Physics2D.OverlapPointAll(new_node.position, nav_area_layer);
+            //Collider2D[] areas = Physics2D.OverlapPointAll(new_node.position, nav_area_layer);
             area_dict.Add(new_node);
             //if (areas == null || areas.Length == 0)
             //{

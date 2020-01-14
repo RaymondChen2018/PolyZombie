@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
+using UnityEngine.Assertions;
+
 public class Projectile_Bullet : MonoBehaviour {
     [SerializeField] float speed = 10.0f;
-    AttackVictim attackInfo;
+    AttackInfo attackInfo;
     public UnityEventAttack OnHit = new UnityEventAttack();
     [SerializeField] LayerMask hitMask;
 
@@ -48,9 +49,34 @@ public class Projectile_Bullet : MonoBehaviour {
             transform.position = (Vector2)transform.position + direction * distanceTravelled;
         }
     }
-    public void SetInfo(AttackVictim _attackInfo)
+
+    public void SetInfo(AttackInfo _attackInfo)
     {
         attackInfo = _attackInfo;
         hitMask |= _attackInfo.activator.getTeamComponent().GetOpponentLayerMask();
+    }
+
+    public void Deal_damage(AttackInfo attackInfo)
+    {
+        if (attackInfo.activator == null)
+        {
+            attackInfo.activator = World_Identity.singleton;
+        }
+
+        Assert.IsNotNull(attackInfo.activator);
+        Assert.IsNotNull(attackInfo.victim);
+
+        Abstract_Identity activator = attackInfo.activator;
+        Abstract_Identity victim = attackInfo.victim.GetComponent<Abstract_Identity>();
+
+        // Hit character
+        if (victim != null)
+        {
+            victim.getHealthComponent().subtractHealth(new DamageInfo(attackInfo.damage, activator.transform.position - victim.transform.position, activator));
+        }
+        else
+        {
+
+        }
     }
 }

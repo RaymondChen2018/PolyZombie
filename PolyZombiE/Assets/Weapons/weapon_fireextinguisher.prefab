@@ -36,11 +36,12 @@ GameObject:
   m_Component:
   - component: {fileID: 4661158197030918}
   - component: {fileID: 212979233728430898}
-  - component: {fileID: 114558848467484012}
   - component: {fileID: 114933025174398718}
   - component: {fileID: 114787890182501110}
   - component: {fileID: 70741763855403842}
   - component: {fileID: 114759218858593866}
+  - component: {fileID: 114320794991958980}
+  - component: {fileID: 114247998651297854}
   m_Layer: 14
   m_Name: weapon_fireextinguisher
   m_TagString: Untagged
@@ -68,7 +69,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1750420034351948}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.2, y: -0.56, z: 0}
+  m_LocalPosition: {x: -1.39, y: -1.12, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4533855755511276}
@@ -105,7 +106,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: -0.23}
   m_Size: {x: 0.79, y: 2.08}
   m_Direction: 0
---- !u!114 &114558848467484012
+--- !u!114 &114247998651297854
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -113,17 +114,92 @@ MonoBehaviour:
   m_GameObject: {fileID: 1750420034351948}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16424f413dfc5b646bfe9ab50f2b6fdb, type: 3}
+  m_Script: {fileID: 11500000, guid: 0cee622464b4b264dbeed9a86bf14a20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damagePrimary: 10
+  damageSecondary: 15
   primaryCycleTime: 0
   secondaryCycleTime: 0
   hitMultiple: 1
   primaryAnimation: HAttack_fireextinguisher
-  secondaryAnimation: 
+  secondaryAnimation: HAttack_fireextinguisher
   POI: {fileID: 4533855755511276}
-  damage: 10
-  damageBig: 15
+  OnPrimary:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114247998651297854}
+        m_MethodName: Melee
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEventAttack, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  OnSecondary:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114247998651297854}
+        m_MethodName: Melee
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEventAttack, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  OnHitPrimary:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114320794991958980}
+        m_MethodName: inflict
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEventAttack, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  OnHitSecondary:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114320794991958980}
+        m_MethodName: inflict
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEventAttack, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+--- !u!114 &114320794991958980
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1750420034351948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ded6c419de41cf04d9d74b1bb98857c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114759218858593866
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -226,7 +302,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1284988019
-  m_SortingLayer: -4
+  m_SortingLayer: -6
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 96cd7e810dae10b48961d9e2913da7d3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

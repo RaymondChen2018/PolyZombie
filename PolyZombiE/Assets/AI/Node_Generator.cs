@@ -91,7 +91,7 @@ public class Node_Generator : MonoBehaviour {
     {
         Assert.IsTrue(points.Length >= 3);
         int count = points.Length;
-        float ratio = 1.0f / count;
+        //float ratio = 1.0f / count;
 
         analyze(points[1], points[0], points[count - 1]);
         analyze(points[0], points[count - 1], points[count - 2]);
@@ -115,7 +115,6 @@ public class Node_Generator : MonoBehaviour {
         {
             float angleFromRight = (360.0f - angle) / 2.0f;
             Vector2 normal = (Quaternion.AngleAxis(angleFromRight, Vector3.forward) * right).normalized;
-            float dot = Vector2.Dot(left, right);
 
             spawnNode(thisPointT, normal, angleFromRight);
         }

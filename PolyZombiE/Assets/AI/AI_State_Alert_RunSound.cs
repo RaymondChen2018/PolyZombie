@@ -17,7 +17,6 @@ public class AI_State_Alert_RunSound : StateMachineBehaviour {
         AI_Movement aiMovement = helper.getAIMovement();
         Orient orient = helper.getOrient();
         AI_Memory aiSoundMemory = helper.getSoundReceiver();
-        Vector2 thisPos = movement.getPosition();
 
         List<Memory> memoryCache = aiSoundMemory.getMemoryCache();
         

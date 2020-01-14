@@ -17,7 +17,6 @@ public class AI_State_Alert_ResumeCombat : StateMachineBehaviour {
         AI_Movement aiMovement = helper.getAIMovement();
         Orient orient = helper.getOrient();
         AI_Memory aiMemory = helper.getMemory();
-        Vector2 thisPos = movement.getPosition();
 
         List<Memory> memoryCache = aiMemory.getMemoryCache();
         if (memoryCache.Count == 0)

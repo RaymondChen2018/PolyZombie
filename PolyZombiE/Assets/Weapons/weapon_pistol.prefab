@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4875962311118138}
   - component: {fileID: 114097482826322896}
+  - component: {fileID: 114410231197385934}
   m_Layer: 0
   m_Name: POI
   m_TagString: Untagged
@@ -40,7 +41,9 @@ GameObject:
   - component: {fileID: 114411092725135784}
   - component: {fileID: 114705310175309990}
   - component: {fileID: 114483847881234224}
-  - component: {fileID: 114659887597891868}
+  - component: {fileID: 114256688513717190}
+  - component: {fileID: 114415681151319906}
+  - component: {fileID: 114169976111855938}
   m_Layer: 14
   m_Name: weapon_pistol
   m_TagString: Untagged
@@ -54,8 +57,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1581804663829380}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.41, y: -3.81, z: 24}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 5.39, y: -4.96, z: 0}
   m_LocalScale: {x: 2.5352242, y: 0.48825863, z: 1}
   m_Children:
   - {fileID: 4875962311118138}
@@ -115,7 +118,7 @@ MonoBehaviour:
   aiSoundEarMask:
     serializedVersion: 2
     m_Bits: 32768
---- !u!114 &114411092725135784
+--- !u!114 &114169976111855938
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -123,12 +126,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1581804663829380}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57f28158f738b0841a3e1fec7c160f71, type: 3}
+  m_Script: {fileID: 11500000, guid: ded6c419de41cf04d9d74b1bb98857c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 7
-  isRanged: 1
---- !u!114 &114483847881234224
+--- !u!114 &114256688513717190
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -136,33 +137,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 1581804663829380}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce800475d2c2b74498923ad25b067ad2, type: 3}
+  m_Script: {fileID: 11500000, guid: d7121d12da1eeeb458e60db3fa6f4ee8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parent: {fileID: 0}
-  fixRotation: 0
-  fixZ: 0
---- !u!114 &114659887597891868
+  projectilePrefab: {fileID: 0}
+  OnSpawnProjectile:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &114410231197385934
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1581804663829380}
+  m_GameObject: {fileID: 1006071427760682}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05680fb09bd35374c969af3feeb2a05e, type: 3}
+  m_Script: {fileID: 11500000, guid: d7121d12da1eeeb458e60db3fa6f4ee8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  primaryCycleTime: 0.3
-  secondaryCycleTime: 0
-  hitMultiple: 1
   projectilePrefab: {fileID: 1024124385177928, guid: bdb4653174f016a4ca894be812b73a35,
     type: 2}
-  primaryAnimation: HAttack_pistol
-  secondaryAnimation: 
-  POI: {fileID: 4875962311118138}
-  damage: 7
-  OnShoot:
+  OnSpawnProjectile:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114097482826322896}
@@ -178,6 +175,83 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114411092725135784
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1581804663829380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57f28158f738b0841a3e1fec7c160f71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackRange: 7
+  isRanged: 1
+--- !u!114 &114415681151319906
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1581804663829380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cee622464b4b264dbeed9a86bf14a20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damagePrimary: 7
+  damageSecondary: 0
+  primaryCycleTime: 0.3
+  secondaryCycleTime: 0
+  hitMultiple: 1
+  primaryAnimation: HAttack_pistol
+  secondaryAnimation: 
+  POI: {fileID: 4875962311118138}
+  OnPrimary:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114410231197385934}
+        m_MethodName: spawnProjectile
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEventAttack, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  OnSecondary:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEventAttack, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  OnHitPrimary:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEventAttack, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  OnHitSecondary:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEventAttack, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+--- !u!114 &114483847881234224
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1581804663829380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce800475d2c2b74498923ad25b067ad2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parent: {fileID: 0}
+  fixRotation: 0
+  fixZ: 0
 --- !u!114 &114705310175309990
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -19,7 +19,6 @@ public class AI_Finder : MonoBehaviour {
 
     [SerializeField] private UnityEventTranform OnSeeEveryTarget = new UnityEventTranform();
     [SerializeField] private UnityEventInt OnSeeTargets = new UnityEventInt();
-    [SerializeField] private UnityEventTranform OnFoundCloserTarget = new UnityEventTranform();
 
     [Header("Debug")]
     [SerializeField] private bool debugOn = false;
