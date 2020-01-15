@@ -799,6 +799,12 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &193876894 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114124992236523120, guid: 76dccc9f2fcd7584daa3f34b10761d1d,
+    type: 2}
+  m_PrefabInternal: {fileID: 560290075}
+  m_Script: {fileID: 11500000, guid: 0cee622464b4b264dbeed9a86bf14a20, type: 3}
 --- !u!1 &196628199
 GameObject:
   m_ObjectHideFlags: 0
@@ -1445,7 +1451,7 @@ Prefab:
     - target: {fileID: 224029054341045072, guid: 47802492e3a4b9d4ba8f0b23a3d54e81,
         type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 224029054341045072, guid: 47802492e3a4b9d4ba8f0b23a3d54e81,
         type: 2}
@@ -1521,6 +1527,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 223345068}
     m_Modifications:
+    - target: {fileID: 114124992236523120, guid: 76dccc9f2fcd7584daa3f34b10761d1d,
+        type: 2}
+      propertyPath: testProfileAttack.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4220425936850118, guid: 76dccc9f2fcd7584daa3f34b10761d1d, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0.58
@@ -1552,6 +1563,31 @@ Prefab:
     - target: {fileID: 4220425936850118, guid: 76dccc9f2fcd7584daa3f34b10761d1d, type: 2}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114124992236523120, guid: 76dccc9f2fcd7584daa3f34b10761d1d,
+        type: 2}
+      propertyPath: testProfileAttack.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114124992236523120, guid: 76dccc9f2fcd7584daa3f34b10761d1d,
+        type: 2}
+      propertyPath: testProfileAttack.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114124992236523120, guid: 76dccc9f2fcd7584daa3f34b10761d1d,
+        type: 2}
+      propertyPath: testProfileAttack.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 193876894}
+    - target: {fileID: 114124992236523120, guid: 76dccc9f2fcd7584daa3f34b10761d1d,
+        type: 2}
+      propertyPath: testProfileAttack.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TestAttackProfile
+      objectReference: {fileID: 0}
+    - target: {fileID: 114124992236523120, guid: 76dccc9f2fcd7584daa3f34b10761d1d,
+        type: 2}
+      propertyPath: testProfileAttack.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: TestScriptable, Assembly-CSharp
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 76dccc9f2fcd7584daa3f34b10761d1d, type: 2}
@@ -4708,5 +4744,5 @@ Transform:
   - {fileID: 1891161682}
   - {fileID: 1244863475}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4533855755511276}
   - component: {fileID: 58536958858144274}
   m_Layer: 0
-  m_Name: POI
+  m_Name: meleeHitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36,12 +36,12 @@ GameObject:
   m_Component:
   - component: {fileID: 4661158197030918}
   - component: {fileID: 212979233728430898}
-  - component: {fileID: 114933025174398718}
-  - component: {fileID: 114787890182501110}
   - component: {fileID: 70741763855403842}
+  - component: {fileID: 114787890182501110}
   - component: {fileID: 114759218858593866}
-  - component: {fileID: 114320794991958980}
   - component: {fileID: 114247998651297854}
+  - component: {fileID: 114933025174398718}
+  - component: {fileID: 114320794991958980}
   m_Layer: 14
   m_Name: weapon_fireextinguisher
   m_TagString: Untagged
@@ -124,7 +124,7 @@ MonoBehaviour:
   hitMultiple: 1
   primaryAnimation: HAttack_fireextinguisher
   secondaryAnimation: HAttack_fireextinguisher
-  POI: {fileID: 4533855755511276}
+  meleeHitBox: {fileID: 4533855755511276}
   OnPrimary:
     m_PersistentCalls:
       m_Calls:

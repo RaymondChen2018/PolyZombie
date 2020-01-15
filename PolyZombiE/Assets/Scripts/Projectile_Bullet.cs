@@ -5,8 +5,10 @@ using UnityEngine.Assertions;
 
 public class Projectile_Bullet : MonoBehaviour {
     [SerializeField] float speed = 10.0f;
+    [SerializeField] float damage = 20.0f;
     AttackInfo attackInfo;
-    public UnityEventAttack OnHit = new UnityEventAttack();
+    [SerializeField] private UnityEventAttack OnHit = new UnityEventAttack();
+    [SerializeField] private UnityEventVector2 OnImpact = new UnityEventVector2();
     [SerializeField] LayerMask hitMask;
 
     [Header("Debug")]
@@ -15,7 +17,11 @@ public class Projectile_Bullet : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		
+		if(attackInfo == null)
+        {
+            attackInfo = new AttackInfo(World_Identity.singleton);
+            attackInfo.damage = damage;
+        }
 	}
 	
 	// Update is called once per frame
@@ -32,6 +38,8 @@ public class Projectile_Bullet : MonoBehaviour {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, distanceTravelled, hitMask);
         if (hit)
         {
+            //UnityEngine.Events.UnityAction action = new UnityEngine.Events.UnityAction(Test_script.Destroy());
+            //OnImpact.AddListener(new UnityEngine.Events.UnityAction<Vector2>());
             // Update position
             transform.position = hit.point;
 
@@ -39,6 +47,7 @@ public class Projectile_Bullet : MonoBehaviour {
             attackInfo.posImpact = hit.point;
             attackInfo.victim = hit.collider;
             OnHit.Invoke(attackInfo);
+            OnImpact.Invoke(hit.point);
 
             // Destroy bullet
             Destroy(gameObject);
@@ -53,30 +62,7 @@ public class Projectile_Bullet : MonoBehaviour {
     public void SetInfo(AttackInfo _attackInfo)
     {
         attackInfo = _attackInfo;
+        damage = _attackInfo.damage;
         hitMask |= _attackInfo.activator.getTeamComponent().GetOpponentLayerMask();
-    }
-
-    public void Deal_damage(AttackInfo attackInfo)
-    {
-        if (attackInfo.activator == null)
-        {
-            attackInfo.activator = World_Identity.singleton;
-        }
-
-        Assert.IsNotNull(attackInfo.activator);
-        Assert.IsNotNull(attackInfo.victim);
-
-        Abstract_Identity activator = attackInfo.activator;
-        Abstract_Identity victim = attackInfo.victim.GetComponent<Abstract_Identity>();
-
-        // Hit character
-        if (victim != null)
-        {
-            victim.getHealthComponent().subtractHealth(new DamageInfo(attackInfo.damage, activator.transform.position - victim.transform.position, activator));
-        }
-        else
-        {
-
-        }
     }
 }

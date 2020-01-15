@@ -22,7 +22,23 @@ GameObject:
   - component: {fileID: 114097482826322896}
   - component: {fileID: 114410231197385934}
   m_Layer: 0
-  m_Name: POI
+  m_Name: muzzle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1042972682674346
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4994743689862492}
+  - component: {fileID: 58724498931057654}
+  m_Layer: 14
+  m_Name: meleeHitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38,12 +54,10 @@ GameObject:
   - component: {fileID: 4279715896493246}
   - component: {fileID: 212913922852500052}
   - component: {fileID: 61772908041633438}
-  - component: {fileID: 114411092725135784}
-  - component: {fileID: 114705310175309990}
   - component: {fileID: 114483847881234224}
-  - component: {fileID: 114256688513717190}
+  - component: {fileID: 114705310175309990}
   - component: {fileID: 114415681151319906}
-  - component: {fileID: 114169976111855938}
+  - component: {fileID: 114411092725135784}
   m_Layer: 14
   m_Name: weapon_pistol
   m_TagString: Untagged
@@ -62,6 +76,7 @@ Transform:
   m_LocalScale: {x: 2.5352242, y: 0.48825863, z: 1}
   m_Children:
   - {fileID: 4875962311118138}
+  - {fileID: 4994743689862492}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -78,6 +93,34 @@ Transform:
   m_Father: {fileID: 4279715896493246}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4994743689862492
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1042972682674346}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4279715896493246}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &58724498931057654
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1042972682674346}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!61 &61772908041633438
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -118,34 +161,6 @@ MonoBehaviour:
   aiSoundEarMask:
     serializedVersion: 2
     m_Bits: 32768
---- !u!114 &114169976111855938
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1581804663829380}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ded6c419de41cf04d9d74b1bb98857c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114256688513717190
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1581804663829380}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7121d12da1eeeb458e60db3fa6f4ee8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 0}
-  OnSpawnProjectile:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114410231197385934
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -206,7 +221,7 @@ MonoBehaviour:
   hitMultiple: 1
   primaryAnimation: HAttack_pistol
   secondaryAnimation: 
-  POI: {fileID: 4875962311118138}
+  meleeHitBox: {fileID: 4994743689862492}
   OnPrimary:
     m_PersistentCalls:
       m_Calls:

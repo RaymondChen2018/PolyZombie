@@ -21,10 +21,9 @@ GameObject:
   - component: {fileID: 4740758312859404}
   - component: {fileID: 212226181075828022}
   - component: {fileID: 96123871341951998}
-  - component: {fileID: 114428093721391560}
   - component: {fileID: 114008933588940300}
   m_Layer: 0
-  m_Name: bullet
+  m_Name: rocket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -148,38 +147,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 30
+  damage: 20
   OnHit:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 114428093721391560}
-        m_MethodName: inflict
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEventAttack, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  OnImpact:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEventVector2, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   hitMask:
     serializedVersion: 2
     m_Bits: 2048
   debugOn: 0
   debugColor: {r: 1, g: 0, b: 0, a: 1}
---- !u!114 &114428093721391560
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1024124385177928}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ded6c419de41cf04d9d74b1bb98857c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &212226181075828022
 SpriteRenderer:
   m_ObjectHideFlags: 1

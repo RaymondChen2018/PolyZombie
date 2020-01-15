@@ -20,12 +20,12 @@ GameObject:
   m_Component:
   - component: {fileID: 4220425936850118}
   - component: {fileID: 212310737155111350}
-  - component: {fileID: 114714242874586158}
+  - component: {fileID: 58269480222934240}
   - component: {fileID: 114101357164017990}
   - component: {fileID: 114642178331456980}
-  - component: {fileID: 58269480222934240}
-  - component: {fileID: 114419290009667364}
   - component: {fileID: 114124992236523120}
+  - component: {fileID: 114714242874586158}
+  - component: {fileID: 114419290009667364}
   m_Layer: 14
   m_Name: weapon_kitchenknife
   m_TagString: Untagged
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 4459652255838888}
   - component: {fileID: 58955131996823284}
   m_Layer: 0
-  m_Name: POI
+  m_Name: meleeHitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -138,7 +138,7 @@ MonoBehaviour:
   hitMultiple: 3
   primaryAnimation: HAttack_kitchenknife
   secondaryAnimation: HAttack_kitchenknife
-  POI: {fileID: 4459652255838888}
+  meleeHitBox: {fileID: 4459652255838888}
   OnPrimary:
     m_PersistentCalls:
       m_Calls:

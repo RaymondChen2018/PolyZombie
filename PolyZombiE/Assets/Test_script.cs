@@ -90,6 +90,11 @@ public class Test_script : MonoBehaviour {
         
     }
     
+    public static void testFunc(Vector2 t)
+    {
+
+    }
+
     public static Vector2 getCloseNormal(Vector2 fromDir, Vector2 toDir)
     {
         float closeNormalAngle = Vector2.SignedAngle(fromDir, toDir) / 2.0f;

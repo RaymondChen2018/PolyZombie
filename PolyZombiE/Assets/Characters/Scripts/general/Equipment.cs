@@ -50,6 +50,7 @@ public class Equipment : MonoBehaviour {
         bool weaponReady = weapon.primaryReady();
         bool prevAttackDone = !animator.GetBool("isAttacking");
         string animStateName = weapon.getPrimaryAnimation();
+        Assert.IsTrue(animStateName != "", "Attack Animation null!");
         if (weaponReady && prevAttackDone)
         {
             animator.Play(animStateName, 0);
@@ -66,6 +67,7 @@ public class Equipment : MonoBehaviour {
         bool weaponReady = weapon.secondaryReady();
         bool prevAttackDone = !animator.GetBool("isAttacking");
         string animStateName = weapon.getSecondaryAnimation();
+        Assert.IsTrue(animStateName != "", "Attack Animation null!");
         if (weaponReady && prevAttackDone)
         {
             animator.Play(animStateName, 0);

@@ -25,6 +25,8 @@ public class UnityEventAttack : UnityEvent<AttackInfo>
 
 }
 
+
+
 public class Weapon : MonoBehaviour {
     enum AttackMode
     {
@@ -50,7 +52,7 @@ public class Weapon : MonoBehaviour {
     /// <summary>
     /// Point of interest; for melee, this is damage trace, for projectile weapon, this is muzzle
     /// </summary>
-    [SerializeField] protected Transform POI;
+    [SerializeField] protected Transform meleeHitBox;
 
     [SerializeField] private UnityEventAttack OnPrimary = new UnityEventAttack();
     [SerializeField] private UnityEventAttack OnSecondary = new UnityEventAttack();
@@ -58,6 +60,7 @@ public class Weapon : MonoBehaviour {
     [SerializeField] private UnityEventAttack OnHitSecondary = new UnityEventAttack();
 
     AttackMode attackmode = AttackMode.Primary;
+
 
     // Getters
     public string getPrimaryAnimation()
@@ -93,7 +96,7 @@ public class Weapon : MonoBehaviour {
     public void Melee(AttackInfo attackInfo)
     {
         Collider2D[] colliders = new Collider2D[hitMultiple];
-        Collider2D meleeBox = POI.GetComponent<Collider2D>();
+        Collider2D meleeBox = meleeHitBox.GetComponent<Collider2D>();
         Assert.IsNotNull(meleeBox);
         ContactFilter2D contactFilter = new ContactFilter2D();
         LayerMask enemyFilter = attackInfo.activator.getTeamComponent().GetOpponentLayerMask();
